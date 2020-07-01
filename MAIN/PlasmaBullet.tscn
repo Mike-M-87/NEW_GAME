@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://MAIN/sprites/guns/Ammo.png" type="Texture" id=1]
+[ext_resource path="res://MAIN/PlasmaBullet.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 6.88866
+
+[node name="PlasmaBullet" type="RigidBody2D"]
+collision_layer = 16
+collision_mask = 931841
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 2 )
+explosion_color = Color( 0, 1, 0.0862745, 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
+scale = Vector2( 0.7, 0.7 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 955.102, 822.062, 45.157, 62.2999 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_PlasmaBullet_body_entered"]

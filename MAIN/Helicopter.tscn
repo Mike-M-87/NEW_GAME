@@ -1,0 +1,97 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://MAIN/sprites/helicopters/helicopter1.png" type="Texture" id=1]
+[ext_resource path="res://MAIN/Helicopter.gd" type="Script" id=3]
+[ext_resource path="res://MAIN/sprites/explosion effect/explosion3.png" type="Texture" id=4]
+[ext_resource path="res://MAIN/sprites/other/outlineDisc.png" type="Texture" id=5]
+[ext_resource path="res://MAIN/GunShot.wav" type="AudioStream" id=6]
+[ext_resource path="res://MAIN/WinterBackground.tscn" type="PackedScene" id=7]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Rotor"
+length = 0.1
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite/Sprite2:rotation_degrees")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 5.0, 10.0, 20.0, 30.0, 40.0, -5.0, -10.0, -20.0, -30.0, -40.0, 4.99997 ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 286.817, 111.604 )
+
+[node name="Helicopter" type="KinematicBody2D" groups=[
+"vehicle",
+]]
+rotation = -0.261799
+collision_layer = 8
+script = ExtResource( 3 )
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2( 100, 0 )
+current = true
+limit_left = -100
+limit_right = 5300
+limit_bottom = 760
+limit_smoothed = true
+smoothing_enabled = true
+smoothing_speed = 8.0
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = 0.0872665
+texture = ExtResource( 1 )
+region_rect = Rect2( 103.207, 74.0475, 622.283, 246.795 )
+
+[node name="BulletPoint" type="Node2D" parent="Sprite"]
+position = Vector2( -285, 70 )
+
+[node name="Sprite2" type="Sprite" parent="Sprite"]
+position = Vector2( -35.3913, -114.202 )
+rotation = -2.98023e-08
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 129.571, 79.7544, 416.801, 24.4535 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -246.963, -26.825, -118.545, -92.3442, 126.497, -91.0338, 252.294, -68.1021, 332.228, -108.069, 349.263, -98.241, 313.227, -7.16917, 334.193, 51.143, 317.813, 56.3845, 230.018, -13.0659, 41.9773, 8.55545, 122.566, 82.5922, -170.96, 88.489, -120.51, 43.2807, -250.239, 22.9697 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer"]
+position = Vector2( 1060.9, 448 )
+scale = Vector2( 4, 4 )
+normal = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/TouchScreenButton"]
+modulate = Color( 1, 1, 1, 0.619608 )
+position = Vector2( 19.711, 20.1277 )
+scale = Vector2( 0.463543, 0.479403 )
+texture = ExtResource( 4 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+volume_db = -20.0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Rotor = SubResource( 1 )
+
+[node name="PlayerDetector" type="Area2D" parent="." groups=[
+"vehicle",
+]]
+rotation = 0.261799
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+position = Vector2( 38.4642, -19.7519 )
+rotation = -0.261799
+shape = SubResource( 2 )
+
+[node name="WinterBackground" parent="." instance=ExtResource( 7 )]
+[connection signal="pressed" from="CanvasLayer/TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]

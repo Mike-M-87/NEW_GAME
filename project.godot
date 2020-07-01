@@ -1,0 +1,66 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[  ]
+_global_script_class_icons={
+
+}
+
+[application]
+
+config/name="NEW"
+run/main_scene="res://MAIN/World.tscn"
+config/use_custom_user_dir=true
+config/icon="res://icon.png"
+
+[autoload]
+
+Signals="*res://MAIN/Signals.gd"
+
+[display]
+
+window/size/width=1280
+window/size/height=720
+window/handheld/orientation="sensor_landscape"
+window/stretch/mode="2d"
+
+[input_devices]
+
+pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="world"
+2d_physics/layer_2="player"
+2d_physics/layer_3="tank"
+2d_physics/layer_4="heli"
+2d_physics/layer_5="playerbullet"
+2d_physics/layer_6="tankbullet"
+2d_physics/layer_7="helibullet"
+2d_physics/layer_8="playermissile"
+2d_physics/layer_9="enemybullet"
+2d_physics/layer_10="enemytankbullet"
+2d_physics/layer_11="enemyhelibullet"
+2d_physics/layer_12="enemytank"
+2d_physics/layer_13="enemyheli"
+2d_physics/layer_14="Enemy"
+2d_physics/layer_15="playerhurtbox"
+2d_physics/layer_16="tankhurtbox"
+2d_physics/layer_17="helihurtbox"
+2d_physics/layer_18="enemytankhurtbox"
+2d_physics/layer_19="enemyhelihurtbox"
+2d_physics/layer_20="enemyhurtbox"
+2d_physics/layer_21=""
+2d_physics/layer_22=""
+
+[rendering]
+
+quality/2d/use_pixel_snap=true
+environment/default_environment="res://default_env.tres"

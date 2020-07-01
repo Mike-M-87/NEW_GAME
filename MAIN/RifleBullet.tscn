@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://MAIN/sprites/guns/Ammo.png" type="Texture" id=1]
+[ext_resource path="res://MAIN/RifleBullet.gd" type="Script" id=2]
+
+[sub_resource type="CapsuleShape2D" id=1]
+radius = 4.91386
+height = 34.5617
+
+[node name="RifleBullet" type="RigidBody2D"]
+collision_layer = 16
+collision_mask = 931841
+contacts_reported = 1
+contact_monitor = true
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+rotation = 1.5708
+scale = Vector2( 0.5, 0.461106 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 580.215, 769.187, 67.7868, 149.229 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_RifleBullet_body_entered"]
