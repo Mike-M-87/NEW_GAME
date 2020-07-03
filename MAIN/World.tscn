@@ -7,10 +7,10 @@
 [ext_resource path="res://MAIN/Menu Select.wav" type="AudioStream" id=5]
 [ext_resource path="res://MAIN/sprites/guns/gun (1).png" type="Texture" id=6]
 [ext_resource path="res://MAIN/sprites/other/zoombutton.png" type="Texture" id=7]
-[ext_resource path="res://MAIN/sprites/background/winter.jpg" type="Texture" id=8]
 [ext_resource path="res://MAIN/Tank.tscn" type="PackedScene" id=9]
 [ext_resource path="res://MAIN/Helicopter.tscn" type="PackedScene" id=10]
 [ext_resource path="res://MAIN/Joystick.tscn" type="PackedScene" id=11]
+[ext_resource path="res://MAIN/WinterBackground.tscn" type="PackedScene" id=12]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -67,25 +67,12 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
 
+[node name="WinterBackground" parent="." instance=ExtResource( 12 )]
+
 [node name="press_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
 volume_db = -30.0
 pitch_scale = 0.49
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-layer = -1
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
-visible = false
-margin_left = -1.0
-margin_top = 3.0
-margin_right = 1288.0
-margin_bottom = 822.0
-texture = ExtResource( 8 )
-expand = true
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -97,10 +84,10 @@ normal = ExtResource( 7 )
 pressed = ExtResource( 7 )
 
 [node name="MENU" type="Button" parent="CanvasLayer"]
-margin_left = 1050.44
-margin_top = 24.3061
-margin_right = 1255.44
-margin_bottom = 85.3061
+margin_left = 450.567
+margin_top = 22.9094
+margin_right = 655.567
+margin_bottom = 83.9094
 text = "Go TO MENU"
 __meta__ = {
 "_edit_use_anchors_": false

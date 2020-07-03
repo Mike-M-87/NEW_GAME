@@ -11,6 +11,11 @@ var joystick_value
 onready var body = $BodyRig
 var vehicle
 
+
+	
+func _ready():
+	pass
+	
 func _physics_process(delta):
 	joystick_value = joystick.get_value() * 10
 	

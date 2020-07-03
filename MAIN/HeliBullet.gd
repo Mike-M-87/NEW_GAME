@@ -8,7 +8,6 @@ func _ready():
 		$Sprite.rotation_degrees = -90
 	if Heli.sprite.flip_h == true:
 		$Sprite.rotation_degrees = 90
-	
 	yield(get_tree().create_timer(3),"timeout")
 	explode()
 	

@@ -45,12 +45,13 @@ func _physics_process(delta):
 	else:
 		$AnimationPlayer.play("Rotor")
 		$Sprite/Sprite2.visible = true
-	velocity = move_and_slide(velocity)
+	
 
 	
 	if velocity.y == 0:
 		rotation_degrees = 0
-	
+		
+	velocity = move_and_slide(velocity)
 func _process(delta):
 	if can_fire and can_start_fire:
 		var bullet_instance = bullet.instance()
@@ -70,17 +71,17 @@ func _on_TouchScreenButton_pressed():
 		can_start_fire = false
 
 func parking_mode():
-	$WinterBackground.queue_free()
 	global_position.y = 620
 	rotation_degrees = 0
 	set_physics_process(false)
 	set_process(false)
 	$CanvasLayer/TouchScreenButton.hide()
 	$Camera2D.current = false
+	$AnimationPlayer.stop()
+	$Sprite/Sprite2.rotation_degrees = 0
 
 
 func entered_mode():
-	add_child((wintermap).instance())
 	set_process(true)
 	set_physics_process(true)
 	$CanvasLayer/TouchScreenButton.show()

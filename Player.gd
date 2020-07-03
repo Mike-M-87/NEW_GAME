@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 var speed = Vector2()
 var gravity = 200
-
+func _ready():
+	set_physics_process(false)
 func _physics_process(delta):
 	speed.y += 20
 	
@@ -12,7 +13,5 @@ func _physics_process(delta):
 		speed.x = 200
 	else:
 		speed.x = 0
-	
-	print(speed.y)
 	
 	speed = move_and_slide(speed)

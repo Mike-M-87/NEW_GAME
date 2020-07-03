@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://MAIN/sprites/guns/gun333.png" type="Texture" id=1]
 [ext_resource path="res://MAIN/Gun.gd" type="Script" id=2]
 [ext_resource path="res://MAIN/GunShot.wav" type="AudioStream" id=3]
+[ext_resource path="res://MAIN/ReloadButton.tscn" type="PackedScene" id=4]
 
 [node name="Gun" type="Node2D" groups=[
 "gun",
@@ -23,3 +24,13 @@ position = Vector2( -27.254, -252.654 )
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 3 )
 volume_db = -20.0
+
+[node name="ReloadButton" parent="." instance=ExtResource( 4 )]
+
+[node name="Sprite" parent="ReloadButton/Node2D" index="1"]
+position = Vector2( 18.3361, -41.4499 )
+scale = Vector2( 0.0847164, 0.108477 )
+texture = ExtResource( 1 )
+[connection signal="pressed" from="ReloadButton/Node2D/reload" to="." method="_on_reload_pressed"]
+
+[editable path="ReloadButton"]

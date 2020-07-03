@@ -9,8 +9,7 @@ var data = {
 	"rocketgun_text":"ROCKET GUN BUY 200/=",
 	"rocketgun_avail":false,
 	"player_pos":Vector2(),
-	"camera_pos":Vector2()
-	
+	"camera_pos":Vector2(),
 }
 
 func _ready():

@@ -65,15 +65,13 @@ func _on_TouchScreenButton_pressed():
 		can_fire = true
 
 func parking_mode():
-	$WinterBackground.queue_free()
+	rotation_degrees = 0
 	set_physics_process(false)
 	$CanvasLayer/TouchScreenButton.hide()
-	rotation_degrees = 0
 	$Camera2D.current = false
 	
 
 func entered_mode():
-	add_child(wintermap.instance())
 	$CanvasLayer/TouchScreenButton.show()
 	$Camera2D.current = true
 	set_physics_process(true)
