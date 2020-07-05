@@ -52,6 +52,7 @@ func _physics_process(delta):
 		rotation_degrees = 0
 		
 	velocity = move_and_slide(velocity)
+	
 func _process(delta):
 	if can_fire and can_start_fire:
 		var bullet_instance = bullet.instance()

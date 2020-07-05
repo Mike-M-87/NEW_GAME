@@ -28,6 +28,7 @@ tracks/0/keys = {
 extents = Vector2( 286.817, 111.604 )
 
 [node name="Helicopter" type="KinematicBody2D" groups=[
+"helicopter",
 "vehicle",
 ]]
 rotation = -0.261799
@@ -82,9 +83,7 @@ volume_db = -20.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/Rotor = SubResource( 1 )
 
-[node name="PlayerDetector" type="Area2D" parent="." groups=[
-"vehicle",
-]]
+[node name="PlayerDetector" type="Area2D" parent="."]
 rotation = 0.261799
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]

@@ -3,6 +3,7 @@ extends RigidBody2D
 onready var LeftHand = get_parent().get_node("Player").get_node("BodyRig").get_node("LeftHand")
 var explosion = preload("res://MAIN/BulletExplosion.tscn")
 
+
 func _ready():
 	if LeftHand.joystick_value.x < 0:
 		$Sprite.rotation_degrees = -90

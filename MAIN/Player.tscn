@@ -105,6 +105,8 @@ region_enabled = true
 region_rect = Rect2( 144.638, 73.7307, 50.5465, 42.6598 )
 script = ExtResource( 3 )
 
+[node name="buttons_timer" type="Timer" parent="BodyRig/LeftHand"]
+
 [node name="Head" type="Sprite" parent="BodyRig"]
 texture = ExtResource( 1 )
 offset = Vector2( -10, 0 )

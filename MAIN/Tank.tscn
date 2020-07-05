@@ -10,6 +10,7 @@
 extents = Vector2( 257.337, 124.105 )
 
 [node name="Tank" type="KinematicBody2D" groups=[
+"tank",
 "vehicle",
 ]]
 collision_layer = 4
@@ -55,9 +56,7 @@ volume_db = -20.0
 [node name="BulletPoint" type="Node2D" parent="."]
 position = Vector2( 270, -65 )
 
-[node name="PlayerDetector" type="Area2D" parent="." groups=[
-"vehicle",
-]]
+[node name="PlayerDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 position = Vector2( -1.69348, 0 )

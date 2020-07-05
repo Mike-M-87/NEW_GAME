@@ -30,38 +30,46 @@ tracks/0/keys = {
 position = Vector2( 1034.42, 106.633 )
 scale = Vector2( 1.2, 1.2 )
 
-[node name="reload" type="TouchScreenButton" parent="Node2D"]
-position = Vector2( 112.051, -75.7361 )
-scale = Vector2( 0.56934, 0.657078 )
-normal = ExtResource( 4 )
+[node name="reload" type="TextureButton" parent="Node2D"]
+margin_left = 105.172
+margin_top = -68.9669
+margin_right = 188.172
+margin_bottom = 15.0331
+texture_normal = ExtResource( 4 )
+expand = true
 __meta__ = {
-"_edit_group_": true
+"_edit_group_": true,
+"_edit_use_anchors_": false
 }
 
-[node name="Sprite" type="Sprite" parent="Node2D/reload"]
-position = Vector2( 72.5967, 53.4357 )
+[node name="Node2D" type="Node2D" parent="Node2D/reload"]
+position = Vector2( -1.13489, 2.66422 )
+scale = Vector2( 0.6, 0.6 )
+
+[node name="Sprite" type="Sprite" parent="Node2D/reload/Node2D"]
+position = Vector2( 73.7872, 53.4357 )
 rotation = 1.5708
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 578.732, 782.704, 70, 125 )
 
-[node name="Sprite2" type="Sprite" parent="Node2D/reload"]
+[node name="Sprite2" type="Sprite" parent="Node2D/reload/Node2D"]
 position = Vector2( 73.3079, 104.216 )
 rotation = 1.5708
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 578.732, 782.704, 70, 125 )
 
-[node name="Sprite3" type="Sprite" parent="Node2D/reload"]
-position = Vector2( 70.3665, 27.7155 )
+[node name="Sprite3" type="Sprite" parent="Node2D/reload/Node2D"]
+position = Vector2( 73.422, 29.8544 )
 rotation = 1.5708
 scale = Vector2( 1.20148, 1.02822 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 578.732, 782.704, 70, 125 )
 
-[node name="Sprite4" type="Sprite" parent="Node2D/reload"]
-position = Vector2( 70.772, 79.1677 )
+[node name="Sprite4" type="Sprite" parent="Node2D/reload/Node2D"]
+position = Vector2( 73.153, 79.1677 )
 rotation = 1.5708
 scale = Vector2( 1.20148, 0.981185 )
 texture = ExtResource( 1 )

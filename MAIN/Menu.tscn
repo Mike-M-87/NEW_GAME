@@ -1,10 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://MAIN/Menu.gd" type="Script" id=1]
+[ext_resource path="res://MAIN/CashPanel.tscn" type="PackedScene" id=2]
 
 [sub_resource type="StyleBoxFlat" id=1]
 bg_color = Color( 0.101961, 0.121569, 0.584314, 0.713726 )
 corner_detail = 20
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 0.0627451, 0, 0.360784, 1 )
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -23,9 +27,9 @@ __meta__ = {
 }
 
 [node name="startgame" type="Button" parent="."]
-margin_left = 181.0
+margin_left = 182.507
 margin_top = 133.0
-margin_right = 675.0
+margin_right = 676.507
 margin_bottom = 264.0
 custom_styles/normal = SubResource( 1 )
 text = "START GAME"
@@ -33,46 +37,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="change_gun" type="Button" parent="."]
-margin_left = 923.0
-margin_top = 436.0
-margin_right = 1220.0
-margin_bottom = 583.0
-custom_styles/normal = SubResource( 1 )
-text = "GUN2 BUY 100/="
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="RocketGun" type="Button" parent="."]
-margin_left = 923.0
-margin_top = 264.0
-margin_right = 1227.0
-margin_bottom = 378.0
-custom_styles/normal = SubResource( 1 )
-text = "ROCKET GUN BUY 200/="
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="quit" type="Button" parent="."]
-margin_left = 250.763
-margin_top = 532.748
-margin_right = 477.763
-margin_bottom = 655.748
+margin_left = 183.0
+margin_top = 510.0
+margin_right = 677.0
+margin_bottom = 636.0
 custom_styles/normal = SubResource( 1 )
 text = "QUIT"
 
-[node name="Label" type="Label" parent="."]
-margin_left = 227.0
-margin_top = 53.0
-margin_right = 496.0
-margin_bottom = 104.0
-text = "10000000"
+[node name="shop" type="Button" parent="."]
+margin_left = 183.0
+margin_top = 318.0
+margin_right = 677.0
+margin_bottom = 447.0
+custom_styles/normal = SubResource( 2 )
+text = "SHOP"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="CashPanel" parent="." instance=ExtResource( 2 )]
+margin_left = 2.0
+margin_right = 1282.0
+margin_bottom = 53.0
 [connection signal="pressed" from="startgame" to="." method="_on_startgame_pressed"]
-[connection signal="pressed" from="change_gun" to="." method="_on_change_gun_pressed"]
-[connection signal="pressed" from="RocketGun" to="." method="_on_RocketGun_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="shop" to="." method="_on_shop_pressed"]
