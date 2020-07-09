@@ -52,14 +52,13 @@ func reload_gun():
 	update_bullet_labels()
 
 func _on_reload_pressed():
-	buttons_timer.start(0.5)
-	yield(LeftHand.get_node("buttons_timer"),"timeout")
-	buttons_timer.stop()
+	
 	
 	if DATA.ready_data.gun2_bullets < 20  and DATA.ready_data.gun2_tot_bullets > 0:
 		$ReloadButton/AnimationPlayer.play("reloading")
-		yield(get_tree().create_timer(0.5),"timeout")
-		
+		buttons_timer.start(0.5)
+		yield(LeftHand.get_node("buttons_timer"),"timeout")
+		buttons_timer.stop()
 		var added_bullets = def_bullets - DATA.ready_data.gun2_bullets
 		if DATA.ready_data.gun2_tot_bullets < added_bullets:
 			DATA.ready_data.gun2_bullets += DATA.ready_data.gun2_tot_bullets

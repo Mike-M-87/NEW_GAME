@@ -40,13 +40,13 @@ func check_remaining_bullets():
 		pass
 
 func _on_reload_pressed():
-	buttons_timer.start(0.5)
-	yield(LeftHand.get_node("buttons_timer"),"timeout")
-	buttons_timer.stop()
+	
 	
 	if DATA.ready_data.gun1_bullets < def_bullets  and DATA.ready_data.gun1_tot_bullets > 0:
 		$ReloadButton/AnimationPlayer.play("reloading")
-		yield(get_tree().create_timer(0.5),"timeout")
+		buttons_timer.start(0.5)
+		yield(LeftHand.get_node("buttons_timer"),"timeout")
+		buttons_timer.stop()
 
 		var added_bullets = def_bullets - DATA.ready_data.gun1_bullets
 		

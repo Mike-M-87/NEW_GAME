@@ -12,12 +12,8 @@ onready var body = $BodyRig
 var vehicle
 var acceleration = 50
 
-	
-func _ready():
-	pass
-	
+		
 func _physics_process(delta):
-	
 	player_movement()
 	
 func _on_VehicleDetector_area_entered(area):
@@ -49,7 +45,7 @@ func player_movement():
 		friction = true
 	else:
 		$AnimationPlayer.stop()
-
+		pass
 	if (joystick_value.x * 10) < 0:
 		velocity.x = max(velocity.x - acceleration,-max_speed)
 		body.scale.x = -1

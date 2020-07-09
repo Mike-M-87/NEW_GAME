@@ -53,13 +53,8 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_13="enemyheli"
 2d_physics/layer_14="Enemy"
 2d_physics/layer_15="playerhurtbox"
-2d_physics/layer_16="tankhurtbox"
-2d_physics/layer_17="helihurtbox"
-2d_physics/layer_18="enemytankhurtbox"
-2d_physics/layer_19="enemyhelihurtbox"
-2d_physics/layer_20="enemyhurtbox"
-2d_physics/layer_21=""
-2d_physics/layer_22=""
+2d_physics/layer_16="grenade"
+2d_physics/layer_17="enemyhurtbox"
 
 [rendering]
 

@@ -34,14 +34,13 @@ func _process(delta):
 
 
 func _on_reload_pressed():
-	buttons_timer.start(0.5)
-	yield(LeftHand.get_node("buttons_timer"),"timeout")
-	buttons_timer.stop()
 	
 	if DATA.ready_data.rocket_bullets < def_bullets and DATA.ready_data.rocket_tot_bullets > 0:
 		$ReloadButton/AnimationPlayer.play("reloading")
-		yield(get_tree().create_timer(1),"timeout")
-	
+		buttons_timer.start(0.5)
+		yield(LeftHand.get_node("buttons_timer"),"timeout")
+		buttons_timer.stop()
+		
 		var added_bullets = def_bullets - DATA.ready_data.rocket_bullets
 		
 		if DATA.ready_data.rocket_tot_bullets < added_bullets:
