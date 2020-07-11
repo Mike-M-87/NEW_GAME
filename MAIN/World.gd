@@ -1,7 +1,7 @@
 extends Node2D
 
 
-
+var map_name = "SNOW ISLAND"
 onready var playercam
 var wintermap = preload("res://MAIN/WinterBackground.tscn")
 var player = "res://MAIN/Player.tscn"
@@ -12,9 +12,6 @@ var zoomvalue = Vector2(1,1)
 
 func _ready():
 	DATA.new_game()
-	DATA.load_game_progress()
-	DATA.load_characters_data()
-	DATA.load_gun_data()
 	add_player()
 	player_form = "man"
 	$CanvasLayer/change_vehicle.hide()
@@ -22,8 +19,10 @@ func _ready():
 	Signals.connect("vehicle_detected",self,"_on_vehicle_detected")
 	Signals.connect("vehicle_undetected",self,"_on_vehicle_undetected")
 	
+	add_child(preload("res://MAIN/LoadingScreen.tscn").instance())
+	
 func _process(delta):
-
+	$CanvasLayer/FpsLabel.text = str("FPS: ",Engine.get_frames_per_second())
 	playercam = vehicle.get_node("Camera2D")
 	playercam.zoom = zoomvalue
 	DATA.ready_data.player_pos = vehicle.position
@@ -32,7 +31,7 @@ func _process(delta):
 			vehicle.position.x = 0
 		if vehicle.position.x >= 4800:
 			vehicle.position.x = 4800
-		
+	
 	
 func _on_MENU_pressed():
 	get_tree().change_scene("res://MAIN/Menu.tscn")
@@ -64,8 +63,9 @@ func _on_change_vehicle_pressed():
 		vehicle = vehicle_detected
 		vehicle.entered_mode()
 		$CanvasLayer/aim_joystick.hide()
-		add_child_below_node(get_child(get_child_count()-1),vehicle,true)
+		$Vehicles.add_child_below_node($Vehicles.get_child($Vehicles.get_child_count()-1),vehicle,true)
 		player_form = "vehicle"
+		
 		
 	elif player_form == "vehicle":
 		vehicle.parking_mode()

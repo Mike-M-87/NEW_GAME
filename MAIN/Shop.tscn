@@ -52,8 +52,8 @@ font_data = ExtResource( 7 )
 size = 40
 font_data = ExtResource( 7 )
 
-[sub_resource type="StyleBoxFlat" id=14]
-bg_color = Color( 0, 0.270588, 1, 0.0980392 )
+[sub_resource type="StyleBoxFlat" id=21]
+bg_color = Color( 0.294118, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=15]
 size = 60
@@ -207,11 +207,11 @@ __meta__ = {
 }
 
 [node name="Label" type="Label" parent="GunsPanel/Gun1"]
-margin_left = 170.0
-margin_top = 31.0
-margin_right = 382.0
-margin_bottom = 178.0
-custom_styles/normal = SubResource( 14 )
+margin_left = 168.038
+margin_top = 31.075
+margin_right = 380.038
+margin_bottom = 178.075
+custom_styles/normal = SubResource( 21 )
 custom_fonts/font = SubResource( 15 )
 custom_colors/font_color = Color( 0.792157, 0.92549, 1, 1 )
 text = "EQUIPPED"
@@ -239,9 +239,9 @@ scale = Vector2( 0.460165, 0.443768 )
 texture = ExtResource( 2 )
 
 [node name="purchaseGun2" type="Button" parent="GunsPanel/Gun2"]
-margin_left = 168.711
+margin_left = 170.0
 margin_top = 29.075
-margin_right = 383.711
+margin_right = 385.0
 margin_bottom = 187.075
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 16 )

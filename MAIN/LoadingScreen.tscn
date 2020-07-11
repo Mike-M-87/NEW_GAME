@@ -1,0 +1,96 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://MAIN/LoadingScreen.gd" type="Script" id=1]
+[ext_resource path="res://MAIN/sprites/background/winter.jpg" type="Texture" id=2]
+[ext_resource path="res://MAIN/Bubble Bobble.otf" type="DynamicFontData" id=3]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.905882, 0.870588, 0, 1, 0.764706, 0, 0.772549, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = SubResource( 2 )
+region_rect = Rect2( 0, 0, 2048, 1 )
+
+[sub_resource type="StyleBoxFlat" id=4]
+bg_color = Color( 0, 0, 0, 0.309804 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 70
+font_data = ExtResource( 3 )
+
+[sub_resource type="Animation" id=6]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.3, 0.5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.596078 ), Color( 1, 1, 1, 0.329412 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="LoadingScreen" type="CanvasLayer"]
+pause_mode = 2
+script = ExtResource( 1 )
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="Node2D"]
+margin_right = 1296.0
+margin_bottom = 806.0
+texture = ExtResource( 2 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="loadingbar" type="ProgressBar" parent="Node2D"]
+margin_left = 238.021
+margin_top = 571.58
+margin_right = 746.021
+margin_bottom = 611.58
+rect_scale = Vector2( 1.5, 1 )
+custom_styles/fg = SubResource( 3 )
+custom_styles/bg = SubResource( 4 )
+value = 10.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="Node2D"]
+
+[node name="loadLabel" type="Label" parent="Node2D"]
+margin_left = 559.51
+margin_top = 531.117
+margin_right = 621.51
+margin_bottom = 545.117
+rect_scale = Vector2( 2, 2 )
+text = "LOADING"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="map_name" type="Label" parent="Node2D"]
+margin_left = 897.659
+margin_top = 33.4036
+margin_right = 1243.66
+margin_bottom = 111.404
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0, 0.278431, 0.937255, 1 )
+text = "SNOW ISLAND"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Node2D"]
+anims/hide = SubResource( 6 )
+[connection signal="animation_finished" from="Node2D/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

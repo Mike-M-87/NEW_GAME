@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 var velocity = Vector2()
-onready var joystick = get_parent().get_node("CanvasLayer/move_joystick")
+onready var joystick = get_parent().get_parent().get_node("CanvasLayer/move_joystick")
 var joystick_value
 var wintermap = preload("res://MAIN/WinterBackground.tscn")
 var bullet = preload("res://MAIN/HeliBullet.tscn")
@@ -10,7 +10,7 @@ var fire_rate = 0.1
 var bullet_speed = 1500
 var can_start_fire = false
 var bullet_motion = Vector2(-bullet_speed,0)
-onready var world = get_parent()
+onready var world = get_parent().get_parent()
 onready var sprite = $Sprite
 
 func _ready():

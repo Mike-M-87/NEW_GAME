@@ -96,7 +96,6 @@ func load_game_progress():
 	
 
 
-	
 func save_characters_data():
 	config.save("user://GameData")
 	config.set_value("CHARACTERS","CharactersData",CharactersData)
@@ -105,3 +104,5 @@ func save_characters_data():
 func load_characters_data():
 	config.load("user://GameData")
 	CharactersData = config.get_value("CHARACTERS","CharactersData",CharactersData)
+
+
