@@ -16,9 +16,9 @@ onready var sprite = $Sprite
 func _ready():
 	parking_mode()
 func _physics_process(delta):
-	
+
 	joystick_value = joystick.get_value() * 100
-	velocity = joystick_value * 6
+	velocity = joystick_value * 8
 	
 	
 	if joystick_value.x < 0:

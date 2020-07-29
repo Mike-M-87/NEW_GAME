@@ -37,9 +37,8 @@ script = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 100, 0 )
-current = true
 limit_left = -100
-limit_right = 5300
+limit_right = 9500
 limit_bottom = 760
 limit_smoothed = true
 smoothing_enabled = true

@@ -10,7 +10,9 @@ var vehicle
 var vehicle_detected
 var zoomvalue = Vector2(1,1)
 
+
 func _ready():
+
 	DATA.new_game()
 	add_player()
 	player_form = "man"
@@ -18,19 +20,20 @@ func _ready():
 
 	Signals.connect("vehicle_detected",self,"_on_vehicle_detected")
 	Signals.connect("vehicle_undetected",self,"_on_vehicle_undetected")
-	
-	add_child(preload("res://MAIN/LoadingScreen.tscn").instance())
+	#add_child(preload("res://MAIN/LoadingScreen.tscn").instance())
 	
 func _process(delta):
+	set_zoom()
 	$CanvasLayer/FpsLabel.text = str("FPS: ",Engine.get_frames_per_second())
-	playercam = vehicle.get_node("Camera2D")
-	playercam.zoom = zoomvalue
-	DATA.ready_data.player_pos = vehicle.position
-	if player_form == "vehicle":
+	if player_form == "tank":
+		DATA.ready_data.player_pos = vehicle.get_node("body").global_position
+	elif player_form == "helicopter":
+			DATA.ready_data.player_pos = vehicle.position
+	if player_form == "tank" or player_form == "helicopter":
 		if vehicle.position.x <= 0:
 			vehicle.position.x = 0
-		if vehicle.position.x >= 4800:
-			vehicle.position.x = 4800
+		if vehicle.position.x >= 9500:
+			vehicle.position.x = 9500
 	
 	
 func _on_MENU_pressed():
@@ -43,7 +46,16 @@ func _on_ZoomCam_pressed():
 		zoomvalue = Vector2(2,2)
 	elif zoomvalue == Vector2(2,2):
 		zoomvalue = Vector2(1,1)
-
+	
+func set_zoom():
+	if player_form == "tank":
+		playercam = vehicle.get_node("body/Camera2D")
+	elif player_form == "helicopter":
+		playercam = vehicle.get_node("Camera2D")
+	elif player_form == "man":
+		playercam = vehicle.get_node("Camera2D")
+	playercam.zoom = zoomvalue
+	
 func add_player():
 	vehicle = load(player).instance()
 	vehicle.position = DATA.ready_data.player_pos
@@ -61,21 +73,25 @@ func _on_change_vehicle_pressed():
 	if player_form == "man":
 		vehicle.queue_free()
 		vehicle = vehicle_detected
-		vehicle.entered_mode()
+		if vehicle.is_in_group("tank"):
+			vehicle.entered_mode()
+			player_form = "tank"
+		elif vehicle.is_in_group("helicopter"):
+			vehicle.entered_mode()
+			player_form = "helicopter"
 		$CanvasLayer/aim_joystick.hide()
 		$Vehicles.add_child_below_node($Vehicles.get_child($Vehicles.get_child_count()-1),vehicle,true)
-		player_form = "vehicle"
 		
 		
-	elif player_form == "vehicle":
+	elif player_form == "tank" or player_form == "helicopter":
 		vehicle.parking_mode()
 		add_player()
 		$CanvasLayer/aim_joystick.show()
 
+
 func _on_vehicle_detected():
 	if player_form == "man":
 		$CanvasLayer/change_vehicle.show()
-
 
 func _on_vehicle_undetected():
 	if player_form == "man":

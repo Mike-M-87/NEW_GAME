@@ -39,6 +39,6 @@ motion_mirroring = Vector2( 1280, 1 )
 [node name="rain_particles" type="Particles2D" parent="rain_layer"]
 scale = Vector2( 1, 1.058 )
 amount = 5000
-lifetime = 3.0
+lifetime = 8.0
 speed_scale = 1.5
 process_material = SubResource( 1 )

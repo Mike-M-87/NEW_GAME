@@ -1,65 +1,659 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://MAIN/sprites/tank/tank1.png" type="Texture" id=1]
-[ext_resource path="res://MAIN/Tank.gd" type="Script" id=2]
-[ext_resource path="res://MAIN/sprites/explosion effect/explosion3.png" type="Texture" id=4]
-[ext_resource path="res://MAIN/sprites/other/outlineDisc.png" type="Texture" id=5]
-[ext_resource path="res://MAIN/GunShot.wav" type="AudioStream" id=6]
+[ext_resource path="res://MAIN/sprites/explosion effect/explosion3.png" type="Texture" id=2]
+[ext_resource path="res://MAIN/Tank.gd" type="Script" id=3]
+[ext_resource path="res://tyre.png" type="Texture" id=4]
+[ext_resource path="res://icon.png" type="Texture" id=5]
+[ext_resource path="res://MAIN/sprites/other/outlineDisc.png" type="Texture" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 257.337, 124.105 )
+[sub_resource type="Curve2D" id=1]
+bake_interval = 26.0
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, -203.094, 74.7324, 0, 0, 0, 0, 228.28, 71.3905, 0, 0, 0, 0, 241.259, 82.9153, 0, 0, 0, 0, 250.384, 106.054, 0, 0, 0, 0, 230.762, 130.96, 0, 0, 0, 0, 177.854, 160.468, 0, 0, 0, 0, -162.227, 158.672, 0, 0, 0, 0, -222.974, 131.761, 0, 0, 0, 0, -244.274, 109.859, 0, 0, 0, 0, -238.91, 93.6042, 0, 0, 0, 0, -220.134, 79.9669, 0, 0, 0, 0, -202.936, 74.7324 )
+}
 
-[node name="Tank" type="KinematicBody2D" groups=[
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 266.679, 129.701 )
+
+[sub_resource type="CircleShape2D" id=3]
+radius = 21.235
+
+[node name="Tank" type="Node2D" groups=[
 "tank",
 "vehicle",
 ]]
-collision_layer = 4
-script = ExtResource( 2 )
+script = ExtResource( 3 )
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="body" type="RigidBody2D" parent="." groups=[
+"vehicle",
+]]
+collision_layer = 4
+mass = 8.0
+gravity_scale = 10.0
+
+[node name="Sprite" type="Sprite" parent="body"]
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1, 2, 1022, 288 )
+
+[node name="Sprite2" type="Sprite" parent="body"]
+position = Vector2( -1, 116.205 )
+scale = Vector2( 0.5, 0.490223 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 30.39, 276.44, 1006, 202 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body"]
+polygon = PoolVector2Array( -92.0022, -60.0007, 67.997, -65.0006, 251.935, 66.84, 249.541, 121.675, 233.398, 68.2158, -235.592, 65.1675, -245.093, 122.612, -245.627, 122.868, -248.554, 39.6622, -132.325, 5.49747 )
+
+[node name="Path2D" type="Path2D" parent="body"]
+position = Vector2( -3.54172, -0.062161 )
+scale = Vector2( 1, 0.99949 )
+curve = SubResource( 1 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -179.807, 74.552 )
+rotation = -0.00775006
+offset = 23.42
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D"]
+position = Vector2( 0, 0.751358 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D24" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 68.1839, 72.6308 )
+rotation = -0.00774634
+offset = 271.29
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite2" type="Sprite" parent="body/Path2D/PathFollow2D24"]
+position = Vector2( 9.53674e-06, 0.75135 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D25" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -29.4998, 73.3876 )
+rotation = -0.00774678
+offset = 173.54
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D25"]
+position = Vector2( 0, 0.751343 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D26" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -68.3201, 73.6883 )
+rotation = -0.00774714
+offset = 134.76
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D26"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D27" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -106.823, 73.9866 )
+rotation = -0.00774708
+offset = 96.33
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D27"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -144.956, 74.282 )
+rotation = -0.00774566
+offset = 58.18
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D2"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 22.7632, 72.9827 )
+rotation = -0.00774718
+offset = 225.861
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D3"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 105.81, 72.3393 )
+rotation = -0.00774794
+offset = 308.915
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D4"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 144.811, 72.0371 )
+rotation = -0.00774725
+offset = 347.99
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D5"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 186.109, 71.7172 )
+rotation = -0.0220423
+offset = 389.27
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D6"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 225.868, 74.0341 )
+rotation = 0.307439
+offset = 428.78
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D7"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D8" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 249.149, 102.368 )
+rotation = 1.71181
+offset = 467.41
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D8"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D9" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 237.013, 123.325 )
+rotation = 2.33017
+offset = 491.73
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D9"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D10" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 205.703, 145.467 )
+rotation = 2.61564
+offset = 530.11
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D10"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D11" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 166.476, 160.449 )
+rotation = 3.04461
+offset = 572.282
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D11"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D12" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 123.862, 160.183 )
+rotation = -3.13631
+offset = 614.877
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D12"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D13" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 83.2351, 159.968 )
+rotation = -3.13631
+offset = 655.468
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D13"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D14" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 41.9117, 159.75 )
+rotation = -3.13631
+offset = 696.797
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D14"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D15" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( 0.27397, 159.53 )
+rotation = -3.13631
+offset = 738.442
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D15"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D16" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -40.9399, 159.313 )
+rotation = -3.13631
+offset = 779.666
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D16"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D17" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -84.6604, 159.082 )
+rotation = -3.13631
+offset = 823.42
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D17"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D18" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -122.022, 158.903 )
+rotation = 3.12785
+offset = 860.743
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D18"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D19" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -161.615, 156.914 )
+rotation = -2.95302
+offset = 900.385
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D19"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D20" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -193.315, 144.913 )
+rotation = -2.72964
+offset = 934.439
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D20"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D21" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -223.905, 130.274 )
+rotation = -2.54327
+offset = 968.177
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D21"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D22" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -238.456, 100.19 )
+rotation = -1.30892
+offset = 1003.81
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D22"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="PathFollow2D23" type="PathFollow2D" parent="body/Path2D"]
+modulate = Color( 0, 0, 0, 1 )
+position = Vector2( -212.835, 77.8454 )
+rotation = -0.396971
+offset = 1039.13
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="body/Path2D/PathFollow2D23"]
+position = Vector2( 0, 0.751339 )
+scale = Vector2( 0.5, 0.863393 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
+
+[node name="Camera2D" type="Camera2D" parent="body"]
 offset = Vector2( 100, 0 )
 current = true
 limit_left = -100
-limit_right = 5300
+limit_right = 9500
 limit_bottom = 760
 limit_smoothed = true
 smoothing_enabled = true
 smoothing_speed = 8.0
 
+[node name="frontSpring" type="DampedSpringJoint2D" parent="body"]
+position = Vector2( 218.903, 68.75 )
+node_a = NodePath("..")
+node_b = NodePath("../../front")
+bias = 0.9
+length = 41.0
+
+[node name="frontSpring2" type="DampedSpringJoint2D" parent="body"]
+position = Vector2( 165.127, 68.75 )
+node_a = NodePath("..")
+node_b = NodePath("../../front2")
+bias = 0.9
+length = 76.0
+
+[node name="rearSpring" type="DampedSpringJoint2D" parent="body"]
+position = Vector2( -216.229, 68.75 )
+node_a = NodePath("..")
+node_b = NodePath("../../rear")
+length = 41.0
+
+[node name="rearSpring2" type="DampedSpringJoint2D" parent="body"]
+position = Vector2( -152.523, 68.75 )
+node_a = NodePath("..")
+node_b = NodePath("../../rear2")
+length = 76.0
+
+[node name="midSpring" type="DampedSpringJoint2D" parent="body"]
+position = Vector2( 0, 68.75 )
+node_a = NodePath("..")
+node_b = NodePath("../../mid")
+length = 76.0
+
+[node name="frontSpin" type="PinJoint2D" parent="body"]
+position = Vector2( 218.903, 109.899 )
+node_a = NodePath("..")
+node_b = NodePath("../../front")
+softness = 0.5
+
+[node name="frontSpin2" type="PinJoint2D" parent="body"]
+position = Vector2( 165.127, 144.596 )
+node_a = NodePath("..")
+node_b = NodePath("../../front2")
+softness = 0.5
+
+[node name="rearSpin" type="PinJoint2D" parent="body"]
+position = Vector2( -216.229, 109.899 )
+node_a = NodePath("..")
+node_b = NodePath("../../rear")
+softness = 0.5
+
+[node name="rearSpin2" type="PinJoint2D" parent="body"]
+position = Vector2( -152.523, 144.596 )
+node_a = NodePath("..")
+node_b = NodePath("../../rear2")
+softness = 0.5
+
+[node name="midSpin" type="PinJoint2D" parent="body"]
+position = Vector2( 0, 144.596 )
+node_a = NodePath("..")
+node_b = NodePath("../../mid")
+softness = 0.5
+
+[node name="PlayerDetector" type="Area2D" parent="body"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="body/PlayerDetector"]
+visible = false
+position = Vector2( -2.99368, 28.7393 )
+shape = SubResource( 2 )
+
+[node name="rear" type="RigidBody2D" parent="."]
+position = Vector2( -216.229, 109.899 )
+collision_layer = 4
+mass = 10.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="rear"]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rear"]
+shape = SubResource( 3 )
+
+[node name="rear2" type="RigidBody2D" parent="."]
+position = Vector2( -152.523, 144.596 )
+collision_layer = 4
+mass = 10.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="rear2"]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="rear2"]
+shape = SubResource( 3 )
+
+[node name="front2" type="RigidBody2D" parent="."]
+position = Vector2( 165.127, 144.596 )
+collision_layer = 4
+mass = 10.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="front2"]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="front2"]
+shape = SubResource( 3 )
+
+[node name="front" type="RigidBody2D" parent="."]
+position = Vector2( 218.903, 109.899 )
+collision_layer = 4
+mass = 10.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="front"]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="front"]
+shape = SubResource( 3 )
+
+[node name="mid" type="RigidBody2D" parent="."]
+position = Vector2( 0, 144.596 )
+collision_layer = 4
+mass = 10.0
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="mid"]
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mid"]
+shape = SubResource( 3 )
+
 [node name="Sprite" type="Sprite" parent="."]
-scale = Vector2( 0.45, 0.45 )
-texture = ExtResource( 1 )
+visible = false
+texture = ExtResource( 5 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TouchScreenButton" type="TouchScreenButton" parent="CanvasLayer"]
+[node name="shootbutton" type="TouchScreenButton" parent="CanvasLayer"]
 position = Vector2( 1060, 448 )
 scale = Vector2( 4, 4 )
-normal = ExtResource( 5 )
+normal = ExtResource( 6 )
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/TouchScreenButton"]
-position = Vector2( 20.3168, 20.1888 )
-scale = Vector2( 0.523057, 0.474388 )
-texture = ExtResource( 4 )
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-position = Vector2( -1.69348, 0 )
-scale = Vector2( 0.9, 0.9 )
-polygon = PoolVector2Array( -253.787, 19.88, -235.662, -24.3288, -97.3041, -52.483, -92.4777, -114.422, 48.2931, -124.879, 257.447, 21.898, 257.447, 69.658, 192.87, 118.427, -147.168, 118.763, -229.907, 82.1025, -239.325, 66.9673 )
-
-[node name="Tween" type="Tween" parent="."]
-
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
-volume_db = -20.0
-
-[node name="BulletPoint" type="Node2D" parent="."]
-position = Vector2( 270, -65 )
-
-[node name="PlayerDetector" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-position = Vector2( -1.69348, 0 )
-scale = Vector2( 0.9, 0.9 )
-shape = SubResource( 1 )
-[connection signal="pressed" from="CanvasLayer/TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]
+[node name="Sprite" type="Sprite" parent="CanvasLayer/shootbutton"]
+position = Vector2( 19.7972, 19.6834 )
+scale = Vector2( 0.496436, 0.498187 )
+texture = ExtResource( 2 )

@@ -1,77 +1,80 @@
-extends KinematicBody2D
+extends Node2D
 
-
+onready var world = get_parent()
 onready var joystick = get_parent().get_parent().get_node("CanvasLayer/move_joystick")
-var max_speed = 70
-var gravity = 30
-var velocity = Vector2()
-var wintermap = preload("res://MAIN/WinterBackground.tscn")
-var joystick_value
-var bullet = preload("res://MAIN/TankBullet.tscn")
-onready var world = get_parent().get_parent()
-onready var sprite = $Sprite
-var bullet_speed = 1500
-var can_fire = true
-
 func _ready():
 	parking_mode()
+	hide_wheels()
+func hide_wheels():
+	$front.hide()
+	$rear.hide()
+	$front2.hide()
+	$rear2.hide()
+	$mid.hide()
+	
+
+
+func _process(delta):
+	$body/Path2D/PathFollow2D.offset += $mid.angular_velocity /3
+	$body/Path2D/PathFollow2D2.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D3.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D4.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D5.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D6.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D7.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D8.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D9.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D10.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D11.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D12.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D13.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D14.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D15.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D16.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D17.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D18.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D19.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D20.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D21.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D22.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D23.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D24.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D25.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D26.offset += $mid.angular_velocity/3
+	$body/Path2D/PathFollow2D27.offset += $mid.angular_velocity/3
 
 func _physics_process(delta):
-	joystick_value = joystick.get_value() * 10
-	velocity.y += gravity
-	velocity.x = (joystick_value.x * max_speed)
-	
-	if joystick_value.x > 0:
-		sprite.flip_h = false
-		$BulletPoint.position = Vector2(275,-65)
-		bullet_speed = 1500
-		$CollisionPolygon2D.scale.x = 1
-		$Tween.interpolate_property(self,"rotation_degrees",self.rotation_degrees, (joystick_value.y*2),0.2)
-		$Tween.start()
-		
-	elif joystick_value.x < 0:
-		sprite.flip_h = true
-		$BulletPoint.position = Vector2(-275,-65)
-		bullet_speed = -1500
-		$CollisionPolygon2D.scale.x = -1
-		$Tween.interpolate_property(self,"rotation_degrees",self.rotation_degrees, -(joystick_value.y * 2),0.2)
-		$Tween.start()
-	
-	
-	if joystick_value.y == 0:
-		$Tween.interpolate_property(self,"rotation_degrees",self.rotation_degrees,0.0,0.2)
-		$Tween.start()
-		
-	elif joystick_value.y > 0:
-		rotation_degrees = 0
-		$Tween.stop_all()
-		
-	if rotation_degrees > 20:
-		rotation_degrees = 20
-	elif rotation_degrees < -20:
-		rotation_degrees = -20
-	velocity = move_and_slide(velocity)
-
-func _on_TouchScreenButton_pressed():
-	if can_fire:
-		var bullet_instance = bullet.instance()
-		bullet_instance.position = $BulletPoint.global_position
-		bullet_instance.rotation_degrees = rotation_degrees
-		bullet_instance.apply_impulse(Vector2(0,0),Vector2(bullet_speed,0).rotated(rotation))
-		world.add_child(bullet_instance)
-		$AudioStreamPlayer.playing = true
-		can_fire = false
-		yield(get_tree().create_timer(1),"timeout")
-		can_fire = true
+	if joystick.get_value().x > 0:
+		move_right()
+	elif joystick.get_value().x < 0:
+		move_left()
 
 func parking_mode():
-	rotation_degrees = 0
+	#set_process(false)
 	set_physics_process(false)
-	$CanvasLayer/TouchScreenButton.hide()
-	$Camera2D.current = false
-	
+	$CanvasLayer/shootbutton.hide()
+	$body/Camera2D.current = false
 
 func entered_mode():
-	$CanvasLayer/TouchScreenButton.show()
-	$Camera2D.current = true
+	$CanvasLayer/shootbutton.show()
+	$body/Camera2D.current = true
+	#set_process(true)
 	set_physics_process(true)
+
+
+func move_right():
+	$front.angular_velocity = min($front.angular_velocity+2,30)
+	$rear.angular_velocity = min($rear.angular_velocity+2,30)
+	$front2.angular_velocity =min($front2.angular_velocity+2,30)
+	$rear2.angular_velocity = min($rear2.angular_velocity+2,30)
+	$mid.angular_velocity = min($mid.angular_velocity+2,30)
+	$body/Sprite.flip_h = false
+	print($front.angular_velocity)
+
+func move_left():
+	$front.angular_velocity = max($front.angular_velocity-2,-30)
+	$rear.angular_velocity = max($rear.angular_velocity-2,-30)
+	$front2.angular_velocity =max($front2.angular_velocity-2,-30)
+	$rear2.angular_velocity = max($rear2.angular_velocity-2,-30)
+	$mid.angular_velocity = max($mid.angular_velocity-2,-30)
+	$body/Sprite.flip_h = true
