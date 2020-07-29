@@ -14,11 +14,11 @@ onready var joystick = get_parent().get_node("CanvasLayer/move_joystick")
 var joystick_value
 onready var body = $BodyRig
 var vehicle
-		
-func _physics_process(delta):
-	#player_movement()
+var number = 0
+func _process(delta):
+
 	move(delta)
-	
+
 func _on_VehicleDetector_area_entered(area):
 	if area.get_parent().is_in_group("helicopter"):
 		get_parent().get_node("CanvasLayer/change_vehicle/Sprite").texture = preload("res://MAIN/sprites/helicopters/helicopter1.png")
@@ -62,35 +62,3 @@ func move(delta):
 	velocity = move_and_slide(velocity,UP)
 	
 
-func player_movement():
-	
-	var friction = false
-	joystick_value = joystick.get_value() * 10
-
-	velocity.y += gravity
-
-	if joystick_value.x == 0:
-		$AnimationPlayer.play("Idle")
-		velocity.x = 0
-		friction = true
-	else:
-		$AnimationPlayer.stop()
-		pass
-	if (joystick_value.x * 10) < 0:
-		velocity.x = max(velocity.x - acceleration,-max_speed)
-		body.scale.x = -1
-		
-	elif (joystick_value.x * 10) > 0:
-		body.scale.x = 1
-		velocity.x = min(velocity.x + acceleration,max_speed)
-	
-	if is_on_floor():
-		if joystick_value.y < -4:
-			velocity.y = jump_height
-		if friction == true:
-			velocity.x = lerp(velocity.x ,0, 0.2)
-	else:
-		if friction == true:
-			velocity.x = lerp(velocity.x ,0,0.05)
-
-	velocity = move_and_slide(velocity,UP)

@@ -14,7 +14,6 @@ func _ready():
 	
 func _on_RocketBullet_body_entered(body):
 	explode()
-	get_parent().get_node("Player/Camera2D/ScreenShake").start()
 	
 func explode():
 	var explosion_instance = explosion.instance()

@@ -23,12 +23,15 @@ func _ready():
 	#add_child(preload("res://MAIN/LoadingScreen.tscn").instance())
 	
 func _process(delta):
-	set_zoom()
+	#set_zoom()
 	$CanvasLayer/FpsLabel.text = str("FPS: ",Engine.get_frames_per_second())
 	if player_form == "tank":
 		DATA.ready_data.player_pos = vehicle.get_node("body").global_position
 	elif player_form == "helicopter":
-			DATA.ready_data.player_pos = vehicle.position
+		DATA.ready_data.player_pos = vehicle.position
+	elif player_form == "man":
+		DATA.ready_data.player_pos = vehicle.position
+	
 	if player_form == "tank" or player_form == "helicopter":
 		if vehicle.position.x <= 0:
 			vehicle.position.x = 0
@@ -46,16 +49,8 @@ func _on_ZoomCam_pressed():
 		zoomvalue = Vector2(2,2)
 	elif zoomvalue == Vector2(2,2):
 		zoomvalue = Vector2(1,1)
-	
-func set_zoom():
-	if player_form == "tank":
-		playercam = vehicle.get_node("body/Camera2D")
-	elif player_form == "helicopter":
-		playercam = vehicle.get_node("Camera2D")
-	elif player_form == "man":
-		playercam = vehicle.get_node("Camera2D")
-	playercam.zoom = zoomvalue
-	
+
+
 func add_player():
 	vehicle = load(player).instance()
 	vehicle.position = DATA.ready_data.player_pos

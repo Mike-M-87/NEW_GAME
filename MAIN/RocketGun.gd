@@ -15,6 +15,7 @@ var def_bullets = 3
 
 func _ready():
 	update_bullet_labels()
+	#check_remaining_bullets()
 	
 func _process(delta):
 	if LeftHand.joystick_value.x > 1 or LeftHand.joystick_value.x < -1:

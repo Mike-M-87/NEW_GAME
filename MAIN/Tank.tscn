@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://MAIN/sprites/tank/tank1.png" type="Texture" id=1]
 [ext_resource path="res://MAIN/sprites/explosion effect/explosion3.png" type="Texture" id=2]
@@ -6,6 +6,10 @@
 [ext_resource path="res://tyre.png" type="Texture" id=4]
 [ext_resource path="res://icon.png" type="Texture" id=5]
 [ext_resource path="res://MAIN/sprites/other/outlineDisc.png" type="Texture" id=6]
+[ext_resource path="res://MAIN/sprites/tank/wheel.png" type="Texture" id=7]
+[ext_resource path="res://MAIN/sprites/tank/wheelhold.png" type="Texture" id=8]
+[ext_resource path="res://MAIN/sprites/tank/wheel2.png" type="Texture" id=9]
+[ext_resource path="res://MAIN/sprites/tank/wheel3.png" type="Texture" id=10]
 
 [sub_resource type="Curve2D" id=1]
 bake_interval = 26.0
@@ -44,6 +48,79 @@ scale = Vector2( 0.5, 0.490223 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 30.39, 276.44, 1006, 202 )
+
+[node name="wheel" type="Sprite" parent="body/Sprite2"]
+position = Vector2( 434.839, -32.2025 )
+scale = Vector2( 1.1, 1.1 )
+texture = ExtResource( 7 )
+region_enabled = true
+region_rect = Rect2( 913.496, 291.985, 106.451, 109.693 )
+
+[node name="wheel2" type="Sprite" parent="body/Sprite2"]
+position = Vector2( -432.376, -21.1984 )
+texture = ExtResource( 9 )
+region_enabled = true
+region_rect = Rect2( 54.6136, 306.531, 97.1523, 98.7338 )
+
+[node name="wheelhold" type="Sprite" parent="body/Sprite2"]
+position = Vector2( 274.55, -16.7909 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 459.232, 291.074, 183.812, 139.938 )
+
+[node name="wheel3" type="Sprite" parent="body/Sprite2/wheelhold"]
+position = Vector2( -73.3301, 58.4243 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 699.484, 381.979, 72.2463, 71.9141 )
+
+[node name="wheel4" type="Sprite" parent="body/Sprite2/wheelhold"]
+position = Vector2( 77.4675, 59.3901 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 699.484, 381.979, 72.2463, 71.9141 )
+
+[node name="wheelhold2" type="Sprite" parent="body/Sprite2"]
+position = Vector2( 20.2753, -17.4953 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 456.838, 291.074, 189.201, 139.938 )
+
+[node name="wheel3" type="Sprite" parent="body/Sprite2/wheelhold2"]
+position = Vector2( -73.3301, 58.4243 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 699.484, 381.979, 72.2463, 71.9141 )
+
+[node name="wheel4" type="Sprite" parent="body/Sprite2/wheelhold2"]
+position = Vector2( 77.4675, 59.3901 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 699.484, 381.979, 72.2463, 71.9141 )
+
+[node name="wheelhold3" type="Sprite" parent="body/Sprite2"]
+position = Vector2( -232.114, -16.9433 )
+texture = ExtResource( 8 )
+region_enabled = true
+region_rect = Rect2( 456.838, 291.074, 188.003, 139.938 )
+
+[node name="wheel3" type="Sprite" parent="body/Sprite2/wheelhold3"]
+position = Vector2( -73.3301, 58.4243 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 699.484, 381.979, 72.2463, 71.9141 )
+
+[node name="wheel4" type="Sprite" parent="body/Sprite2/wheelhold3"]
+position = Vector2( 77.4675, 59.3901 )
+scale = Vector2( 1, 1 )
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 699.484, 381.979, 72.2463, 71.9141 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body"]
 polygon = PoolVector2Array( -92.0022, -60.0007, 67.997, -65.0006, 251.935, 66.84, 249.541, 121.675, 233.398, 68.2158, -235.592, 65.1675, -245.093, 122.612, -245.627, 122.868, -248.554, 39.6622, -132.325, 5.49747 )

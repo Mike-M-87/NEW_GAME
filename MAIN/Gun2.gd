@@ -15,7 +15,7 @@ onready var buttons_timer = get_parent().get_node("buttons_timer")
 
 func _ready():
 	update_bullet_labels()	
-
+	check_remaining_bullets()
 
 func _process(delta):
 	if LeftHand.joystick_value.x > 1 or LeftHand.joystick_value.x < -1:

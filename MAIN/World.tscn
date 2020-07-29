@@ -181,7 +181,7 @@ __meta__ = {
 position = Vector2( 1457.58, 600 )
 
 [node name="Tank" parent="Vehicles" instance=ExtResource( 9 )]
-position = Vector2( 2452.14, 510.291 )
+position = Vector2( 777.425, 510.291 )
 
 [node name="buttons_timer" type="Timer" parent="."]
 

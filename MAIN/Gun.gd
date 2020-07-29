@@ -15,6 +15,7 @@ onready var world = get_parent().get_parent().get_parent().get_parent()
 var def_bullets = 50
 
 func _ready():
+	check_remaining_bullets()
 	update_bullet_labels()
 	
 func _process(delta):
@@ -40,8 +41,6 @@ func check_remaining_bullets():
 		pass
 
 func _on_reload_pressed():
-	
-	
 	if DATA.ready_data.gun1_bullets < def_bullets  and DATA.ready_data.gun1_tot_bullets > 0:
 		$ReloadButton/AnimationPlayer.play("reloading")
 		buttons_timer.start(0.5)

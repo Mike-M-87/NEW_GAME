@@ -42,7 +42,17 @@ func _process(delta):
 	$body/Path2D/PathFollow2D25.offset += $mid.angular_velocity/3
 	$body/Path2D/PathFollow2D26.offset += $mid.angular_velocity/3
 	$body/Path2D/PathFollow2D27.offset += $mid.angular_velocity/3
-
+	
+	
+	$body/Sprite2/wheel.rotation_degrees = $body/Path2D/PathFollow2D.offset
+	$body/Sprite2/wheel2.rotation_degrees = $body/Path2D/PathFollow2D.offset
+	$body/Sprite2/wheelhold/wheel3.rotation_degrees = $body/Path2D/PathFollow2D.offset
+	$body/Sprite2/wheelhold/wheel4.rotation_degrees = $body/Path2D/PathFollow2D.offset
+	$body/Sprite2/wheelhold2/wheel3.rotation_degrees = $body/Path2D/PathFollow2D.offset
+	$body/Sprite2/wheelhold2/wheel4.rotation_degrees = $body/Path2D/PathFollow2D.offset
+	$body/Sprite2/wheelhold3/wheel3.rotation_degrees = $body/Path2D/PathFollow2D.offset
+	$body/Sprite2/wheelhold3/wheel4.rotation_degrees = $body/Path2D/PathFollow2D.offset
+	
 func _physics_process(delta):
 	if joystick.get_value().x > 0:
 		move_right()
