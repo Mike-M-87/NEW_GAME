@@ -1,14 +1,40 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://MAIN/Menu.gd" type="Script" id=1]
 [ext_resource path="res://MAIN/CashPanel.tscn" type="PackedScene" id=2]
+[ext_resource path="res://MAIN/sprites/other/shield_bar_under.svg" type="Texture" id=3]
+[ext_resource path="res://MAIN/Bubble Bobble.otf" type="DynamicFontData" id=6]
+[ext_resource path="res://MAIN/AnimationMenuPanel.tscn" type="PackedScene" id=8]
 
-[sub_resource type="StyleBoxFlat" id=1]
-bg_color = Color( 0.101961, 0.121569, 0.584314, 0.713726 )
-corner_detail = 20
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 485, 75 )
+margin_bottom = 11.0
+modulate_color = Color( 0.223529, 0, 0, 1 )
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.0627451, 0, 0.360784, 1 )
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 485, 75 )
+margin_bottom = 10.0
+modulate_color = Color( 0, 0.0156863, 0.211765, 1 )
+
+[sub_resource type="StyleBoxTexture" id=3]
+texture = ExtResource( 3 )
+region_rect = Rect2( 0, 0, 485, 75 )
+margin_bottom = 9.77407
+modulate_color = Color( 0.0627451, 0.184314, 0, 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 35
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=5]
+size = 35
+font_data = ExtResource( 6 )
+
+[sub_resource type="DynamicFont" id=6]
+size = 35
+font_data = ExtResource( 6 )
 
 [node name="Menu" type="Control"]
 anchor_right = 1.0
@@ -18,48 +44,95 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Panel" type="Panel" parent="."]
-modulate = Color( 0.764706, 0, 0, 1 )
-margin_right = 1280.0
-margin_bottom = 720.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="MenusPanel" parent="." instance=ExtResource( 8 )]
+visible = false
 
 [node name="startgame" type="Button" parent="."]
-margin_left = 182.507
-margin_top = 133.0
-margin_right = 676.507
-margin_bottom = 264.0
-custom_styles/normal = SubResource( 1 )
+margin_left = 916.0
+margin_top = 260.776
+margin_right = 1216.0
+margin_bottom = 350.776
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 4 )
+custom_colors/font_color = Color( 0.996078, 0.419608, 0, 1 )
 text = "START GAME"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="quit" type="Button" parent="."]
-margin_left = 183.0
-margin_top = 510.0
-margin_right = 677.0
-margin_bottom = 636.0
-custom_styles/normal = SubResource( 1 )
-text = "QUIT"
-
 [node name="shop" type="Button" parent="."]
-margin_left = 183.0
-margin_top = 318.0
-margin_right = 677.0
-margin_bottom = 447.0
-custom_styles/normal = SubResource( 2 )
+margin_left = 916.0
+margin_top = 385.309
+margin_right = 1216.0
+margin_bottom = 475.309
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 5 )
+custom_colors/font_color = Color( 0.996078, 0.419608, 0, 1 )
 text = "SHOP"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="quit" type="Button" parent="."]
+margin_left = 916.0
+margin_top = 610.562
+margin_right = 1216.0
+margin_bottom = 700.562
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.996078, 0.419608, 0, 1 )
+text = "QUIT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="About" type="Button" parent="."]
+margin_left = 916.0
+margin_top = 495.024
+margin_right = 1216.0
+margin_bottom = 585.024
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
+custom_fonts/font = SubResource( 6 )
+custom_colors/font_color = Color( 0.996078, 0.419608, 0, 1 )
+text = "ABOUT"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="CashPanel" parent="." instance=ExtResource( 2 )]
-margin_left = 2.0
-margin_right = 1282.0
-margin_bottom = 53.0
+margin_top = 7.0
+margin_bottom = 83.0
+
+[node name="TextEdit" type="TextEdit" parent="."]
+margin_left = 73.0
+margin_top = 207.0
+margin_right = 229.0
+margin_bottom = 284.0
+rect_scale = Vector2( 2, 2 )
+smooth_scrolling = true
+wrap_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_left = 27.6606
+margin_top = 385.309
+margin_right = 233.661
+margin_bottom = 452.309
+rect_scale = Vector2( 2, 2 )
+align = 1
+valign = 1
+uppercase = true
 [connection signal="pressed" from="startgame" to="." method="_on_startgame_pressed"]
-[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="shop" to="." method="_on_shop_pressed"]
+[connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="About" to="." method="_on_About_pressed"]

@@ -1,14 +1,14 @@
 extends Control
 
-var selected_panel_button_color = Color.blue
-var normal_panel_button_color = Color.white
+export var selected_panel_button_color = Color.blue
+var normal_panel_button_color = Color.green
 
 
 func _ready():
 	DATA.load_gun_data()
 	DATA.load_game_progress()
 	$DronesPanel.visible = false
-	$OpenGunPanel.modulate = Color.blue
+	$OpenGunPanel.self_modulate = Color.blue
 	update_texts()
 
 func _on_QuitShop_pressed():
@@ -17,14 +17,14 @@ func _on_QuitShop_pressed():
 func _on_OpenGunPanel_pressed():
 	$GunsPanel.visible = true
 	$DronesPanel.visible = false
-	$OpenDronesPanel.modulate = normal_panel_button_color
-	$OpenGunPanel.modulate = selected_panel_button_color
+	$OpenDronesPanel.self_modulate = normal_panel_button_color
+	$OpenGunPanel.self_modulate = selected_panel_button_color
 
 func _on_OpenDronesPanel_pressed():
 	$GunsPanel.visible = false
 	$DronesPanel.visible = true
-	$OpenGunPanel.modulate = normal_panel_button_color
-	$OpenDronesPanel.modulate = selected_panel_button_color
+	$OpenGunPanel.self_modulate = normal_panel_button_color
+	$OpenDronesPanel.self_modulate = selected_panel_button_color
 
 
 func _on_purchaseGun2_pressed():
@@ -68,9 +68,9 @@ func _on_purchaseRocket_pressed():
 	update_texts()
 
 func update_texts():
-	$GunsPanel/Gun2/purchaseGun2.text = DATA.GunsData.gun2.button_text
-	$GunsPanel/RocketGun/purchaseRocket.text = DATA.GunsData.rocketgun.button_text
+	$GunsPanel/Tier1_Guns/HBoxContainer/Gun2/purchaseGun2.text = DATA.GunsData.gun2.button_text
+	$GunsPanel/Tier1_Guns/HBoxContainer/RocketGun/purchaseRocket.text = DATA.GunsData.rocketgun.button_text
 	$CashPanel/MoneyLabel.text = str(DATA.GameData.money)
 	$CashPanel/StarsLabel.text = str(DATA.GameData.star)
-	
+	pass
 

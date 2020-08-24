@@ -6,7 +6,6 @@
 [ext_resource path="res://MAIN/sprites/other/outlineDisc.png" type="Texture" id=5]
 [ext_resource path="res://MAIN/GunShot.wav" type="AudioStream" id=6]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 257.337, 124.105 )
 

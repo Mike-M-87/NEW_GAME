@@ -12,9 +12,12 @@ var can_start_fire = false
 var bullet_motion = Vector2(-bullet_speed,0)
 onready var world = get_parent().get_parent()
 onready var sprite = $Sprite
+onready var camera = $Camera2D
+onready var remote_transform = $RemoteTransform2D
 
 func _ready():
 	parking_mode()
+	
 func _physics_process(delta):
 
 	joystick_value = joystick.get_value() * 100
@@ -77,14 +80,15 @@ func parking_mode():
 	set_physics_process(false)
 	set_process(false)
 	$CanvasLayer/TouchScreenButton.hide()
-	$Camera2D.current = false
+	#$Camera2D.current = false
 	$AnimationPlayer.stop()
 	$Sprite/Sprite2.rotation_degrees = 0
-
+	remote_transform.remote_path = ""
 
 func entered_mode():
 	set_process(true)
 	set_physics_process(true)
 	$CanvasLayer/TouchScreenButton.show()
-	$Camera2D.current = true
+	#$Camera2D.current = true
+	remote_transform.remote_path = "../../../Camera2D"
 	

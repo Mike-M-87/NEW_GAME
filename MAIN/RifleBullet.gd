@@ -1,13 +1,13 @@
 extends RigidBody2D
 
-onready var LeftHand = get_parent().get_node("Player").get_node("BodyRig").get_node("LeftHand")
+#onready var LeftHand = get_parent().get_node("Player").get_node("BodyRig").get_node("LeftHand")
 var explosion = preload("res://MAIN/BulletExplosion.tscn")
 
 func _ready():
-	if LeftHand.joystick_value.x < 0:
-		$Sprite.rotation_degrees = -90
-	elif LeftHand.joystick_value.x > 0:
-		$Sprite.rotation_degrees = 90
+#	if LeftHand.joystick_value.x < 0:
+#		$Sprite.rotation_degrees = -90
+#	elif LeftHand.joystick_value.x > 0:
+#		$Sprite.rotation_degrees = 90
 	yield(get_tree().create_timer(3),"timeout")
 	explode()
 	

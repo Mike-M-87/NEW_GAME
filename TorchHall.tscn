@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://FireShader II.tscn" type="PackedScene" id=1]
+
+[node name="ParallaxBackground" type="ParallaxBackground"]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2( 1270, 0 )
+
+[node name="FireShaderII" parent="ParallaxLayer" instance=ExtResource( 1 )]

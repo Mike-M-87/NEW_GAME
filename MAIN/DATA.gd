@@ -1,15 +1,21 @@
 extends Node
 
 var config = ConfigFile.new()
-
+var total_guns
 
 var default_ready_data = {
 	"gun1_tot_bullets":300,
-	"gun1_bullets":50,
+	"gun1_bullets":100,
+	"gun1_def_bullets":100,
+	
 	"gun2_tot_bullets":200,
-	"gun2_bullets":20,
+	"gun2_bullets":50,
+	"gun2_def_bullets":50,
+	
 	"rocket_tot_bullets":9,
 	"rocket_bullets":3,
+	"rocket_def_bullets":3,
+	
 	"player_pos":Vector2(100,0),
 	"weapon":"res://MAIN/Gun.tscn",
 	"weapon_pos":Vector2(50,2),
@@ -51,9 +57,11 @@ var GameData = {
 }
 
 func new_game():
+	yield(get_tree(),"idle_frame")
 	DATA.ready_data = DATA.default_ready_data.duplicate(true)
-	pass
+
 func _ready():
+	yield(get_tree(),"idle_frame")
 	var file = File.new()
 	if !file.file_exists("user://GameData"):
 		save_game_progress()
@@ -63,14 +71,16 @@ func _ready():
 		load_characters_data()
 		load_game_progress()
 		load_gun_data()
-	pass
+	total_guns = GunsData.size()
+	
+	
 
 func confirm_save():
 	config.save("user://GameData")
 	config.save("user://GameData")
-
-
-
+#
+#
+#
 func save_gun_data():
 	config.save("user://GameData")
 	config.set_value("GUNS","GunsData",GunsData)
@@ -80,11 +90,11 @@ func load_gun_data():
 	config.load("user://GameData")
 	GunsData = config.get_value("GUNS","GunsData",GunsData)
 	
-
-
-
-
-
+#
+#
+#
+#
+#
 func save_game_progress():
 	config.save("user://GameData")
 	config.set_value("GAME_PROGRESS","GameData",GameData)
@@ -93,9 +103,13 @@ func save_game_progress():
 func load_game_progress():
 	config.load("user://GameData")
 	GameData = config.get_value("GAME_PROGRESS","GameData",GameData)
-	
 
-
+#
+#
+#
+#
+#
+#
 func save_characters_data():
 	config.save("user://GameData")
 	config.set_value("CHARACTERS","CharactersData",CharactersData)

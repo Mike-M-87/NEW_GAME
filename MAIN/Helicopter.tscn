@@ -36,8 +36,11 @@ collision_layer = 8
 script = ExtResource( 3 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
+visible = false
 offset = Vector2( 100, 0 )
+current = true
 zoom = Vector2( 1.5, 1.5 )
+process_mode = 0
 limit_left = -100
 limit_right = 9500
 limit_bottom = 760
@@ -90,4 +93,6 @@ rotation = 0.261799
 position = Vector2( 38.4642, -19.7519 )
 rotation = -0.261799
 shape = SubResource( 2 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
 [connection signal="pressed" from="CanvasLayer/TouchScreenButton" to="." method="_on_TouchScreenButton_pressed"]

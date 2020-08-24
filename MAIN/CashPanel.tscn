@@ -1,44 +1,49 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://MAIN/Bubble Bobble.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://MAIN/sprites/other/icons8-star-96.png" type="Texture" id=2]
 [ext_resource path="res://MAIN/sprites/other/icons8-money-96.png" type="Texture" id=3]
+[ext_resource path="res://MAIN/sprites/other/barHorizontal_white_mid 200.png" type="Texture" id=4]
+[ext_resource path="res://MAIN/sprites/other/glassPanel_projection.png" type="Texture" id=5]
 
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0.203922, 0, 0, 1 )
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 200, 26 )
+modulate_color = Color( 1, 0.776471, 0.00784314, 1 )
 
-[sub_resource type="Gradient" id=3]
-colors = PoolColorArray( 0.282353, 0, 0, 1, 0.00392157, 0, 0.203922, 1 )
+[sub_resource type="StyleBoxTexture" id=2]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 100, 100 )
+modulate_color = Color( 0, 0.0745098, 0.996078, 1 )
 
-[sub_resource type="GradientTexture" id=4]
-gradient = SubResource( 3 )
-
-[sub_resource type="StyleBoxTexture" id=5]
-texture = SubResource( 4 )
-region_rect = Rect2( 0, 0, 2048, 1 )
-
-[sub_resource type="DynamicFont" id=6]
+[sub_resource type="DynamicFont" id=3]
 size = 30
 font_data = ExtResource( 1 )
 
+[sub_resource type="StyleBoxTexture" id=4]
+texture = ExtResource( 5 )
+region_rect = Rect2( 0, 0, 100, 100 )
+modulate_color = Color( 0, 0, 1, 1 )
+
 [node name="CashPanel" type="Panel"]
-margin_left = 1.87706
-margin_right = 1281.88
-margin_bottom = 109.0
-custom_styles/panel = SubResource( 2 )
+margin_left = 2.0
+margin_right = 1282.0
+margin_bottom = 76.0
+custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="MoneyLabel" type="Label" parent="."]
-margin_left = 280.0
-margin_right = 293.0
-margin_bottom = 47.0
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
+margin_left = 290.45
+margin_top = 15.2
+margin_right = 420.45
+margin_bottom = 62.2
+custom_styles/normal = SubResource( 2 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = ":100000000"
-align = 3
+align = 1
 valign = 1
 uppercase = true
 __meta__ = {
@@ -51,11 +56,12 @@ scale = Vector2( 0.831542, 0.699683 )
 texture = ExtResource( 3 )
 
 [node name="StarsLabel" type="Label" parent="."]
-margin_left = 904.0
-margin_right = 958.0
-margin_bottom = 47.0
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
+margin_left = 902.313
+margin_top = 15.2
+margin_right = 956.313
+margin_bottom = 62.2
+custom_styles/normal = SubResource( 4 )
+custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
 text = ": 90"
 align = 1

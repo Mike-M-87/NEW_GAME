@@ -13,7 +13,7 @@ func _process(delta):
 	if ongoing_drag == -1:
 		var center_pos = Vector2(0,0)
 		button.position = button.position.move_toward(center_pos * 200,10)
-	
+	$shoot_node.position = $Button.position
 func _input(event):
 	if event is InputEventScreenDrag or (event is InputEventScreenTouch and event.is_pressed()):
 		var event_dist_from_centre = (event.position - global_position).length()
@@ -30,3 +30,6 @@ func _input(event):
 
 func get_value():
 	return get_button_pos().normalized()
+
+func get_shoot_value():
+	return ($shoot_node.position-$Radius.position).length()

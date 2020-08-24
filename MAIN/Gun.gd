@@ -1,7 +1,6 @@
 extends Node2D
 
 
-
 var bullet = preload("res://MAIN/PlasmaBullet.tscn")
 var can_fire = true
 var fire_rate = 0.1
@@ -12,14 +11,14 @@ var rotation_deg_value = 0
 var rotation_value = 0
 var bullet_motion = Vector2()
 onready var world = get_parent().get_parent().get_parent().get_parent()
-var def_bullets = 50
+
 
 func _ready():
 	check_remaining_bullets()
 	update_bullet_labels()
 	
 func _process(delta):
-	if LeftHand.joystick_value.x > 1 or LeftHand.joystick_value.x < -1:
+	if LeftHand.shoot_value > 9 or LeftHand.shoot_value < -9:
 		if can_fire and DATA.ready_data.gun1_bullets > 0:
 			var bullet_instance = bullet.instance()
 			bullet_instance.position = $BulletPoint.global_position
@@ -41,19 +40,19 @@ func check_remaining_bullets():
 		pass
 
 func _on_reload_pressed():
-	if DATA.ready_data.gun1_bullets < def_bullets  and DATA.ready_data.gun1_tot_bullets > 0:
+	if DATA.ready_data.gun1_bullets < DATA.ready_data.gun1_def_bullets  and DATA.ready_data.gun1_tot_bullets > 0:
 		$ReloadButton/AnimationPlayer.play("reloading")
 		buttons_timer.start(0.5)
 		yield(LeftHand.get_node("buttons_timer"),"timeout")
 		buttons_timer.stop()
 
-		var added_bullets = def_bullets - DATA.ready_data.gun1_bullets
+		var added_bullets = DATA.ready_data.gun1_def_bullets - DATA.ready_data.gun1_bullets
 		
 		if DATA.ready_data.gun1_tot_bullets < added_bullets:
 			DATA.ready_data.gun1_bullets += DATA.ready_data.gun1_tot_bullets
 			DATA.ready_data.gun1_tot_bullets -= DATA.ready_data.gun1_tot_bullets
 		else:
-			DATA.ready_data.gun1_bullets = def_bullets
+			DATA.ready_data.gun1_bullets = DATA.ready_data.gun1_def_bullets
 			DATA.ready_data.gun1_tot_bullets -= added_bullets
 	update_bullet_labels()
 
@@ -61,12 +60,12 @@ func _on_reload_pressed():
 func reload_gun():
 	$ReloadButton/AnimationPlayer.play("reloading")
 	yield(get_tree().create_timer(1),"timeout")
-	if DATA.ready_data.gun1_tot_bullets < def_bullets:
+	if DATA.ready_data.gun1_tot_bullets < DATA.ready_data.gun1_def_bullets:
 		DATA.ready_data.gun1_bullets = DATA.ready_data.gun1_tot_bullets
 		DATA.ready_data.gun1_tot_bullets -= DATA.ready_data.gun1_tot_bullets
 	else:
-		DATA.ready_data.gun1_bullets = def_bullets
-		DATA.ready_data.gun1_tot_bullets -= def_bullets
+		DATA.ready_data.gun1_bullets = DATA.ready_data.gun1_def_bullets
+		DATA.ready_data.gun1_tot_bullets -= DATA.ready_data.gun1_def_bullets
 	update_bullet_labels()
 
 

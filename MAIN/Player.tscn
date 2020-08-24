@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://MAIN/sprites/other/TestPlayer.png" type="Texture" id=1]
 [ext_resource path="res://MAIN/LeftHand.gd" type="Script" id=3]
@@ -7,8 +7,10 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 58.3021, 74.1534 )
 
-[sub_resource type="Animation" id=2]
-resource_name = "Idle"
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 21.22, 69.9953 )
+
+[sub_resource type="Animation" id=3]
 length = 2.0
 loop = true
 tracks/0/type = "value"
@@ -72,23 +74,22 @@ tracks/4/keys = {
 "values": [ 0.0, -5.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=3]
-resource_name = "test"
-length = 0.3
+[sub_resource type="Animation" id=4]
+length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("BodyRig/Head:scale")
+tracks/0/path = NodePath("BodyRig/LeftHand:rotation_degrees")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.3 ),
+"times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 1, 1 ), Vector2( -1, 1 ), Vector2( 1, 1 ) ]
+"values": [ 0.0, -94.4, 0.0 ]
 }
 
-[sub_resource type="RectangleShape2D" id=4]
+[sub_resource type="RectangleShape2D" id=5]
 extents = Vector2( 73.3579, 92.4169 )
 
 [node name="Player" type="KinematicBody2D" groups=[
@@ -101,8 +102,6 @@ script = ExtResource( 5 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 100, 0 )
-current = true
-zoom = Vector2( 1.5, 1.5 )
 limit_left = -100
 limit_right = 9500
 limit_bottom = 760
@@ -116,6 +115,14 @@ position = Vector2( 3.69414, 24.3919 )
 shape = SubResource( 1 )
 
 [node name="BodyRig" type="Node2D" parent="."]
+position = Vector2( -26.5368, 24.3919 )
+
+[node name="GunDetector" type="Area2D" parent="BodyRig"]
+position = Vector2( 69.3291, 30.9336 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BodyRig/GunDetector"]
+position = Vector2( -8.49487, 0 )
+shape = SubResource( 2 )
 
 [node name="LeftHand" type="Sprite" parent="BodyRig"]
 position = Vector2( 30, 34 )
@@ -153,15 +160,19 @@ region_enabled = true
 region_rect = Rect2( 108.687, 134.449, 46.6416, 42.0912 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-anims/Idle = SubResource( 2 )
-anims/test = SubResource( 3 )
+anims/Idle = SubResource( 3 )
+anims/changegun = SubResource( 4 )
 
 [node name="VehicleDetector" type="Area2D" parent="."]
-visible = false
+position = Vector2( -26.5368, 37.3919 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="VehicleDetector"]
+visible = false
 modulate = Color( 0.278431, 0.584314, 0.164706, 1 )
-position = Vector2( 3.69414, 24.3919 )
-shape = SubResource( 4 )
+shape = SubResource( 5 )
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="."]
+[connection signal="area_entered" from="BodyRig/GunDetector" to="." method="_on_GunDetector_area_entered"]
+[connection signal="area_exited" from="BodyRig/GunDetector" to="." method="_on_GunDetector_area_exited"]
 [connection signal="area_entered" from="VehicleDetector" to="." method="_on_VehicleDetector_area_entered"]
 [connection signal="area_exited" from="VehicleDetector" to="." method="_on_VehicleDetector_area_exited"]

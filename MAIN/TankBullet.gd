@@ -5,10 +5,7 @@ onready var Tank = get_parent().vehicle
 var explosion = preload("res://MAIN/BulletExplosion.tscn")
 
 func _ready():
-	if get_parent().player_form == "tank":
-		Tank = get_parent().get_node("Tank")
-	elif get_parent().player_form == "tank2":
-		Tank = get_parent().get_node("Tank2")
+	print(Tank.name)
 	if Tank.sprite.flip_h == false:
 		$Sprite.rotation_degrees = 90
 	if Tank.sprite.flip_h == true:

@@ -1,0 +1,79 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://MAIN/sprites/background/winter.jpg" type="Texture" id=1]
+[ext_resource path="res://MAIN/sprites/background/winter2.jpg" type="Texture" id=2]
+[ext_resource path="res://MAIN/AnimationMenuPanel.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 2 )
+region_rect = Rect2( 0, 0, 580, 290 )
+
+[sub_resource type="Animation" id=2]
+resource_name = "PanelTexture"
+length = 10.0
+loop = true
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:custom_styles/panel:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ ExtResource( 2 ), ExtResource( 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:custom_styles/panel:modulate_color")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.866667 ), Color( 1, 1, 1, 0.631373 ), Color( 1, 1, 1, 0.45098 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.294118 ), Color( 1, 1, 1, 0.576471 ), Color( 1, 1, 1, 0.796078 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0.772549 ), Color( 1, 1, 1, 0.52549 ) ]
+}
+
+[node name="MenusPanel" type="Panel"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = 82.0
+custom_styles/panel = SubResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.866667 )
+margin_left = 138.0
+margin_top = 697.0
+margin_right = 1169.0
+margin_bottom = 731.0
+text = "Hello and welcome to our game.If you wish to support us , head over to the about section and visit our website at www.gamemakers.com"
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label2" type="Label" parent="."]
+modulate = Color( 1, 1, 1, 0.866667 )
+margin_left = 446.0
+margin_top = 684.0
+margin_right = 787.0
+margin_bottom = 705.0
+text = "Fps 1"
+align = 1
+valign = 1
+uppercase = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/PanelTexture = SubResource( 2 )

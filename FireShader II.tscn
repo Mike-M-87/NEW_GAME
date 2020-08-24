@@ -1,0 +1,238 @@
+[gd_scene load_steps=21 format=2]
+
+[ext_resource path="res://MAIN/sprites/other/fire5.png" type="Texture" id=1]
+[ext_resource path="res://MAIN/sprites/other/bricks.png" type="Texture" id=2]
+[ext_resource path="res://FireShaderII.gd" type="Script" id=3]
+[ext_resource path="res://MAIN/sprites/other/radial-gradient.png" type="Texture" id=5]
+[ext_resource path="res://MAIN/sprites/other/brickmap.png" type="Texture" id=6]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise;
+
+void fragment(){
+	vec4 base = texture(TEXTURE,UV);
+	vec4 n = texture(noise,vec2(UV.x,UV.y + TIME));
+	
+	base.r += 0.4f - distance(vec2(0.5,UV.y),UV);
+	base.r = (base.r * 0.3) + (n.r * 0.4);
+	
+	COLOR = vec4(float(base.r > 0.4),float(base.r > 0.5),float(base.r > 0.6),float(base.r > 0.4));
+}
+
+
+
+
+
+
+"
+custom_defines = ""
+
+[sub_resource type="OpenSimplexNoise" id=2]
+
+[sub_resource type="NoiseTexture" id=3]
+seamless = true
+noise = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/noise = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+lifetime_randomness = 0.1
+emission_shape = 1
+emission_sphere_radius = 100.0
+flag_disable_z = true
+direction = Vector3( 0, -1, 0 )
+spread = 60.0
+gravity = Vector3( 0, 600, 0 )
+initial_velocity = 1000.0
+initial_velocity_random = 0.5
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 10.0
+color = Color( 2, 1, 0, 1 )
+
+[sub_resource type="MeshTexture" id=6]
+
+[sub_resource type="Shader" id=7]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise;
+
+void fragment(){
+	vec4 base = texture(TEXTURE,UV);
+	vec4 n = texture(noise,vec2(UV.x,UV.y + TIME));
+	
+	base.r += 0.4f - distance(vec2(0.5,UV.y),UV);
+	base.r = (base.r * 0.3) + (n.r * 0.4);
+	
+	COLOR = vec4(float(base.r > 0.4),float(base.r > 0.5),float(base.r > 0.6),float(base.r > 0.4));
+}
+
+
+
+
+
+
+"
+custom_defines = ""
+
+[sub_resource type="OpenSimplexNoise" id=8]
+
+[sub_resource type="NoiseTexture" id=9]
+seamless = true
+noise = SubResource( 8 )
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 7 )
+shader_param/noise = SubResource( 9 )
+
+[sub_resource type="Shader" id=11]
+code = "shader_type canvas_item;
+
+uniform sampler2D noise;
+
+void fragment(){
+	vec4 base = texture(TEXTURE,UV);
+	vec4 n = texture(noise,vec2(UV.x,UV.y + TIME));
+	
+	base.r += 0.4f - distance(vec2(0.5,UV.y),UV);
+	base.r = (base.r * 0.3) + (n.r * 0.4);
+	
+	COLOR = vec4(float(base.r > 0.4),float(base.r > 0.5),float(base.r > 0.6),float(base.r > 0.4));
+}
+
+
+
+
+
+
+"
+custom_defines = ""
+
+[sub_resource type="OpenSimplexNoise" id=12]
+period = 120.0
+persistence = 1.0
+lacunarity = 0.1
+
+[sub_resource type="NoiseTexture" id=13]
+seamless = true
+noise = SubResource( 12 )
+
+[sub_resource type="ShaderMaterial" id=14]
+resource_local_to_scene = true
+shader = SubResource( 11 )
+shader_param/noise = SubResource( 13 )
+
+[sub_resource type="Environment" id=15]
+background_mode = 4
+glow_enabled = true
+
+[node name="FireShaderII" type="Node2D"]
+
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color( 0.537255, 0.537255, 0.537255, 1 )
+
+[node name="bricks" type="Sprite" parent="."]
+position = Vector2( 637.669, 363.685 )
+scale = Vector2( 0.415149, 0.236774 )
+texture = ExtResource( 2 )
+normal_map = ExtResource( 6 )
+
+[node name="Polygon2D" type="Polygon2D" parent="."]
+position = Vector2( -0.102751, 384.62 )
+scale = Vector2( 0.986301, 0.602825 )
+color = Color( 0.282353, 0.152941, 0.152941, 1 )
+polygon = PoolVector2Array( -1.84039, 491.425, 1293.16, 497.089, 1293.16, 497.089, 1295.42, 706.979, -2.89554, 710.289 )
+
+[node name="fire5" type="Sprite" parent="."]
+material = SubResource( 4 )
+position = Vector2( 200.572, 418.874 )
+scale = Vector2( 0.485867, 0.458571 )
+texture = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Light2D" type="Light2D" parent="fire5"]
+position = Vector2( -2.2114, 0 )
+texture = ExtResource( 5 )
+texture_scale = 1.5
+energy = 2.0
+
+[node name="Particles2D" type="Particles2D" parent="fire5"]
+amount = 3
+lifetime = 4.0
+explosiveness = 0.2
+process_material = SubResource( 5 )
+texture = SubResource( 6 )
+
+[node name="Polygon2D" type="Polygon2D" parent="fire5"]
+position = Vector2( -6.63419, -12.7363 )
+color = Color( 0.0352941, 0.0352941, 0.0352941, 1 )
+polygon = PoolVector2Array( -212.913, 71.6255, -116.88, 230.225, -11.7326, 264.742, -16.1554, 586.333, -87.0604, 615.309, 102.154, 612.867, 25.8611, 583.149, 18.1212, 264.742, 166.178, 213.243, 228.931, 62.5209, 210.406, 75.267, 145.772, 189.985, 37.5654, 247.344, -21.5474, 247.344, -109.716, 199.09, -191.872, 76.1778 )
+
+[node name="fire6" type="Sprite" parent="."]
+material = SubResource( 10 )
+position = Vector2( 1069.3, 441.704 )
+scale = Vector2( 0.464347, 0.426294 )
+texture = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Light2D" type="Light2D" parent="fire6"]
+position = Vector2( -2.2114, 0 )
+texture = ExtResource( 5 )
+texture_scale = 1.5
+color = Color( 0.894118, 0.866667, 0.866667, 1 )
+energy = 2.0
+shadow_enabled = true
+shadow_color = Color( 0.615686, 0.0666667, 0.0666667, 1 )
+
+[node name="Particles2D" type="Particles2D" parent="fire6"]
+amount = 3
+lifetime = 4.0
+explosiveness = 0.2
+process_material = SubResource( 5 )
+texture = SubResource( 6 )
+
+[node name="Polygon2D" type="Polygon2D" parent="fire6"]
+position = Vector2( -6.63419, -12.7363 )
+color = Color( 0.0352941, 0.0352941, 0.0352941, 1 )
+polygon = PoolVector2Array( -212.913, 71.6255, -116.88, 230.225, -11.7326, 264.742, -16.1554, 586.333, -87.0604, 615.309, 102.154, 612.867, 25.8611, 583.149, 18.1212, 264.742, 166.178, 213.243, 228.931, 62.5209, 210.406, 75.267, 145.772, 189.985, 37.5654, 247.344, -21.5474, 247.344, -109.716, 199.09, -191.872, 76.1778 )
+
+[node name="fire7" type="Sprite" parent="."]
+material = SubResource( 14 )
+position = Vector2( 633.336, 418.874 )
+scale = Vector2( 0.485867, 0.458571 )
+texture = ExtResource( 1 )
+script = ExtResource( 3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Light2D" type="Light2D" parent="fire7"]
+position = Vector2( -2.2114, 0 )
+texture = ExtResource( 5 )
+texture_scale = 1.5
+energy = 2.0
+
+[node name="Particles2D" type="Particles2D" parent="fire7"]
+amount = 3
+lifetime = 4.0
+explosiveness = 0.2
+process_material = SubResource( 5 )
+texture = SubResource( 6 )
+
+[node name="Polygon2D" type="Polygon2D" parent="fire7"]
+position = Vector2( -6.63419, -12.7363 )
+color = Color( 0.0352941, 0.0352941, 0.0352941, 1 )
+polygon = PoolVector2Array( -212.913, 71.6255, -116.88, 230.225, -11.7326, 264.742, -16.1554, 586.333, -87.0604, 615.309, 102.154, 612.867, 25.8611, 583.149, 18.1212, 264.742, 166.178, 213.243, 228.931, 62.5209, 210.406, 75.267, 145.772, 189.985, 37.5654, 247.344, -21.5474, 247.344, -109.716, 199.09, -191.872, 76.1778 )
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 15 )
