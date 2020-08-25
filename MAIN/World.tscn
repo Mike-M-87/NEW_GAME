@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://MAIN/sprites/tank/tank1.png" type="Texture" id=2]
@@ -16,7 +16,6 @@
 [ext_resource path="res://Gun2Pickable.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Gun0Pickable.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Gun1Pickable.tscn" type="PackedScene" id=16]
-[ext_resource path="res://MAIN/WinterBackground.tscn" type="PackedScene" id=17]
 [ext_resource path="res://Gun3Pickable.tscn" type="PackedScene" id=18]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
@@ -89,7 +88,6 @@ script = ExtResource( 3 )
 layer = -128
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
-visible = false
 margin_right = 785.0
 margin_bottom = 286.0
 rect_scale = Vector2( 1.67698, 2.73091 )
@@ -210,7 +208,7 @@ __meta__ = {
 }
 
 [node name="Helicopter" parent="Vehicles" instance=ExtResource( 10 )]
-position = Vector2( 1457.58, 600 )
+position = Vector2( 2042.18, 566.192 )
 
 [node name="Tank" parent="Vehicles" instance=ExtResource( 9 )]
 position = Vector2( 829.304, 499.854 )
@@ -218,7 +216,7 @@ position = Vector2( 829.304, 499.854 )
 [node name="Guns" type="Node2D" parent="."]
 
 [node name="Gun0Pickable" parent="Guns" instance=ExtResource( 15 )]
-position = Vector2( 2605.52, 644.45 )
+position = Vector2( 254, 499.854 )
 
 [node name="Gun1Pickable" parent="Guns" instance=ExtResource( 16 )]
 position = Vector2( 3200.2, 602.819 )
@@ -234,14 +232,13 @@ position = Vector2( 4712.1, 468.106 )
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2( 100, 0 )
 current = true
+process_mode = 0
 limit_left = -100
 limit_right = 9500
 limit_bottom = 760
 limit_smoothed = true
 smoothing_enabled = true
 smoothing_speed = 8.0
-
-[node name="WinterBackground" parent="." instance=ExtResource( 17 )]
 [connection signal="pressed" from="CanvasLayer/ZoomCam" to="." method="_on_ZoomCam_pressed"]
 [connection signal="pressed" from="CanvasLayer/MENU" to="." method="_on_MENU_pressed"]
 [connection signal="pressed" from="CanvasLayer/change_vehicle" to="." method="_on_change_vehicle_pressed"]

@@ -82,6 +82,7 @@ func _on_GunDetector_area_exited(area):
 		Signals.emit_signal("gun_undetected")
 
 func flip_dir(dir):
+	
 	var flipspeed = 0.45
 	if dir == "right":
 		body.scale.x = min(body.scale.x+flipspeed,1)

@@ -14,7 +14,7 @@ var dropping_gun
 
 func _ready():
 	yield(DATA.new_game(),"completed")
-	add_player()
+	yield(self.add_player(),"completed")
 	$CanvasLayer/change_vehicle.hide()
 	$CanvasLayer/PickGun.hide()
 	Signals.connect("gun_detected",self,"gun_detected")
@@ -27,12 +27,14 @@ func _process(delta):
 	$CanvasLayer/FpsLabel.text = str("FPS: ",Engine.get_frames_per_second())
 	if player_form == "tank":
 		DATA.ready_data.player_pos = vehicle.get_node("body").global_position
+
 	elif player_form == "helicopter":
 		DATA.ready_data.player_pos = vehicle.position
+
 	elif player_form == "man":
 		DATA.ready_data.player_pos = vehicle.position
-	
-	if player_form == "tank" or player_form == "helicopter":
+		
+	if player_form == "helicopter":
 		if vehicle.position.x <= 0:
 			vehicle.position.x = 0
 		if vehicle.position.x >= 9000:
@@ -51,6 +53,7 @@ func _on_ZoomCam_pressed():
 	$Camera2D.zoom = zoomvalue
 
 func add_player():
+	yield(get_tree(),"idle_frame")
 	vehicle = load(player).instance()
 	vehicle.position = DATA.ready_data.player_pos
 	add_child(vehicle)
