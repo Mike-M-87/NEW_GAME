@@ -1,6 +1,7 @@
 extends Node2D
 
-
+export var which_gun = ""
+export var weapon_pos = Vector2(50,2)
 var bullet = preload("res://MAIN/PlasmaBullet.tscn")
 var can_fire = true
 var fire_rate = 0.1

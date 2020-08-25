@@ -6,7 +6,7 @@ onready var offset_wheel = $front2
 onready var camera= $body/Camera2D
 onready var sprite = $body/Sprite
 
-var bullet = preload("res://MAIN/RifleBullet.tscn")
+#var bullet = preload("res://MAIN/RifleBullet.tscn")
 onready var world = get_parent().get_parent()
 onready var remote_transform =  $body/RemoteTransform2D
 var bullet_speed = 1500

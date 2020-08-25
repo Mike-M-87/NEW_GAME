@@ -83,7 +83,7 @@ func _on_change_vehicle_pressed():
 		$CanvasLayer/aim_joystick.show()
 		
 func _on_PickGun_pressed():
-	yield(get_node("Player/BodyRig/LeftHand").pick_gun(gun_detected.properties[0],gun_detected.properties[1]),"completed")
+	yield(get_node("Player/BodyRig/LeftHand").pick_gun(gun_detected.properties),"completed")
 	$CanvasLayer/PickGun.hide()
 	dropping_gun.position = gun_detected.position
 	dropping_gun.position.y -= 25

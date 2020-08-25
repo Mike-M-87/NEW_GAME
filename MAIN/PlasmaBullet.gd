@@ -1,7 +1,7 @@
 extends RigidBody2D
 
 
-onready var LeftHand = get_parent().get_node("Player").get_node("BodyRig").get_node("LeftHand")
+onready var LeftHand = $"../Player/BodyRig/LeftHand"#get_parent().get_node("Player").get_node("BodyRig").get_node("LeftHand")
 var explosion = preload("res://MAIN/BulletExplosion.tscn")
 export (Color) var explosion_color
 

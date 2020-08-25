@@ -28,49 +28,71 @@ func _on_OpenDronesPanel_pressed():
 
 
 func _on_purchaseGun2_pressed():
-	if DATA.GunsData.gun2.purchase == false:
+	if DATA.GunsData.Gun2.purchase == false:
 		if DATA.GameData.money >= 100:
-			DATA.GunsData.gun2.purchase = true
+			DATA.GunsData.Gun2.purchase = true
 			DATA.GameData.money -= 100
-			DATA.GunsData.gun2.avail = true
-			DATA.GunsData.gun2.button_text = "EQUIPPED"
+			DATA.GunsData.Gun2.avail = true
+			DATA.GunsData.Gun2.button_text = "EQUIPPED"
 
-	elif DATA.GunsData.gun2.avail == false:
-		DATA.GunsData.gun2.avail = true
-		DATA.GunsData.gun2.button_text = "EQUIPPED"
+	elif DATA.GunsData.Gun2.avail == false:
+		DATA.GunsData.Gun2.avail = true
+		DATA.GunsData.Gun2.button_text = "EQUIPPED"
 		
-	elif DATA.GunsData.gun2.avail == true:
-		DATA.GunsData.gun2.avail = false
-		DATA.GunsData.gun2.button_text = "EQUIP"
+	elif DATA.GunsData.Gun2.avail == true:
+		DATA.GunsData.Gun2.avail = false
+		DATA.GunsData.Gun2.button_text = "EQUIP"
 	DATA.save_gun_data()
 	DATA.save_game_progress()
 	update_texts()
 
-func _on_purchaseRocket_pressed():
-	if DATA.GunsData.rocketgun.purchase == false:
+func _on_purchaseGun3_pressed():
+	if DATA.GunsData.Gun3.purchase == false:
 		if DATA.GameData.money >= 200:
-			DATA.GunsData.rocketgun.purchase = true
+			DATA.GunsData.Gun3.purchase = true
 			DATA.GameData.money -= 200
-			DATA.GunsData.rocketgun.avail = true
-			DATA.GunsData.rocketgun.button_text = "EQUIPPED"
+			DATA.GunsData.Gun3.avail = true
+			DATA.GunsData.Gun3.button_text = "EQUIPPED"
 	
-	elif DATA.GunsData.rocketgun.avail == false:
-		DATA.GunsData.rocketgun.avail = true
-		DATA.GunsData.rocketgun.button_text = "EQUIPPED"
+	elif DATA.GunsData.Gun3.avail == false:
+		DATA.GunsData.Gun3.avail = true
+		DATA.GunsData.Gun3.button_text = "EQUIPPED"
 	
-	elif DATA.GunsData.rocketgun.avail == true:
-		DATA.GunsData.rocketgun.avail = false
-		DATA.GunsData.rocketgun.button_text = "EQUIP"
+	elif DATA.GunsData.Gun3.avail == true:
+		DATA.GunsData.Gun3.avail = false
+		DATA.GunsData.Gun3.button_text = "EQUIP"
 		
-	
 	DATA.save_gun_data()
 	DATA.save_game_progress()
 	update_texts()
 
 func update_texts():
-	$GunsPanel/Tier1_Guns/HBoxContainer/Gun2/purchaseGun2.text = DATA.GunsData.gun2.button_text
-	$GunsPanel/Tier1_Guns/HBoxContainer/RocketGun/purchaseRocket.text = DATA.GunsData.rocketgun.button_text
+	$GunsPanel/Tier1_Guns/HBoxContainer/Gun1/purchaseGun1.text = DATA.GunsData.Gun1.button_text
+	$GunsPanel/Tier1_Guns/HBoxContainer/Gun2/purchaseGun2.text = DATA.GunsData.Gun2.button_text
+	$GunsPanel/Tier1_Guns/HBoxContainer/Gun3/purchaseGun3.text = DATA.GunsData.Gun3.button_text
 	$CashPanel/MoneyLabel.text = str(DATA.GameData.money)
 	$CashPanel/StarsLabel.text = str(DATA.GameData.star)
 	pass
 
+
+
+
+func _on_purchaseGun1_pressed():
+	if DATA.GunsData.Gun1.purchase == false:
+		if DATA.GameData.money >= 200:
+			DATA.GunsData.Gun1.purchase = true
+			DATA.GameData.money -= 200
+			DATA.GunsData.Gun1.avail = true
+			DATA.GunsData.Gun1.button_text = "EQUIPPED"
+	
+	elif DATA.GunsData.Gun1.avail == false:
+		DATA.GunsData.Gun1.avail = true
+		DATA.GunsData.Gun1.button_text = "EQUIPPED"
+	
+	elif DATA.GunsData.Gun1.avail == true:
+		DATA.GunsData.Gun1.avail = false
+		DATA.GunsData.Gun1.button_text = "EQUIP"
+		
+	DATA.save_gun_data()
+	DATA.save_game_progress()
+	update_texts()

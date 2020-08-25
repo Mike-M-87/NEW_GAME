@@ -1,6 +1,6 @@
 extends Node2D
 
-
+var weapon_pos = Vector2(0,-50)
 var bullet = preload("res://MAIN/RocketBullet.tscn")
 var can_fire = true
 var fire_rate = 1

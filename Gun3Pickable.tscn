@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://MAIN/sprites/guns/Ammo.png" type="Texture" id=1]
+[ext_resource path="res://Gun2Pickable.tscn" type="PackedScene" id=2]
+
+[node name="Gun3Pickable" instance=ExtResource( 2 )]
+properties = "Gun3"
+
+[node name="Sprite" parent="." index="1"]
+position = Vector2( 9.53674e-07, -1.19209e-07 )
+rotation = 1.5708
+scale = Vector2( 0.302099, 0.327906 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1208.74, 964.844, 113.59, 231.422 )
+
+[node name="CollisionPolygon2D" parent="." index="2"]
+polygon = PoolVector2Array( -202.411, -99.1567, 176.545, -95.6082, 178.098, 95.1245, -205.517, 93.3503 )
