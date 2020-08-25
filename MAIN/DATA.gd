@@ -2,27 +2,11 @@ extends Node
 
 var config = ConfigFile.new()
 
-
-
 var default_ready_data = {
-	"gun1_tot_bullets":300,
-	"gun1_bullets":100,
-	"gun1_def_bullets":100,
-	
-	"gun2_tot_bullets":200,
-	"gun2_bullets":50,
-	"gun2_def_bullets":50,
-	
-	"rocket_tot_bullets":9,
-	"rocket_bullets":3,
-	"rocket_def_bullets":3,
-	
 	"player_pos":Vector2(100,0),
 	"weapon":"res://MAIN/Gun0.tscn",
-	"weapon_pos":Vector2(50,2),
 } 
 var ready_data = {}
-
 
 var bullets_data = []
 var def_bullets_data = [
@@ -76,6 +60,7 @@ var GameData = {
 	"money":100000,
 	"star":0,
 }
+
 
 var Guns_avail = []
 var total_guns

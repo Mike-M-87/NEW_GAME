@@ -56,3 +56,4 @@ func textedit_display(value,time):
 	$TextEdit.text = str(value)
 	yield(get_tree().create_timer(time),"timeout")
 	$TextEdit.text = ""
+

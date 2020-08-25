@@ -48,8 +48,6 @@ func on_changegun_pressed():
 	change_gun_anim()
 	world.get_node("press_sound").playing = true
 	remove_child(Gun)
-#	check_gun1()
-#	hold_gun()
 	change_weapon()
 
 func hold_gun():
@@ -57,7 +55,6 @@ func hold_gun():
 	Gun.position = Gun.weapon_pos
 	add_child(Gun)
 
-	
 func change_weapon():
 	if DATA.change_gun_range < DATA.total_guns-1:
 		DATA.change_gun_range += 1
