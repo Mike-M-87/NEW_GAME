@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://MAIN/sprites/tank/tank1.png" type="Texture" id=2]
@@ -10,13 +10,19 @@
 [ext_resource path="res://MAIN/Bubble Bobble.otf" type="DynamicFontData" id=8]
 [ext_resource path="res://MAIN/Tank.tscn" type="PackedScene" id=9]
 [ext_resource path="res://MAIN/Helicopter.tscn" type="PackedScene" id=10]
-[ext_resource path="res://MAIN/Joystick.tscn" type="PackedScene" id=11]
-[ext_resource path="res://MAIN/sprites/background/winter2.jpg" type="Texture" id=12]
+[ext_resource path="res://MAIN/move_joystick.tscn" type="PackedScene" id=11]
+[ext_resource path="res://MAIN/sprites/background/Desert1.jpg" type="Texture" id=12]
 [ext_resource path="res://MAIN/sprites/other/grenade.png" type="Texture" id=13]
-[ext_resource path="res://Gun2Pickable.tscn" type="PackedScene" id=14]
-[ext_resource path="res://Gun0Pickable.tscn" type="PackedScene" id=15]
-[ext_resource path="res://Gun1Pickable.tscn" type="PackedScene" id=16]
-[ext_resource path="res://Gun3Pickable.tscn" type="PackedScene" id=18]
+[ext_resource path="res://MAIN/sprites/helicopters/heli2.png" type="Texture" id=14]
+[ext_resource path="res://MAIN/sprites/other/glassPanel_projection.png" type="Texture" id=15]
+[ext_resource path="res://MAIN/sprites/background/winter.jpg" type="Texture" id=16]
+[ext_resource path="res://MAIN/ScreenShake.tscn" type="PackedScene" id=17]
+[ext_resource path="res://MAIN/aim_joystick.tscn" type="PackedScene" id=18]
+[ext_resource path="res://MAIN/TestEnemy.tscn" type="PackedScene" id=19]
+[ext_resource path="res://MAIN/Gun3.tscn" type="PackedScene" id=20]
+[ext_resource path="res://MAIN/Gun1.tscn" type="PackedScene" id=21]
+[ext_resource path="res://MAIN/Gun2.tscn" type="PackedScene" id=22]
+[ext_resource path="res://MAIN/Gun0.tscn" type="PackedScene" id=23]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -70,45 +76,71 @@ points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
 } ]
 0/z_index = 0
 
-[sub_resource type="StyleBoxFlat" id=5]
-bg_color = Color( 0, 0.0823529, 0.466667, 1 )
+[sub_resource type="StyleBoxTexture" id=5]
+texture = ExtResource( 15 )
+region_rect = Rect2( 0, 0, 100, 100 )
+modulate_color = Color( 0, 0, 0, 1 )
 
-[sub_resource type="DynamicFont" id=6]
-size = 25
+[sub_resource type="StyleBoxTexture" id=6]
+texture = ExtResource( 15 )
+region_rect = Rect2( 0, 0, 100, 100 )
+modulate_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxTexture" id=7]
+texture = ExtResource( 15 )
+region_rect = Rect2( 0, 0, 100, 100 )
+modulate_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxTexture" id=8]
+texture = ExtResource( 15 )
+region_rect = Rect2( 0, 0, 100, 100 )
+modulate_color = Color( 0.0941176, 0.0941176, 0.0941176, 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 20
 font_data = ExtResource( 8 )
 
-[sub_resource type="DynamicFont" id=7]
+[sub_resource type="DynamicFont" id=10]
 size = 30
 font_data = ExtResource( 8 )
 
 [node name="World" type="Node2D"]
 script = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = -128
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
-margin_right = 785.0
-margin_bottom = 286.0
-rect_scale = Vector2( 1.67698, 2.73091 )
+[node name="Desert" type="TextureRect" parent="CanvasLayer2"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_right = 341.0
 texture = ExtResource( 12 )
 expand = true
+stretch_mode = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="winter" type="Sprite" parent="CanvasLayer2"]
+position = Vector2( 806.088, 395.326 )
+scale = Vector2( 1.62982, 1.01366 )
+texture = ExtResource( 16 )
+
 [node name="TileMap2" type="TileMap" parent="."]
-visible = false
 tile_set = SubResource( 2 )
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -1179654, 0, 0, -1179653, 0, 0, -1179652, 0, 0, -1179651, 0, 0, -1179650, 0, 0, -1179649, 0, 0, -1245184, 0, 0, -1245183, 0, 0, -1245182, 0, 0, -1245181, 0, 0, -1245180, 0, 0, -1245179, 0, 0, -1245178, 0, 0, -1245177, 0, 0, -1245176, 0, 0, -1245175, 0, 0, -1245174, 0, 0, -1245173, 0, 0, -1245172, 0, 0, -1245171, 0, 0, -1245170, 0, 0, -1245169, 0, 0, -1245168, 0, 0, -1245167, 0, 0, -1245166, 0, 0, -1245165, 0, 0, -1245164, 0, 0, -1245163, 0, 0, -1245162, 0, 0, -1245161, 0, 0, -1245160, 0, 0, -1245159, 0, 0, -1245158, 0, 0, -1245157, 0, 0, -1245156, 0, 0, -1245155, 0, 0, -1245154, 0, 0, -1245153, 0, 0, -1245152, 0, 0, -1245151, 0, 0, -1245150, 0, 0, -1245149, 0, 0, -1245148, 0, 0, -1245147, 0, 0, -1245146, 0, 0, -1245145, 0, 0, -1245144, 0, 0, -1245143, 0, 0, -1245142, 0, 0, -1245141, 0, 0, -1245140, 0, 0, -1245139, 0, 0, -1245138, 0, 0, -1245137, 0, 0, -1245136, 0, 0, -1245135, 0, 0, -1245134, 0, 0, -1245133, 0, 0, -1245132, 0, 0, -1245131, 0, 0, -1245130, 0, 0, -1245129, 0, 0, -1245128, 0, 0, -1245127, 0, 0, -1245126, 0, 0, -1245125, 0, 0, -1245124, 0, 0, -1245123, 0, 0, -1245122, 0, 0, -1245121, 0, 0, -1245120, 0, 0, -1245119, 0, 0, -1245118, 0, 0, -1245117, 0, 0, -1245116, 0, 0, -1245115, 0, 0, -1245114, 0, 0, -1245113, 0, 0, -1245112, 0, 0, -1245111, 0, 0, -1245110, 0, 0, -1245109, 0, 0, -1245108, 0, 0, -1245107, 0, 0, -1245106, 0, 0, -1245105, 0, 0, -1245104, 0, 0, -1245103, 0, 0, -1245102, 0, 0, -1245101, 0, 0, -1245100, 0, 0, -1245099, 0, 0, -1245098, 0, 0, -1245097, 0, 0, -1245096, 0, 0, -1245095, 0, 0, -1245094, 0, 0, -1245093, 0, 0, -1245092, 0, 0, -1245091, 0, 0, -1245090, 0, 0, -1245089, 0, 0, -1245088, 0, 0, -1245087, 0, 0, -1245086, 0, 0, -1245085, 0, 0, -1245084, 0, 0, -1245083, 0, 0, -1245082, 0, 0, -1245081, 0, 0, -1245080, 0, 0, -1245079, 0, 0, -1245078, 0, 0, -1245077, 0, 0, -1245076, 0, 0, -1245075, 0, 0, -1245074, 0, 0, -1245073, 0, 0, -1245072, 0, 0, -1245071, 0, 0, -1245070, 0, 0, -1245069, 0, 0, -1245068, 0, 0, -1245067, 0, 0, -1245066, 0, 0, -1245065, 0, 0, -1245064, 0, 0, -1245063, 0, 0, -1245062, 0, 0, -1245061, 0, 0, -1245060, 0, 0, -1245059, 0, 0, -1245058, 0, 0, -1245057, 0, 0, -1245056, 0, 0, -1245055, 0, 0, -1245054, 0, 0, -1245053, 0, 0, -1245052, 0, 0, -1245051, 0, 0, -1245050, 0, 0, -1245049, 0, 0, -1245048, 0, 0, -1245047, 0, 0, -1245046, 0, 0, -1245045, 0, 0, -1245044, 0, 0, -1245043, 0, 0, -1245042, 0, 0, -1245041, 0, 0, -1245040, 0, 0, -1245039, 0, 0, -1245038, 0, 0, -1245037, 0, 0 )
+tile_data = PoolIntArray( -1179649, 0, 0, -1245184, 0, 0, -1245183, 0, 0, -1245182, 0, 0, -1245181, 0, 0, -1245180, 0, 0, -1245179, 0, 0, -1245178, 0, 0, -1245177, 0, 0, -1245176, 0, 0, -1245175, 0, 0, -1245174, 0, 0, -1245173, 0, 0, -1245172, 0, 0, -1245171, 0, 0, -1245170, 0, 0, -1245169, 0, 0, -1245168, 0, 0, -1245167, 0, 0, -1245166, 0, 0, -1245165, 0, 0, -1245164, 0, 0, -1245163, 0, 0, -1245162, 0, 0, -1245161, 0, 0, -1245160, 0, 0, -1245159, 0, 0, -1245158, 0, 0, -1245157, 0, 0, -1245156, 0, 0, -1245155, 0, 0, -1245154, 0, 0, -1245153, 0, 0, -1245152, 0, 0, -1245151, 0, 0, -1245150, 0, 0, -1245149, 0, 0, -1245148, 0, 0, -1245147, 0, 0, -1245146, 0, 0, -1245145, 0, 0, -1245144, 0, 0, -1245143, 0, 0, -1245142, 0, 0, -1245141, 0, 0, -1245140, 0, 0, -1245139, 0, 0, -1245138, 0, 0, -1245137, 0, 0, -1245136, 0, 0, -1245135, 0, 0, -1245134, 0, 0, -1245133, 0, 0, -1245132, 0, 0, -1245131, 0, 0, -1245130, 0, 0, -1245129, 0, 0, -1245128, 0, 0, -1245127, 0, 0, -1245126, 0, 0, -1245125, 0, 0, -1245124, 0, 0, -1245123, 0, 0, -1245122, 0, 0, -1245121, 0, 0, -1245120, 0, 0, -1245119, 0, 0, -1245118, 0, 0, -1245117, 0, 0, -1245116, 0, 0, -1245115, 0, 0, -1245114, 0, 0, -1245113, 0, 0, -1245112, 0, 0, -1245111, 0, 0, -1245110, 0, 0, -1245109, 0, 0, -1245108, 0, 0, -1245107, 0, 0, -1245106, 0, 0, -1245105, 0, 0, -1245104, 0, 0, -1245103, 0, 0, -1245102, 0, 0, -1245101, 0, 0, -1245100, 0, 0, -1245099, 0, 0, -1245098, 0, 0, -1245097, 0, 0, -1245096, 0, 0, -1245095, 0, 0, -1245094, 0, 0, -1245093, 0, 0, -1245092, 0, 0, -1245091, 0, 0, -1245090, 0, 0, -1245089, 0, 0, -1245088, 0, 0, -1245087, 0, 0, -1245086, 0, 0, -1245085, 0, 0, -1245084, 0, 0, -1245083, 0, 0, -1245082, 0, 0, -1245081, 0, 0, -1245080, 0, 0, -1245079, 0, 0, -1245078, 0, 0, -1245077, 0, 0, -1245076, 0, 0, -1245075, 0, 0, -1245074, 0, 0, -1245073, 0, 0, -1245072, 0, 0, -1245071, 0, 0, -1245070, 0, 0, -1245069, 0, 0, -1245068, 0, 0, -1245067, 0, 0, -1245066, 0, 0, -1245065, 0, 0, -1245064, 0, 0, -1245063, 0, 0, -1245062, 0, 0, -1245061, 0, 0, -1245060, 0, 0, -1245059, 0, 0, -1245058, 0, 0, -1245057, 0, 0, -1245056, 0, 0, -1245055, 0, 0, -1245054, 0, 0, -1245053, 0, 0, -1245052, 0, 0, -1245051, 0, 0, -1245050, 0, 0, -1245049, 0, 0, -1245048, 0, 0, -1245047, 0, 0, -1245046, 0, 0, -1245045, 0, 0, -1245044, 0, 0, -1245043, 0, 0, -1245042, 0, 0, -1245041, 0, 0, -1245040, 0, 0, -1245039, 0, 0, -1245038, 0, 0, -1245037, 0, 0 )
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource( 4 )
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( -1179654, 0, 0, -1245102, 0, 0, -1245036, 0, 0, -1114118, 0, 0, -1179500, 0, 0, -1048582, 0, 0, -1113964, 0, 0, -983046, 0, 0, -1048428, 0, 0, -917510, 0, 0, -982892, 0, 0, -851974, 0, 0, -917356, 0, 0, -786438, 0, 0, -851820, 0, 0, -720902, 0, 0, -786284, 0, 0, -655366, 0, 0, -720748, 0, 0, -589830, 0, 0, -655212, 0, 0, -524294, 0, 0, -589676, 0, 0, -458758, 0, 0, -524140, 0, 0, -393222, 0, 0, -458604, 0, 0, -327686, 0, 0, -393068, 0, 0, -262150, 0, 0, -327532, 0, 0, -196614, 0, 0, -261996, 0, 0, -131078, 0, 0, -196460, 0, 0, -65542, 0, 0, -130924, 0, 0, -6, 0, 0, -65388, 0, 0, 65530, 0, 0, 148, 0, 0, 131066, 0, 0, 65684, 0, 0, 196602, 0, 0, 131220, 0, 0, 262138, 0, 0, 196756, 0, 0, 327674, 0, 0, 262292, 0, 0, 393210, 0, 0, 327828, 0, 0, 458746, 0, 0, 393364, 0, 0, 524282, 0, 0, 458900, 0, 0, 589818, 0, 0, 524436, 0, 0, 655354, 0, 0, 589972, 0, 0, 720890, 0, 0, 655508, 0, 0, 786426, 0, 0, 786427, 0, 0, 786428, 0, 0, 786429, 0, 0, 786430, 0, 0, 786431, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 720912, 0, 0, 720913, 0, 0, 720914, 0, 0, 720915, 0, 0, 720916, 0, 0, 720917, 0, 0, 720918, 0, 0, 720919, 0, 0, 720920, 0, 0, 720921, 0, 0, 720922, 0, 0, 720923, 0, 0, 720924, 0, 0, 720925, 0, 0, 720926, 0, 0, 720927, 0, 0, 720928, 0, 0, 720929, 0, 0, 720930, 0, 0, 720931, 0, 0, 720932, 0, 0, 720933, 0, 0, 720934, 0, 0, 720935, 0, 0, 720936, 0, 0, 720937, 0, 0, 720938, 0, 0, 720939, 0, 0, 720940, 0, 0, 720941, 0, 0, 720942, 0, 0, 720943, 0, 0, 720944, 0, 0, 720945, 0, 0, 720946, 0, 0, 720947, 0, 0, 720948, 0, 0, 720949, 0, 0, 720950, 0, 0, 720951, 0, 0, 720952, 0, 0, 720953, 0, 0, 720954, 0, 0, 720955, 0, 0, 720956, 0, 0, 720957, 0, 0, 720958, 0, 0, 720959, 0, 0, 720960, 0, 0, 720961, 0, 0, 720962, 0, 0, 720963, 0, 0, 720964, 0, 0, 720965, 0, 0, 720966, 0, 0, 720967, 0, 0, 720968, 0, 0, 720969, 0, 0, 720970, 0, 0, 720971, 0, 0, 720972, 0, 0, 720973, 0, 0, 720974, 0, 0, 720975, 0, 0, 720976, 0, 0, 720977, 0, 0, 720978, 0, 0, 720979, 0, 0, 720980, 0, 0, 720981, 0, 0, 720982, 0, 0, 720983, 0, 0, 720984, 0, 0, 720985, 0, 0, 720986, 0, 0, 720987, 0, 0, 720988, 0, 0, 720989, 0, 0, 720990, 0, 0, 720991, 0, 0, 720992, 0, 0, 720993, 0, 0, 720994, 0, 0, 720995, 0, 0, 720996, 0, 0, 720997, 0, 0, 720998, 0, 0, 720999, 0, 0, 721000, 0, 0, 721001, 0, 0, 721002, 0, 0, 721003, 0, 0, 721004, 0, 0, 721005, 0, 0, 721006, 0, 0, 721007, 0, 0, 721008, 0, 0, 721009, 0, 0, 721010, 0, 0, 721011, 0, 0, 721012, 0, 0, 721013, 0, 0, 721014, 0, 0, 721015, 0, 0, 721016, 0, 0, 721017, 0, 0, 721018, 0, 0, 721019, 0, 0, 721020, 0, 0, 721021, 0, 0, 721022, 0, 0, 721023, 0, 0, 721024, 0, 0, 721025, 0, 0, 721026, 0, 0, 721027, 0, 0, 721028, 0, 0, 721029, 0, 0, 721030, 0, 0, 721031, 0, 0, 721032, 0, 0, 721033, 0, 0, 721034, 0, 0, 721035, 0, 0, 721036, 0, 0, 721037, 0, 0, 721038, 0, 0, 721039, 0, 0, 721040, 0, 0, 721041, 0, 0, 721042, 0, 0, 721043, 0, 0, 721044, 0, 0 )
+tile_data = PoolIntArray( -1245056, 0, 0, -1245036, 0, 0, -1114113, 0, 0, -1179531, 0, 0, -1179530, 0, 0, -1179529, 0, 0, -1179528, 0, 0, -1179527, 0, 0, -1179526, 0, 0, -1179525, 0, 0, -1179524, 0, 0, -1179523, 0, 0, -1179522, 0, 0, -1179521, 0, 0, -1179520, 0, 0, -1179519, 0, 0, -1179518, 0, 0, -1179517, 0, 0, -1179516, 0, 0, -1179515, 0, 0, -1179514, 0, 0, -1179513, 0, 0, -1179512, 0, 0, -1179511, 0, 0, -1179510, 0, 0, -1179509, 0, 0, -1179508, 0, 0, -1179507, 0, 0, -1179500, 0, 0, -1048577, 0, 0, -1113995, 0, 0, -1113971, 0, 0, -1113964, 0, 0, -983041, 0, 0, -1048464, 0, 0, -1048463, 0, 0, -1048462, 0, 0, -1048461, 0, 0, -1048460, 0, 0, -1048459, 0, 0, -1048435, 0, 0, -1048428, 0, 0, -917505, 0, 0, -982928, 0, 0, -982899, 0, 0, -982892, 0, 0, -851969, 0, 0, -917392, 0, 0, -917363, 0, 0, -917356, 0, 0, -786433, 0, 0, -851856, 0, 0, -851827, 0, 0, -851820, 0, 0, -720897, 0, 0, -786320, 0, 0, -786291, 0, 0, -786284, 0, 0, -655361, 0, 0, -720784, 0, 0, -720767, 0, 0, -720755, 0, 0, -720748, 0, 0, -589825, 0, 0, -655248, 0, 0, -655219, 0, 0, -655212, 0, 0, -524289, 0, 0, -589721, 0, 0, -589720, 0, 0, -589719, 0, 0, -589718, 0, 0, -589717, 0, 0, -589716, 0, 0, -589715, 0, 0, -589714, 0, 0, -589713, 0, 0, -589712, 0, 0, -589711, 0, 0, -589710, 0, 0, -589709, 0, 0, -589708, 0, 0, -589707, 0, 0, -589706, 0, 0, -589705, 0, 0, -589704, 0, 0, -589703, 0, 0, -589702, 0, 0, -589701, 0, 0, -589700, 0, 0, -589695, 0, 0, -589694, 0, 0, -589693, 0, 0, -589692, 0, 0, -589691, 0, 0, -589690, 0, 0, -589689, 0, 0, -589688, 0, 0, -589687, 0, 0, -589686, 0, 0, -589685, 0, 0, -589684, 0, 0, -589683, 0, 0, -589676, 0, 0, -458753, 0, 0, -524185, 0, 0, -524184, 0, 0, -524183, 0, 0, -524182, 0, 0, -524181, 0, 0, -524180, 0, 0, -524179, 0, 0, -524178, 0, 0, -524177, 0, 0, -524176, 0, 0, -524175, 0, 0, -524174, 0, 0, -524173, 0, 0, -524172, 0, 0, -524171, 0, 0, -524170, 0, 0, -524169, 0, 0, -524168, 0, 0, -524167, 0, 0, -524166, 0, 0, -524165, 0, 0, -524164, 0, 0, -524159, 0, 0, -524158, 0, 0, -524157, 0, 0, -524156, 0, 0, -524155, 0, 0, -524154, 0, 0, -524153, 0, 0, -524152, 0, 0, -524151, 0, 0, -524150, 0, 0, -524149, 0, 0, -524148, 0, 0, -524147, 0, 0, -524140, 0, 0, -393217, 0, 0, -458649, 0, 0, -458611, 0, 0, -458604, 0, 0, -327681, 0, 0, -393113, 0, 0, -393075, 0, 0, -393068, 0, 0, -262145, 0, 0, -327577, 0, 0, -327539, 0, 0, -327532, 0, 0, -196609, 0, 0, -262041, 0, 0, -262040, 0, 0, -262039, 0, 0, -262038, 0, 0, -262037, 0, 0, -262036, 0, 0, -262035, 0, 0, -262034, 0, 0, -262033, 0, 0, -262032, 0, 0, -262031, 0, 0, -262030, 0, 0, -262029, 0, 0, -262028, 0, 0, -262026, 0, 0, -262025, 0, 0, -262024, 0, 0, -262023, 0, 0, -262022, 0, 0, -262015, 0, 0, -262014, 0, 0, -262013, 0, 0, -262012, 0, 0, -262011, 0, 0, -262010, 0, 0, -262009, 0, 0, -262008, 0, 0, -262007, 0, 0, -262006, 0, 0, -262005, 0, 0, -262004, 0, 0, -262003, 0, 0, -261996, 0, 0, -131073, 0, 0, -196505, 0, 0, -196504, 0, 0, -196503, 0, 0, -196502, 0, 0, -196501, 0, 0, -196500, 0, 0, -196499, 0, 0, -196498, 0, 0, -196497, 0, 0, -196496, 0, 0, -196495, 0, 0, -196494, 0, 0, -196493, 0, 0, -196489, 0, 0, -196488, 0, 0, -196487, 0, 0, -196485, 0, 0, -196484, 0, 0, -196479, 0, 0, -196478, 0, 0, -196477, 0, 0, -196476, 0, 0, -196475, 0, 0, -196474, 0, 0, -196473, 0, 0, -196472, 0, 0, -196471, 0, 0, -196470, 0, 0, -196469, 0, 0, -196468, 0, 0, -196467, 0, 0, -196460, 0, 0, -65537, 0, 0, -130969, 0, 0, -130931, 0, 0, -130924, 0, 0, -1, 0, 0, -65433, 0, 0, -65395, 0, 0, -65388, 0, 0, 65535, 0, 0, 103, 0, 0, 141, 0, 0, 148, 0, 0, 131071, 0, 0, 65639, 0, 0, 65640, 0, 0, 65641, 0, 0, 65642, 0, 0, 65644, 0, 0, 65645, 0, 0, 65646, 0, 0, 65648, 0, 0, 65649, 0, 0, 65655, 0, 0, 65656, 0, 0, 65657, 0, 0, 65658, 0, 0, 65659, 0, 0, 65660, 0, 0, 65665, 0, 0, 65666, 0, 0, 65667, 0, 0, 65668, 0, 0, 65669, 0, 0, 65670, 0, 0, 65671, 0, 0, 65672, 0, 0, 65673, 0, 0, 65674, 0, 0, 65675, 0, 0, 65676, 0, 0, 65677, 0, 0, 65684, 0, 0, 196607, 0, 0, 131175, 0, 0, 131176, 0, 0, 131177, 0, 0, 131178, 0, 0, 131179, 0, 0, 131180, 0, 0, 131181, 0, 0, 131182, 0, 0, 131183, 0, 0, 131184, 0, 0, 131185, 0, 0, 131186, 0, 0, 131187, 0, 0, 131188, 0, 0, 131189, 0, 0, 131190, 0, 0, 131191, 0, 0, 131192, 0, 0, 131193, 0, 0, 131194, 0, 0, 131195, 0, 0, 131196, 0, 0, 131201, 0, 0, 131202, 0, 0, 131203, 0, 0, 131204, 0, 0, 131205, 0, 0, 131206, 0, 0, 131207, 0, 0, 131208, 0, 0, 131209, 0, 0, 131210, 0, 0, 131211, 0, 0, 131212, 0, 0, 131213, 0, 0, 131220, 0, 0, 262143, 0, 0, 196756, 0, 0, 327679, 0, 0, 262292, 0, 0, 393215, 0, 0, 327828, 0, 0, 458751, 0, 0, 393364, 0, 0, 524287, 0, 0, 458900, 0, 0, 589823, 0, 0, 524436, 0, 0, 655359, 0, 0, 589972, 0, 0, 720895, 0, 0, 655508, 0, 0, 786431, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 720912, 0, 0, 720913, 0, 0, 720914, 0, 0, 720915, 0, 0, 720916, 0, 0, 720917, 0, 0, 720918, 0, 0, 720919, 0, 0, 720920, 0, 0, 720921, 0, 0, 720922, 0, 0, 720923, 0, 0, 720924, 0, 0, 720925, 0, 0, 720926, 0, 0, 720927, 0, 0, 720928, 0, 0, 720929, 0, 0, 720930, 0, 0, 720931, 0, 0, 720932, 0, 0, 720933, 0, 0, 720934, 0, 0, 720935, 0, 0, 720936, 0, 0, 720937, 0, 0, 720938, 0, 0, 720939, 0, 0, 720940, 0, 0, 720941, 0, 0, 720942, 0, 0, 720943, 0, 0, 720944, 0, 0, 720945, 0, 0, 720946, 0, 0, 720947, 0, 0, 720948, 0, 0, 720949, 0, 0, 720950, 0, 0, 720951, 0, 0, 720952, 0, 0, 720953, 0, 0, 720954, 0, 0, 720955, 0, 0, 720956, 0, 0, 720957, 0, 0, 720958, 0, 0, 720959, 0, 0, 720960, 0, 0, 720961, 0, 0, 720962, 0, 0, 720963, 0, 0, 720964, 0, 0, 720965, 0, 0, 720966, 0, 0, 720967, 0, 0, 720968, 0, 0, 720969, 0, 0, 720970, 0, 0, 720971, 0, 0, 720972, 0, 0, 720973, 0, 0, 720974, 0, 0, 720975, 0, 0, 720976, 0, 0, 720977, 0, 0, 720978, 0, 0, 720979, 0, 0, 720980, 0, 0, 720981, 0, 0, 720982, 0, 0, 720983, 0, 0, 720984, 0, 0, 720985, 0, 0, 720986, 0, 0, 720987, 0, 0, 720988, 0, 0, 720989, 0, 0, 720990, 0, 0, 720991, 0, 0, 720992, 0, 0, 720993, 0, 0, 720994, 0, 0, 720995, 0, 0, 720996, 0, 0, 720997, 0, 0, 720998, 0, 0, 720999, 0, 0, 721000, 0, 0, 721001, 0, 0, 721002, 0, 0, 721003, 0, 0, 721004, 0, 0, 721005, 0, 0, 721006, 0, 0, 721007, 0, 0, 721008, 0, 0, 721009, 0, 0, 721010, 0, 0, 721011, 0, 0, 721012, 0, 0, 721013, 0, 0, 721014, 0, 0, 721015, 0, 0, 721016, 0, 0, 721017, 0, 0, 721018, 0, 0, 721019, 0, 0, 721020, 0, 0, 721021, 0, 0, 721022, 0, 0, 721023, 0, 0, 721024, 0, 0, 721025, 0, 0, 721026, 0, 0, 721027, 0, 0, 721028, 0, 0, 721029, 0, 0, 721030, 0, 0, 721031, 0, 0, 721032, 0, 0, 721033, 0, 0, 721034, 0, 0, 721035, 0, 0, 721036, 0, 0, 721037, 0, 0, 721038, 0, 0, 721039, 0, 0, 721040, 0, 0, 721041, 0, 0, 721042, 0, 0, 721043, 0, 0, 721044, 0, 0 )
 
 [node name="press_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
@@ -117,50 +149,96 @@ pitch_scale = 0.49
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ZoomCam" type="TouchScreenButton" parent="CanvasLayer"]
-modulate = Color( 0.439216, 0.498039, 0.956863, 1 )
-normal = ExtResource( 7 )
-pressed = ExtResource( 7 )
-
-[node name="MENU" type="Button" parent="CanvasLayer"]
-margin_left = 566.567
-margin_top = 22.9094
-margin_right = 771.567
-margin_bottom = 83.9094
-custom_styles/normal = SubResource( 5 )
-custom_fonts/font = SubResource( 6 )
-custom_colors/font_color = Color( 1, 0.686275, 0.729412, 1 )
-text = "Go TO MENU"
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+self_modulate = Color( 0.0313726, 0, 1, 1 )
+margin_left = 135.357
+margin_top = 135.152
+margin_right = 318.357
+margin_bottom = 255.152
+rect_rotation = 90.0
+custom_styles/panel = SubResource( 5 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="change_gun" type="TouchScreenButton" parent="CanvasLayer"]
-modulate = Color( 1, 1, 1, 0.694118 )
-position = Vector2( 813.614, 542.101 )
-normal = ExtResource( 4 )
+[node name="zoombutton" type="TextureButton" parent="CanvasLayer"]
+self_modulate = Color( 0, 0, 0, 1 )
+margin_left = 38.4955
+margin_top = 38.161
+margin_right = 106.496
+margin_bottom = 91.1609
+texture_normal = ExtResource( 7 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Sprite" type="Sprite" parent="CanvasLayer/change_gun"]
-position = Vector2( 47.9305, 51.8817 )
-scale = Vector2( 0.313202, 0.31162 )
+[node name="zoombutton" type="Sprite" parent="CanvasLayer/zoombutton"]
+self_modulate = Color( 0.34902, 0.34902, 0.34902, 1 )
+position = Vector2( 34.2042, 26.48 )
+scale = Vector2( 0.922365, 0.708563 )
+texture = ExtResource( 7 )
+
+[node name="Label" type="Label" parent="CanvasLayer/zoombutton"]
+margin_left = 14.3163
+margin_top = 14.648
+margin_right = 54.3163
+margin_bottom = 37.648
+text = "2X"
+align = 1
+valign = 1
+
+[node name="MENU" type="Button" parent="CanvasLayer"]
+margin_left = 463.0
+margin_top = 14.0
+margin_right = 603.0
+margin_bottom = 88.0
+custom_styles/hover = SubResource( 6 )
+custom_styles/pressed = SubResource( 7 )
+custom_styles/normal = SubResource( 8 )
+custom_fonts/font = SubResource( 9 )
+custom_colors/font_color = Color( 1, 1, 1, 1 )
+text = "PAUSE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="change_gun" type="TextureButton" parent="CanvasLayer"]
+margin_left = 837.204
+margin_top = 601.819
+margin_right = 920.204
+margin_bottom = 678.819
+texture_normal = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="gun (1)" type="Sprite" parent="CanvasLayer/change_gun"]
+position = Vector2( 41.0254, 40.8191 )
+scale = Vector2( 0.241564, 0.2438 )
 texture = ExtResource( 6 )
 
-[node name="grenade" type="TouchScreenButton" parent="CanvasLayer"]
-visible = false
-modulate = Color( 1, 1, 1, 0.694118 )
-position = Vector2( 376.539, 562.821 )
-normal = ExtResource( 4 )
+[node name="grenade" type="TextureButton" parent="CanvasLayer"]
+margin_left = 342.748
+margin_top = 583.281
+margin_right = 438.748
+margin_bottom = 679.281
+texture_normal = ExtResource( 4 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer/grenade"]
-position = Vector2( 45.6492, 49.1793 )
-scale = Vector2( 0.859128, 0.639163 )
+position = Vector2( 45.7974, 49.0769 )
+scale = Vector2( 0.859128, 0.687798 )
 texture = ExtResource( 13 )
 
 [node name="change_vehicle" type="TextureButton" parent="CanvasLayer"]
-margin_left = 1154.0
-margin_top = 289.0
-margin_right = 1278.0
-margin_bottom = 392.0
+margin_left = 28.962
+margin_top = 226.243
+margin_right = 120.962
+margin_bottom = 313.243
 texture_normal = ExtResource( 4 )
 expand = true
 __meta__ = {
@@ -168,26 +246,43 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="CanvasLayer/change_vehicle"]
-position = Vector2( 59.0771, 53.2864 )
-scale = Vector2( 0.07, 0.1 )
+position = Vector2( 46.4572, 40.6055 )
+scale = Vector2( 0.0590429, 0.0694098 )
 texture = ExtResource( 2 )
 
 [node name="move_joystick" parent="CanvasLayer" instance=ExtResource( 11 )]
 position = Vector2( 200, 530 )
 
-[node name="aim_joystick" parent="CanvasLayer" instance=ExtResource( 11 )]
-position = Vector2( 1080, 530 )
+[node name="aim_joystick" parent="CanvasLayer" instance=ExtResource( 18 )]
+position = Vector2( 1060.9, 530 )
 
 [node name="FpsLabel" type="Label" parent="CanvasLayer"]
-margin_left = 418.964
-margin_top = 16.036
-margin_right = 530.964
-margin_bottom = 77.036
-custom_fonts/font = SubResource( 7 )
+margin_left = 1103.98
+margin_top = 143.0
+margin_right = 1215.98
+margin_bottom = 204.0
+custom_fonts/font = SubResource( 10 )
 custom_colors/font_color = Color( 0, 0.301961, 0.980392, 1 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="DroneButton" type="TextureButton" parent="CanvasLayer"]
+margin_left = 21.5892
+margin_top = 143.0
+margin_right = 120.589
+margin_bottom = 229.0
+texture_normal = ExtResource( 4 )
+expand = true
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Sprite" type="Sprite" parent="CanvasLayer/DroneButton"]
+position = Vector2( 52.7303, 41.8999 )
+scale = Vector2( 0.112571, 0.243005 )
+texture = ExtResource( 14 )
 
 [node name="PickGun" type="Button" parent="CanvasLayer"]
 margin_left = 611.0
@@ -200,46 +295,50 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CameraTween" type="Tween" parent="."]
-
 [node name="Vehicles" type="Node2D" parent="."]
 __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="Helicopter" parent="Vehicles" instance=ExtResource( 10 )]
-position = Vector2( 2042.18, 566.192 )
-
 [node name="Tank" parent="Vehicles" instance=ExtResource( 9 )]
 position = Vector2( 829.304, 499.854 )
 
-[node name="Guns" type="Node2D" parent="."]
-
-[node name="Gun0Pickable" parent="Guns" instance=ExtResource( 15 )]
-position = Vector2( 254, 499.854 )
-
-[node name="Gun1Pickable" parent="Guns" instance=ExtResource( 16 )]
-position = Vector2( 3200.2, 602.819 )
-
-[node name="Gun2Pickable" parent="Guns" instance=ExtResource( 14 )]
-position = Vector2( 3860.4, 574.521 )
-
-[node name="Gun3Pickable" parent="Guns" instance=ExtResource( 18 )]
-position = Vector2( 4712.1, 468.106 )
-
-[node name="buttons_timer" type="Timer" parent="."]
+[node name="Helicopter" parent="Vehicles" instance=ExtResource( 10 )]
+position = Vector2( 1712, 448 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
-offset = Vector2( 100, 0 )
+offset = Vector2( 200, 0 )
 current = true
-process_mode = 0
-limit_left = -100
+zoom = Vector2( 2, 2 )
+limit_left = -20
 limit_right = 9500
 limit_bottom = 760
 limit_smoothed = true
 smoothing_enabled = true
 smoothing_speed = 8.0
-[connection signal="pressed" from="CanvasLayer/ZoomCam" to="." method="_on_ZoomCam_pressed"]
+
+[node name="ScreenShake" parent="Camera2D" instance=ExtResource( 17 )]
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Enemy" parent="Enemies" instance=ExtResource( 19 )]
+position = Vector2( 3109.46, 421.438 )
+collision_mask = 164083
+
+[node name="Guns" type="Node2D" parent="."]
+
+[node name="Gun1" parent="Guns" instance=ExtResource( 21 )]
+position = Vector2( 1280.08, 588.916 )
+
+[node name="Gun3" parent="Guns" instance=ExtResource( 20 )]
+position = Vector2( 1621, 560.307 )
+
+[node name="Gun0" parent="Guns" instance=ExtResource( 23 )]
+position = Vector2( 2601.23, 438.797 )
+
+[node name="Gun2" parent="Guns" instance=ExtResource( 22 )]
+position = Vector2( 2058.71, 612 )
+[connection signal="pressed" from="CanvasLayer/zoombutton" to="." method="_on_zoombutton_pressed"]
 [connection signal="pressed" from="CanvasLayer/MENU" to="." method="_on_MENU_pressed"]
 [connection signal="pressed" from="CanvasLayer/change_vehicle" to="." method="_on_change_vehicle_pressed"]
-[connection signal="pressed" from="CanvasLayer/PickGun" to="." method="_on_PickGun_pressed"]
+[connection signal="pressed" from="CanvasLayer/DroneButton" to="." method="_on_DroneButton_pressed"]

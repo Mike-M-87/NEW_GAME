@@ -24,6 +24,7 @@ config/icon="res://icon.png"
 
 Signals="*res://MAIN/Signals.gd"
 DATA="*res://MAIN/DATA.gd"
+Events="*res://MAIN/Events.gd"
 
 [display]
 
@@ -55,6 +56,7 @@ pointing/emulate_touch_from_mouse=true
 2d_physics/layer_15="playerhurtbox"
 2d_physics/layer_16="grenade"
 2d_physics/layer_17="enemyhurtbox"
+2d_physics/layer_18="gun"
 
 [rendering]
 

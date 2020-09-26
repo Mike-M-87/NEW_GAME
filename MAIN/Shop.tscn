@@ -568,9 +568,19 @@ valign = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="NewShop" type="Button" parent="."]
+margin_left = 19.799
+margin_top = 193.747
+margin_right = 97.799
+margin_bottom = 213.747
+rect_scale = Vector2( 3, 3 )
+text = "NEWSHOP"
+flat = true
 [connection signal="pressed" from="QuitShop" to="." method="_on_QuitShop_pressed"]
 [connection signal="pressed" from="OpenGunPanel" to="." method="_on_OpenGunPanel_pressed"]
 [connection signal="pressed" from="OpenDronesPanel" to="." method="_on_OpenDronesPanel_pressed"]
 [connection signal="pressed" from="GunsPanel/Tier1_Guns/HBoxContainer/Gun1/purchaseGun1" to="." method="_on_purchaseGun1_pressed"]
 [connection signal="pressed" from="GunsPanel/Tier1_Guns/HBoxContainer/Gun2/purchaseGun2" to="." method="_on_purchaseGun2_pressed"]
 [connection signal="pressed" from="GunsPanel/Tier1_Guns/HBoxContainer/Gun3/purchaseGun3" to="." method="_on_purchaseGun3_pressed"]
+[connection signal="pressed" from="NewShop" to="." method="_on_NewShop_pressed"]

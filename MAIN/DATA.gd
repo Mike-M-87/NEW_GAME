@@ -1,27 +1,24 @@
 extends Node
 
+
+#bullets_data [
+#	[total , default , bullets]
+#	]
 var config = ConfigFile.new()
 
 var default_ready_data = {
-	"player_pos":Vector2(100,0),
+	"player_pos":Vector2(200,0),
 	"weapon":"res://MAIN/Gun0.tscn",
 } 
 var ready_data = {}
 
-var bullets_data = []
-var def_bullets_data = [
-	[300,100,100,],
-	[250,50,50],
-	[200,50,50],
-	[9,3,3]
-]
 
 var GunsData = {
 	"Gun0":{
 		"avail":true,
+		"button_text":"EQUIP",
 		"upgrades":0,
 		"upg_money":150,
-		"pos":Vector2(50,2),
 	},
 	"Gun1":{
 		"avail":false,
@@ -29,7 +26,6 @@ var GunsData = {
 		"button_text":"BUY 50/=",
 		"upgrades":0,
 		"upg_money":150,
-		"pos":Vector2(50,2),
 	},
 	"Gun2":{
 		"purchase":false,
@@ -37,7 +33,6 @@ var GunsData = {
 		"button_text":"BUY 100/=",
 		"upgrades":0,
 		"upg_money":300,
-		"pos":Vector2(50,2),
 	},
 	"Gun3":{
 		"purchase":false,
@@ -45,8 +40,21 @@ var GunsData = {
 		"button_text":"BUY 200/=",
 		"upgrades":0,
 		"upg_money":0,
-		"pos":Vector2(-50,2),
 	},
+	"RPG0":{
+		"purchase":false,
+		"avail":false,
+		"button_text":"BUY 200/=",
+		"upgrades":0,
+		"upg_money":0,
+	},
+	"RPG1":{
+		"purchase":false,
+		"avail":false,
+		"button_text":"BUY 200/=",
+		"upgrades":0,
+		"upg_money":0,
+	}
 }
 
 var CharactersData = {
@@ -69,7 +77,8 @@ var change_gun_range = 0
 func new_game():
 	yield(get_tree(),"idle_frame")
 	DATA.ready_data = DATA.default_ready_data.duplicate(true)
-	DATA.bullets_data = DATA.def_bullets_data.duplicate(true)
+
+
 	change_gun_range = 0
 
 func _ready():
@@ -82,6 +91,8 @@ func availGuns():
 			GunsData.Gun1.avail,
 			GunsData.Gun2.avail,
 			GunsData.Gun3.avail,
+			GunsData.RPG0.avail,
+			GunsData.RPG1.avail,
 		]
 	total_guns  = Guns_avail.size()
 

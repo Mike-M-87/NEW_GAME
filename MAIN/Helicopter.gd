@@ -1,8 +1,9 @@
-extends KinematicBody2D
+extends RigidBody2D
 
-var velocity = Vector2()
-onready var joystick = get_parent().get_parent().get_node("CanvasLayer/move_joystick")
-var joystick_value
+
+onready var move_joystick = get_parent().get_parent().get_node("CanvasLayer/move_joystick")
+
+var accel = 30
 var wintermap = preload("res://MAIN/WinterBackground.tscn")
 var bullet = preload("res://MAIN/HeliBullet.tscn")
 var can_fire = true
@@ -20,41 +21,31 @@ func _ready():
 	
 func _physics_process(delta):
 
-	joystick_value = joystick.get_value() * 100
-	velocity = joystick_value * 8
+	if move_joystick.get_value().x < 0:
+		$Sprite.flip_h = false
+		linear_velocity.x = max(linear_velocity.x-accel,-700)
 	
+	elif move_joystick.get_value().x > 0:
+		$Sprite.flip_h = true
+		linear_velocity.x = min(linear_velocity.x+accel,700)
 	
-	if joystick_value.x < 0:
-		$Sprite/Sprite2.position = Vector2(-35,-115)
-		bullet_motion = Vector2(-bullet_speed,0)
-		sprite.flip_h = false
-		sprite.rotation_degrees = 5
-		$CollisionPolygon2D.scale.x = 1
-		$Sprite/BulletPoint.position = Vector2(-285,70)
-		rotation_degrees = -15
-	elif joystick_value.x > 0:
-		$Sprite/Sprite2.position = Vector2(35,-115)
-		bullet_motion = Vector2(bullet_speed,0)
-		sprite.flip_h = true
-		sprite.rotation_degrees = -5
-		$CollisionPolygon2D.scale.x = -1
-		$Sprite/BulletPoint.position = Vector2(275,70)
-		rotation_degrees = 15
-		
-	if joystick_value == Vector2(0,0):
-		velocity.y += 10
-		$AnimationPlayer.stop()
-		$Sprite/Sprite2.visible = false
 	else:
-		$AnimationPlayer.play("Rotor")
-		$Sprite/Sprite2.visible = true
+		linear_velocity = linear_velocity.move_toward(Vector2(0,0),10)
 	
+	if  move_joystick.get_value().y > 0:
+		linear_velocity.y = min(linear_velocity.y+accel,300) 
 
+	elif move_joystick.get_value().y < -0:
+		linear_velocity.y = max(linear_velocity.y-accel,-300)
 	
-	if velocity.y == 0:
-		rotation_degrees = 0
+	else:
+		linear_velocity = linear_velocity.move_toward(Vector2(0,0),10)
+	rotation_degrees = move_joystick.get_value().x * 10
+	print(move_joystick.get_value())
+
+
 		
-	velocity = move_and_slide(velocity)
+		
 	
 func _process(delta):
 	if can_fire and can_start_fire:
@@ -75,20 +66,20 @@ func _on_TouchScreenButton_pressed():
 		can_start_fire = false
 
 func parking_mode():
-	global_position.y = 620
-	rotation_degrees = 0
 	set_physics_process(false)
 	set_process(false)
 	$CanvasLayer/TouchScreenButton.hide()
-	#$Camera2D.current = false
-	$AnimationPlayer.stop()
-	$Sprite/Sprite2.rotation_degrees = 0
-	remote_transform.remote_path = ""
+	set_cam_off()
 
 func entered_mode():
 	set_process(true)
 	set_physics_process(true)
 	$CanvasLayer/TouchScreenButton.show()
-	#$Camera2D.current = true
-	remote_transform.remote_path = "../../../Camera2D"
+	set_cam_on()
 	
+	
+func  set_cam_on():
+	remote_transform.remote_path = "../../../Camera2D"	
+func set_cam_off():
+	remote_transform.remote_path = ""
+

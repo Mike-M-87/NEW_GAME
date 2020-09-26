@@ -1,6 +1,5 @@
 extends Sprite
 
-
 var time = 0
 onready var n = (get_material().get_shader_param("noise") as NoiseTexture)
 

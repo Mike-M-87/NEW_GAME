@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://MAIN/sprites/other/Button.png" type="Texture" id=1]
+[ext_resource path="res://MAIN/sprites/other/outlineDisc.png" type="Texture" id=2]
+[ext_resource path="res://MAIN/aim_joystick.gd" type="Script" id=3]
+
+[node name="aim_joystick" type="Node2D"]
+script = ExtResource( 3 )
+
+[node name="Radius" type="Sprite" parent="."]
+scale = Vector2( 4, 4 )
+texture = ExtResource( 2 )
+
+[node name="shoot_node" type="Node2D" parent="."]
+
+[node name="Button" type="Sprite" parent="."]
+scale = Vector2( 2, 2 )
+texture = ExtResource( 1 )

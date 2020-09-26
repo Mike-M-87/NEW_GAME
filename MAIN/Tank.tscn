@@ -1,25 +1,57 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://MAIN/sprites/tank/tank1.png" type="Texture" id=1]
+[ext_resource path="res://MAIN/sprites/guns/Ammo.png" type="Texture" id=2]
 [ext_resource path="res://MAIN/Tank.gd" type="Script" id=3]
 [ext_resource path="res://tyre.png" type="Texture" id=4]
 [ext_resource path="res://MAIN/GunShot.wav" type="AudioStream" id=5]
+[ext_resource path="res://MAIN/sprites/other/glassPanel_projection.png" type="Texture" id=6]
 [ext_resource path="res://MAIN/sprites/tank/wheel.png" type="Texture" id=7]
 [ext_resource path="res://MAIN/sprites/tank/wheelhold.png" type="Texture" id=8]
 [ext_resource path="res://MAIN/sprites/tank/wheel2.png" type="Texture" id=9]
 [ext_resource path="res://MAIN/sprites/tank/wheel3.png" type="Texture" id=10]
+[ext_resource path="res://MAIN/sprites/other/rect.png" type="Texture" id=11]
 
 [sub_resource type="Curve2D" id=1]
 bake_interval = 26.0
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, -203.094, 74.7324, 0, 0, 0, 0, 228.28, 71.3905, 0, 0, 0, 0, 241.259, 82.9153, 0, 0, 0, 0, 250.384, 106.054, 0, 0, 0, 0, 230.762, 130.96, 0, 0, 0, 0, 177.854, 160.468, 0, 0, 0, 0, -162.227, 158.672, 0, 0, 0, 0, -222.974, 131.761, 0, 0, 0, 0, -244.274, 109.859, 0, 0, 0, 0, -238.91, 93.6042, 0, 0, 0, 0, -220.134, 79.9669, 0, 0, 0, 0, -202.936, 74.7324 )
+"points": PoolVector2Array( 0, 0, 0, 0, -203.094, 74.7324, 0, 0, 0, 0, -54.3646, 75.6122, 0, 0, 0, 0, 228.28, 71.3905, 0, 0, 0, 0, 241.259, 82.9153, 0, 0, 0, 0, 250.384, 106.054, 0, 0, 0, 0, 230.762, 130.96, 0, 0, 0, 0, 177.854, 160.468, 0, 0, 0, 0, -162.227, 158.672, 0, 0, 0, 0, -222.974, 131.761, 0, 0, 0, 0, -244.274, 109.859, 0, 0, 0, 0, -238.91, 93.6042, 0, 0, 0, 0, -220.134, 79.9669, 0, 0, 0, 0, -202.936, 74.7324 )
 }
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 266.679, 129.701 )
+extents = Vector2( 361.537, 168.146 )
 
 [sub_resource type="CircleShape2D" id=3]
-radius = 24.9988
+radius = 38.6083
+
+[sub_resource type="Animation" id=4]
+resource_name = "reload"
+length = 5.0
+step = 1.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("ReloadBar/Node2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.478431 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("ReloadBar/Ammo:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 1, 2, 3, 4, 5 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [node name="Tank" type="Node2D" groups=[
 "tank",
@@ -28,6 +60,7 @@ radius = 24.9988
 script = ExtResource( 3 )
 
 [node name="body" type="RigidBody2D" parent="." groups=[
+"tank",
 "vehicle",
 ]]
 collision_layer = 4
@@ -35,17 +68,26 @@ mass = 8.0
 gravity_scale = 10.0
 
 [node name="Sprite" type="Sprite" parent="body"]
-scale = Vector2( 0.5, 0.5 )
+position = Vector2( -0.749146, 6.84379 )
+scale = Vector2( 0.7, 0.7 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 1, 2, 1022, 288 )
+region_rect = Rect2( -0.613007, 2, 1023.61, 288 )
+
+[node name="BulletPoint" type="Node2D" parent="body/Sprite"]
+position = Vector2( 637.396, -46.9532 )
+rotation = -0.0349066
+scale = Vector2( 2, 2 )
 
 [node name="ChainHold" type="Sprite" parent="body"]
-position = Vector2( -1, 116.559 )
-scale = Vector2( 0.5, 0.497234 )
+position = Vector2( 9.52078, 175.953 )
+scale = Vector2( 0.722949, 0.762231 )
 texture = ExtResource( 1 )
 region_enabled = true
-region_rect = Rect2( 30.39, 276.44, 1006, 202 )
+region_rect = Rect2( 35, 276.44, 1001.39, 202 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="wheel2" type="Sprite" parent="body/ChainHold"]
 position = Vector2( 201.74, 41.6334 )
@@ -116,17 +158,20 @@ region_enabled = true
 region_rect = Rect2( 456.838, 291.074, 188.003, 139.938 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body"]
-polygon = PoolVector2Array( -69.1799, -66.7739, 67.997, -65.0006, 227.066, 23.6965, 255.587, 70.6881, 233.398, 68.2158, 136.25, 71.491, -124.248, 68.8823, -251.652, 68.8352, -252.012, 83.5668, -255.86, 67.5795, -231.79, 27.8357 )
+polygon = PoolVector2Array( -121.687, -89.656, 63.5698, -95.6404, 342.867, 79.8669, 343.758, 100.358, -346.244, 98.1304, -346.244, 50.9127, -131.403, -10.5525 )
 
 [node name="Path2D" type="Path2D" parent="body"]
-position = Vector2( -3.54172, -2.04835 )
-scale = Vector2( 1, 1.02731 )
+position = Vector2( 1.58937, -8.39514 )
+scale = Vector2( 1.4471, 1.60342 )
 curve = SubResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
 
 [node name="PathFollow2D" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( -203.094, 74.7324 )
-rotation = -0.00774498
+rotation = 0.005914
 __meta__ = {
 "_edit_group_": true
 }
@@ -140,8 +185,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( -170.783, 74.4821 )
-rotation = -0.00774715
+position = Vector2( -170.771, 74.9236 )
+rotation = 0.00591563
 offset = 32.3327
 __meta__ = {
 "_edit_group_": true
@@ -156,8 +201,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( -136.497, 74.2165 )
-rotation = -0.00774792
+position = Vector2( -136.451, 75.1266 )
+rotation = 0.00591438
 offset = 66.66
 __meta__ = {
 "_edit_group_": true
@@ -172,8 +217,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D4" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( -103.629, 73.9618 )
-rotation = -0.00774778
+position = Vector2( -103.601, 75.3209 )
+rotation = 0.005914
 offset = 99.5177
 __meta__ = {
 "_edit_group_": true
@@ -188,8 +233,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D5" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( -69.8654, 73.7003 )
-rotation = -0.00774551
+position = Vector2( -69.912, 75.5114 )
+rotation = 0.00312155
 offset = 133.215
 __meta__ = {
 "_edit_group_": true
@@ -204,8 +249,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D6" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( -34.6722, 73.4276 )
-rotation = -0.00774637
+position = Vector2( -34.761, 75.3449 )
+rotation = -0.0171075
 offset = 168.382
 __meta__ = {
 "_edit_group_": true
@@ -220,8 +265,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D7" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( -0.362334, 73.1618 )
-rotation = -0.00774708
+position = Vector2( -0.466513, 74.8071 )
+rotation = -0.0149338
 offset = 202.71
 __meta__ = {
 "_edit_group_": true
@@ -236,8 +281,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D8" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 34.039, 72.8953 )
-rotation = -0.00774698
+position = Vector2( 33.9448, 74.2932 )
+rotation = -0.0149368
 offset = 237.142
 __meta__ = {
 "_edit_group_": true
@@ -252,8 +297,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D9" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 69.5184, 72.6205 )
-rotation = -0.00774831
+position = Vector2( 69.4332, 73.7631 )
+rotation = -0.0149362
 offset = 272.624
 __meta__ = {
 "_edit_group_": true
@@ -268,8 +313,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D10" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 104.582, 72.3488 )
-rotation = -0.00774682
+position = Vector2( 104.468, 73.2398 )
+rotation = -0.0149353
 offset = 307.686
 __meta__ = {
 "_edit_group_": true
@@ -284,8 +329,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D11" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 140.102, 72.0736 )
-rotation = -0.00774682
+position = Vector2( 140.09, 72.7078 )
+rotation = -0.0149344
 offset = 343.273
 __meta__ = {
 "_edit_group_": true
@@ -300,8 +345,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D12" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 176.421, 71.7923 )
-rotation = -0.00774609
+position = Vector2( 176.411, 72.1652 )
+rotation = -0.0149352
 offset = 379.595
 __meta__ = {
 "_edit_group_": true
@@ -316,8 +361,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D13" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 211.423, 71.3151 )
-rotation = 0.149059
+position = Vector2( 211.366, 71.4358 )
+rotation = 0.143016
 offset = 414.552
 __meta__ = {
 "_edit_group_": true
@@ -332,8 +377,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D14" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 240.964, 83.1478 )
-rotation = 0.933486
+position = Vector2( 240.954, 83.1264 )
+rotation = 0.932856
 offset = 446.99
 __meta__ = {
 "_edit_group_": true
@@ -348,8 +393,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D15" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 245.153, 113.249 )
-rotation = 2.19131
+position = Vector2( 245.152, 113.234 )
+rotation = 2.19052
 offset = 479.637
 __meta__ = {
 "_edit_group_": true
@@ -364,8 +409,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D16" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 222.114, 135.305 )
-rotation = 2.58816
+position = Vector2( 222.116, 135.304 )
+rotation = 2.58814
 offset = 510.92
 __meta__ = {
 "_edit_group_": true
@@ -380,8 +425,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D17" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 191.533, 152.828 )
-rotation = 2.75014
+position = Vector2( 191.526, 152.832 )
+rotation = 2.75012
 offset = 546.088
 __meta__ = {
 "_edit_group_": true
@@ -396,8 +441,8 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D18" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 157.691, 160.934 )
-rotation = -3.11288
+position = Vector2( 157.68, 160.934 )
+rotation = -3.11293
 offset = 581.15
 __meta__ = {
 "_edit_group_": true
@@ -412,7 +457,7 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
 [node name="PathFollow2D19" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
-position = Vector2( 122.84, 160.177 )
+position = Vector2( 122.83, 160.177 )
 rotation = -3.13631
 offset = 615.897
 __meta__ = {
@@ -429,7 +474,7 @@ region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 [node name="PathFollow2D20" type="PathFollow2D" parent="body/Path2D"]
 modulate = Color( 0, 0, 0, 1 )
 position = Vector2( 89.4228, 160.001 )
-rotation = -3.13632
+rotation = -3.13631
 offset = 649.279
 __meta__ = {
 "_edit_group_": true
@@ -618,75 +663,64 @@ texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 343.589, 283.478, 51.6379, 11.122 )
 
-[node name="Camera2D" type="Camera2D" parent="body"]
-visible = false
-offset = Vector2( 100, 0 )
-zoom = Vector2( 0.5, 0.5 )
-limit_left = -100
-limit_right = 9500
-limit_bottom = 760
-limit_smoothed = true
-smoothing_enabled = true
-smoothing_speed = 8.0
-
 [node name="frontSpring" type="DampedSpringJoint2D" parent="body"]
-position = Vector2( 218.903, 68.75 )
+position = Vector2( 314.344, 68.75 )
 node_a = NodePath("..")
 node_b = NodePath("../../front")
 bias = 0.9
-length = 41.0
+length = 87.0
 
 [node name="frontSpring2" type="DampedSpringJoint2D" parent="body"]
-position = Vector2( 139.127, 68.75 )
+position = Vector2( 172.274, 68.75 )
 node_a = NodePath("..")
 node_b = NodePath("../../front2")
 bias = 0.9
-length = 76.0
+length = 136.0
 
 [node name="rearSpring" type="DampedSpringJoint2D" parent="body"]
-position = Vector2( -216.229, 68.75 )
+position = Vector2( -296.081, 68.75 )
 node_a = NodePath("..")
 node_b = NodePath("../../rear")
-length = 41.0
+length = 91.0
 
 [node name="rearSpring2" type="DampedSpringJoint2D" parent="body"]
-position = Vector2( -114.523, 68.75 )
+position = Vector2( -157.279, 68.75 )
 node_a = NodePath("..")
 node_b = NodePath("../../rear2")
-length = 76.0
+length = 134.0
 
 [node name="midSpring" type="DampedSpringJoint2D" parent="body"]
 position = Vector2( 0, 68.75 )
 node_a = NodePath("..")
 node_b = NodePath("../../mid")
-length = 76.0
+length = 136.0
 
 [node name="frontSpin" type="PinJoint2D" parent="body"]
-position = Vector2( 218.903, 109.899 )
+position = Vector2( 314.344, 155.951 )
 node_a = NodePath("..")
 node_b = NodePath("../../front")
 softness = 0.5
 
 [node name="frontSpin2" type="PinJoint2D" parent="body"]
-position = Vector2( 139.127, 144.596 )
+position = Vector2( 172.274, 205.077 )
 node_a = NodePath("..")
 node_b = NodePath("../../front2")
 softness = 0.5
 
 [node name="rearSpin" type="PinJoint2D" parent="body"]
-position = Vector2( -216.229, 109.899 )
+position = Vector2( -296.081, 160.261 )
 node_a = NodePath("..")
 node_b = NodePath("../../rear")
 softness = 0.5
 
 [node name="rearSpin2" type="PinJoint2D" parent="body"]
-position = Vector2( -114.523, 144.596 )
+position = Vector2( -157.279, 202.282 )
 node_a = NodePath("..")
 node_b = NodePath("../../rear2")
 softness = 0.5
 
 [node name="midSpin" type="PinJoint2D" parent="body"]
-position = Vector2( 0, 144.596 )
+position = Vector2( 0, 205.077 )
 node_a = NodePath("..")
 node_b = NodePath("../../mid")
 softness = 0.5
@@ -694,14 +728,13 @@ softness = 0.5
 [node name="PlayerDetector" type="Area2D" parent="body"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body/PlayerDetector"]
-visible = false
-position = Vector2( -2.99368, 28.7393 )
+position = Vector2( 1.50125, 83.4275 )
 shape = SubResource( 2 )
 
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="body"]
 
 [node name="rear" type="RigidBody2D" parent="."]
-position = Vector2( -216.229, 109.899 )
+position = Vector2( -296.081, 160.261 )
 collision_layer = 4
 mass = 10.0
 gravity_scale = 5.0
@@ -710,14 +743,14 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="rear"]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.447886, 0.457479 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rear"]
 shape = SubResource( 3 )
 
 [node name="rear2" type="RigidBody2D" parent="."]
-position = Vector2( -114.523, 144.596 )
+position = Vector2( -157.279, 202.282 )
 collision_layer = 4
 mass = 10.0
 gravity_scale = 5.0
@@ -726,14 +759,14 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="rear2"]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.451301, 0.449463 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="rear2"]
 shape = SubResource( 3 )
 
 [node name="front2" type="RigidBody2D" parent="."]
-position = Vector2( 139.127, 144.596 )
+position = Vector2( 172.274, 205.077 )
 collision_layer = 4
 mass = 10.0
 gravity_scale = 5.0
@@ -742,14 +775,14 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="front2"]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.452219, 0.463927 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="front2"]
 shape = SubResource( 3 )
 
 [node name="front" type="RigidBody2D" parent="."]
-position = Vector2( 218.903, 109.899 )
+position = Vector2( 314.344, 155.951 )
 collision_layer = 4
 mass = 10.0
 gravity_scale = 5.0
@@ -758,14 +791,14 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="front"]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.463928, 0.460025 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="front"]
 shape = SubResource( 3 )
 
 [node name="mid" type="RigidBody2D" parent="."]
-position = Vector2( 0, 144.596 )
+position = Vector2( 0, 205.077 )
 collision_layer = 4
 mass = 10.0
 gravity_scale = 5.0
@@ -774,7 +807,7 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="mid"]
-scale = Vector2( 0.3, 0.3 )
+scale = Vector2( 0.443275, 0.443275 )
 texture = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="mid"]
@@ -784,4 +817,62 @@ shape = SubResource( 3 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 5 )
-volume_db = -15.569
+pitch_scale = 0.5
+
+[node name="Reload" type="CanvasLayer" parent="."]
+
+[node name="ReloadBar" type="Node2D" parent="Reload"]
+position = Vector2( 830, 63 )
+
+[node name="pressed" type="Sprite" parent="Reload/ReloadBar"]
+self_modulate = Color( 0.133333, 0.133333, 0.133333, 1 )
+position = Vector2( 15.7491, -10.3315 )
+scale = Vector2( 1.4935, 0.809287 )
+texture = ExtResource( 6 )
+
+[node name="Ammo" type="Sprite" parent="Reload/ReloadBar"]
+position = Vector2( 11.3392, -11.3393 )
+rotation = 1.5708
+scale = Vector2( 1.78396, 1.19569 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 688.008, 966.645, 39.1418, 98.8497 )
+
+[node name="Node2D" type="Node2D" parent="Reload/ReloadBar"]
+position = Vector2( 260.99, 22.1328 )
+rotation = 1.5708
+scale = Vector2( 0.3, 0.3 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Ammo" type="Sprite" parent="Reload/ReloadBar/Node2D"]
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 593.208, 781.527, 41.6962, 126.479 )
+
+[node name="Ammo2" type="Sprite" parent="Reload/ReloadBar/Node2D"]
+position = Vector2( 76.2252, -0.629944 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 593.208, 781.527, 41.6962, 126.479 )
+
+[node name="Ammo3" type="Sprite" parent="Reload/ReloadBar/Node2D"]
+position = Vector2( -35.2778, 0 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 593.208, 781.527, 41.6962, 126.479 )
+
+[node name="Ammo4" type="Sprite" parent="Reload/ReloadBar/Node2D"]
+position = Vector2( 39.6875, -0.629944 )
+texture = ExtResource( 2 )
+region_enabled = true
+region_rect = Rect2( 593.208, 781.527, 41.6962, 126.479 )
+
+[node name="rect" type="Sprite" parent="Reload/ReloadBar/Node2D"]
+position = Vector2( 18.5509, 1.1321 )
+scale = Vector2( 1.34511, 1.06437 )
+texture = ExtResource( 11 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Reload"]
+anims/reload = SubResource( 4 )

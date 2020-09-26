@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://MAIN/RPG0.tscn" type="PackedScene" id=1]
+[ext_resource path="res://MAIN/sprites/guns/rpg2.png" type="Texture" id=2]
+
+[node name="RPG1" instance=ExtResource( 1 )]
+rpg_held = 1
+
+[node name="Sprite" parent="." index="0"]
+rotation = 0.0
+scale = Vector2( 0.516846, 0.501163 )
+texture = ExtResource( 2 )
+flip_h = true
+region_enabled = false
+
+[node name="BulletPoint" parent="." index="1"]
+position = Vector2( 217.754, -10 )
+
+[node name="Sprite" parent="ReloadButton/Node2D" index="1"]
+position = Vector2( 13.9907, -3.84784 )
+rotation = 3.14159
+scale = Vector2( 0.201104, 0.216048 )
+texture = ExtResource( 2 )
+flip_v = true
+region_enabled = false
+
+[node name="bullet_sprite" parent="." index="4"]
+position = Vector2( 170.284, -8 )
+scale = Vector2( 1.51009, 1.19142 )
+
+[editable path="ReloadButton"]

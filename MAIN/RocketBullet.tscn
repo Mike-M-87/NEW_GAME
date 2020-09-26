@@ -1,16 +1,18 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://MAIN/sprites/guns/Ammo.png" type="Texture" id=1]
 [ext_resource path="res://MAIN/RocketBullet.gd" type="Script" id=2]
+[ext_resource path="res://MAIN/sprites/explosion effect/Rocketboost.tres" type="Material" id=3]
+[ext_resource path="res://MAIN/sprites/other/fire5.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
 radius = 21.2214
-height = 98.0634
+height = 107.461
 
 [node name="RocketBullet" type="RigidBody2D"]
 collision_layer = 128
-collision_mask = 79873
-mass = 2.0
+collision_mask = 79877
+gravity_scale = 2.0
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
@@ -19,11 +21,22 @@ script = ExtResource( 2 )
 rotation = 1.5708
 scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
+offset = Vector2( 0, -15 )
 region_enabled = true
 region_rect = Rect2( 687.723, 967.361, 40.2215, 96.2542 )
 
+[node name="boost" type="Sprite" parent="Sprite"]
+self_modulate = Color( 1, 1, 1, 0.572549 )
+show_behind_parent = true
+material = ExtResource( 3 )
+position = Vector2( -0.0249634, 20.8551 )
+rotation = 3.14159
+scale = Vector2( 0.0711028, 0.188605 )
+texture = ExtResource( 6 )
+offset = Vector2( 0, -230 )
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.328499, 0 )
+position = Vector2( 17.2305, 0 )
 rotation = 1.5708
 shape = SubResource( 1 )
 [connection signal="body_entered" from="." to="." method="_on_RocketBullet_body_entered"]

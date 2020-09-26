@@ -1,34 +1,40 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://MAIN/Bubble Bobble.otf" type="DynamicFontData" id=1]
 [ext_resource path="res://MAIN/sprites/other/icons8-star-96.png" type="Texture" id=2]
 [ext_resource path="res://MAIN/sprites/other/icons8-money-96.png" type="Texture" id=3]
 [ext_resource path="res://MAIN/sprites/other/barHorizontal_white_mid 200.png" type="Texture" id=4]
-[ext_resource path="res://MAIN/sprites/other/glassPanel_projection.png" type="Texture" id=5]
 
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 4 )
 region_rect = Rect2( 0, 0, 200, 26 )
-modulate_color = Color( 1, 0.776471, 0.00784314, 1 )
+margin_left = 27.0
+margin_right = 27.0
 
 [sub_resource type="StyleBoxTexture" id=2]
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 100, 100 )
-modulate_color = Color( 0, 0.0745098, 0.996078, 1 )
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 200, 26 )
+margin_left = 27.0
+margin_right = 27.0
+modulate_color = Color( 0.184314, 0.254902, 0.172549, 1 )
 
 [sub_resource type="DynamicFont" id=3]
 size = 30
 font_data = ExtResource( 1 )
 
 [sub_resource type="StyleBoxTexture" id=4]
-texture = ExtResource( 5 )
-region_rect = Rect2( 0, 0, 100, 100 )
-modulate_color = Color( 0, 0, 1, 1 )
+texture = ExtResource( 4 )
+region_rect = Rect2( 0, 0, 200, 26 )
+margin_left = 27.0
+margin_right = 27.0
+modulate_color = Color( 0.215686, 0.32549, 0.203922, 1 )
 
 [node name="CashPanel" type="Panel"]
-margin_left = 2.0
+self_modulate = Color( 0.568627, 1, 0, 1 )
+margin_left = -1.0
+margin_top = 2.0
 margin_right = 1282.0
-margin_bottom = 76.0
+margin_bottom = 78.0
 custom_styles/panel = SubResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -36,13 +42,13 @@ __meta__ = {
 
 [node name="MoneyLabel" type="Label" parent="."]
 margin_left = 290.45
-margin_top = 15.2
-margin_right = 420.45
-margin_bottom = 62.2
+margin_top = 12.2
+margin_right = 474.45
+margin_bottom = 59.2
 custom_styles/normal = SubResource( 2 )
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
-text = ":100000000"
+text = "100000000"
 align = 1
 valign = 1
 uppercase = true
@@ -51,19 +57,20 @@ __meta__ = {
 }
 
 [node name="icons8-money-96" type="Sprite" parent="MoneyLabel"]
-position = Vector2( -43.1748, 19.6362 )
+position = Vector2( -49.1748, 22.6362 )
 scale = Vector2( 0.831542, 0.699683 )
 texture = ExtResource( 3 )
 
 [node name="StarsLabel" type="Label" parent="."]
 margin_left = 902.313
-margin_top = 15.2
-margin_right = 956.313
-margin_bottom = 62.2
+margin_top = 14.2
+margin_right = 997.313
+margin_bottom = 61.2
+rect_rotation = 0.110283
 custom_styles/normal = SubResource( 4 )
 custom_fonts/font = SubResource( 3 )
 custom_colors/font_color = Color( 1, 0, 0, 1 )
-text = ": 90"
+text = "90"
 align = 1
 valign = 1
 __meta__ = {
@@ -71,6 +78,6 @@ __meta__ = {
 }
 
 [node name="Sprite" type="Sprite" parent="StarsLabel"]
-position = Vector2( -25.5076, 22.5826 )
+position = Vector2( -26.5076, 20.5826 )
 scale = Vector2( 0.496256, 0.500471 )
 texture = ExtResource( 2 )

@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://MAIN/sprites/guns/Ammo.png" type="Texture" id=1]
+[ext_resource path="res://MAIN/GunShot.wav" type="AudioStream" id=2]
+[ext_resource path="res://MAIN/AimLine.tscn" type="PackedScene" id=3]
+[ext_resource path="res://MAIN/ReloadButton.tscn" type="PackedScene" id=4]
+[ext_resource path="res://MAIN/RPG.gd" type="Script" id=5]
+
+[node name="RPG0" type="Node2D"]
+script = ExtResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -0.233198, -0.595685 )
+rotation = 1.5708
+scale = Vector2( 0.586899, 1 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1202.38, 968, 120, 232 )
+
+[node name="BulletPoint" type="Node2D" parent="."]
+position = Vector2( 226.53, 0 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 2 )
+pitch_scale = 0.53
+
+[node name="ReloadButton" parent="." instance=ExtResource( 4 )]
+
+[node name="Sprite" parent="ReloadButton/Node2D" index="1"]
+position = Vector2( 24.3397, -10.9312 )
+rotation = 1.5708
+scale = Vector2( 0.235691, 0.335677 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 1206.39, 963.507, 117.53, 235.547 )
+
+[node name="bullet_sprite" type="Sprite" parent="."]
+position = Vector2( 145.365, 2.7285 )
+rotation = 1.5708
+scale = Vector2( 1.64809, 1.26166 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 688.625, 968.12, 38.1831, 96.0226 )
+
+[node name="AimLine" parent="." instance=ExtResource( 3 )]
+position = Vector2( 226.53, -1.1302 )
+scale = Vector2( 0.5, 0.65 )
+[connection signal="pressed" from="ReloadButton/Node2D/reload" to="." method="_on_reload_pressed"]
+
+[editable path="ReloadButton"]

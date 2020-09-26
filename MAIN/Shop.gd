@@ -96,3 +96,7 @@ func _on_purchaseGun1_pressed():
 	DATA.save_gun_data()
 	DATA.save_game_progress()
 	update_texts()
+
+
+func _on_NewShop_pressed():
+	get_tree().change_scene("res://NewShop.tscn")

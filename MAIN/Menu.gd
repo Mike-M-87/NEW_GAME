@@ -11,10 +11,8 @@ func _on_startgame_pressed():
 
 func _on_quit_pressed():
 	get_tree().quit()
-
-
 func _on_shop_pressed():
-	get_tree().change_scene("res://MAIN/Shop.tscn")
+	get_tree().change_scene("res://NewShop.tscn")
 
 
 func _on_About_pressed():
@@ -32,7 +30,6 @@ func prime_factorisation(n):
 			while n%i == 0:
 				display(i)
 				n=n/i
-	
 		if n > 2:
 			display(n)
 		print(count)
@@ -56,4 +53,3 @@ func textedit_display(value,time):
 	$TextEdit.text = str(value)
 	yield(get_tree().create_timer(time),"timeout")
 	$TextEdit.text = ""
-

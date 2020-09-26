@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://MAIN/Menu.gd" type="Script" id=1]
 [ext_resource path="res://MAIN/CashPanel.tscn" type="PackedScene" id=2]
 [ext_resource path="res://MAIN/sprites/other/shield_bar_under.svg" type="Texture" id=3]
+[ext_resource path="res://MAIN/sprites/other/settings.png" type="Texture" id=4]
 [ext_resource path="res://MAIN/Bubble Bobble.otf" type="DynamicFontData" id=6]
 [ext_resource path="res://MAIN/AnimationMenuPanel.tscn" type="PackedScene" id=8]
 
@@ -22,7 +23,7 @@ modulate_color = Color( 0, 0.0156863, 0.211765, 1 )
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 485, 75 )
 margin_bottom = 9.77407
-modulate_color = Color( 0.0627451, 0.184314, 0, 1 )
+modulate_color = Color( 0, 0, 0, 1 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 35
@@ -39,18 +40,29 @@ font_data = ExtResource( 6 )
 [node name="Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_top = 1.36407
+margin_bottom = 1.36407
 script = ExtResource( 1 )
 __meta__ = {
+"_edit_lock_": true,
 "_edit_use_anchors_": false
 }
 
 [node name="MenusPanel" parent="." instance=ExtResource( 8 )]
+margin_top = 1.36407
+margin_bottom = 1.36407
+
+[node name="CashPanel" parent="." instance=ExtResource( 2 )]
+margin_left = 73.0
+margin_top = 7.0
+margin_right = 1173.0
+margin_bottom = 75.0
 
 [node name="startgame" type="Button" parent="."]
-margin_left = 916.0
-margin_top = 260.776
-margin_right = 1216.0
-margin_bottom = 350.776
+margin_left = 144.0
+margin_top = 465.0
+margin_right = 369.0
+margin_bottom = 662.0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
@@ -62,10 +74,10 @@ __meta__ = {
 }
 
 [node name="shop" type="Button" parent="."]
-margin_left = 916.0
-margin_top = 385.309
-margin_right = 1216.0
-margin_bottom = 475.309
+margin_left = 414.0
+margin_top = 465.0
+margin_right = 639.0
+margin_bottom = 662.0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
@@ -77,10 +89,10 @@ __meta__ = {
 }
 
 [node name="quit" type="Button" parent="."]
-margin_left = 916.0
-margin_top = 610.562
-margin_right = 1216.0
-margin_bottom = 700.562
+margin_left = 975.0
+margin_top = 465.0
+margin_right = 1200.0
+margin_bottom = 662.0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
@@ -92,10 +104,10 @@ __meta__ = {
 }
 
 [node name="About" type="Button" parent="."]
-margin_left = 916.0
-margin_top = 495.024
-margin_right = 1216.0
-margin_bottom = 585.024
+margin_left = 683.0
+margin_top = 465.0
+margin_right = 908.0
+margin_bottom = 662.0
 custom_styles/hover = SubResource( 1 )
 custom_styles/pressed = SubResource( 2 )
 custom_styles/normal = SubResource( 3 )
@@ -106,11 +118,8 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CashPanel" parent="." instance=ExtResource( 2 )]
-margin_top = 7.0
-margin_bottom = 83.0
-
 [node name="TextEdit" type="TextEdit" parent="."]
+visible = false
 margin_left = 73.0
 margin_top = 109.0
 margin_right = 217.0
@@ -128,12 +137,16 @@ margin_top = 126.683
 margin_right = 584.767
 margin_bottom = 153.683
 rect_scale = Vector2( 2, 2 )
-text = "00"
 valign = 1
 uppercase = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="settings" type="Sprite" parent="."]
+position = Vector2( 1223.76, 52.5641 )
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 4 )
 [connection signal="pressed" from="startgame" to="." method="_on_startgame_pressed"]
 [connection signal="pressed" from="shop" to="." method="_on_shop_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

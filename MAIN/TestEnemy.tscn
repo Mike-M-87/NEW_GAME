@@ -9,9 +9,13 @@ extents = Vector2( 73.0397, 82.4854 )
 [sub_resource type="CircleShape2D" id=2]
 radius = 667.917
 
-[node name="Enemy" type="KinematicBody2D"]
+[node name="Enemy" type="RigidBody2D" groups=[
+"enemy",
+]]
+position = Vector2( 471.205, 152.792 )
 collision_layer = 8192
-collision_mask = 3
+mass = 10.0
+gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -25,6 +29,7 @@ shape = SubResource( 1 )
 [node name="PlayerDetector" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
+visible = false
 shape = SubResource( 2 )
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_PlayerDetector_body_exited"]

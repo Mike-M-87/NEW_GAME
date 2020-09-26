@@ -16,5 +16,6 @@ shader_param/OCTAVES = 6
 
 [node name="icon" type="Sprite"]
 material = SubResource( 1 )
-position = Vector2( 495.304, 155.7 )
+position = Vector2( 482.79, 141.851 )
+scale = Vector2( 0.608933, 0.56722 )
 texture = ExtResource( 1 )

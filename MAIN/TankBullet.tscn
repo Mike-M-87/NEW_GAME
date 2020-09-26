@@ -1,24 +1,38 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://MAIN/sprites/guns/Ammo.png" type="Texture" id=1]
 [ext_resource path="res://MAIN/TankBullet.gd" type="Script" id=2]
+[ext_resource path="res://MAIN/sprites/other/fire5.png" type="Texture" id=3]
+[ext_resource path="res://MAIN/sprites/explosion effect/Rocketboost.tres" type="Material" id=4]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 19.0763
-height = 56.9173
+radius = 25.9865
+height = 76.93
 
 [node name="TankBullet" type="RigidBody2D"]
 collision_layer = 32
 collision_mask = 79873
+gravity_scale = 0.1
 contacts_reported = 1
 contact_monitor = true
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 rotation = 1.5708
+scale = Vector2( 1.76152, 1.22911 )
 texture = ExtResource( 1 )
 region_enabled = true
 region_rect = Rect2( 689.331, 966.134, 37.0534, 97.8301 )
+
+[node name="boost" type="Sprite" parent="Sprite"]
+modulate = Color( 1, 1, 1, 0.686275 )
+show_behind_parent = true
+material = ExtResource( 4 )
+position = Vector2( -0.00421143, 40.4568 )
+rotation = 3.14159
+scale = Vector2( 0.0710407, 0.144743 )
+texture = ExtResource( 3 )
+offset = Vector2( 0, -230 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708

@@ -1,0 +1,388 @@
+[gd_scene load_steps=26 format=2]
+
+[ext_resource path="res://MAIN/sprites/explosion effect/puff.png" type="Texture" id=1]
+[ext_resource path="res://MAIN/sprites/explosion effect/puff_smooth.png" type="Texture" id=2]
+[ext_resource path="res://MAIN/sprites/explosion effect/sparkle.png" type="Texture" id=3]
+
+[sub_resource type="Gradient" id=1]
+offsets = PoolRealArray( 0, 0, 1 )
+colors = PoolColorArray( 0.227451, 0.215686, 0.215686, 1, 0.133333, 0.12549, 0.12549, 1, 0.133333, 0.12549, 0.12549, 0 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="Curve" id=3]
+_data = [ Vector2( 0.00259741, 0.264706 ), 0.0, 2.90347, 0, 0, Vector2( 0.65974, 1 ), -0.449347, 0.0, 0, 0, Vector2( 1, 0.431373 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=4]
+curve = SubResource( 3 )
+
+[sub_resource type="ParticlesMaterial" id=5]
+emission_shape = 1
+emission_sphere_radius = 40.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 80.0
+initial_velocity_random = 0.5
+angular_velocity = 40.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 40.0
+damping_random = 0.5
+angle = 360.0
+angle_random = 1.0
+scale = 2.6
+scale_random = 0.5
+scale_curve = SubResource( 4 )
+color_ramp = SubResource( 2 )
+
+[sub_resource type="Gradient" id=6]
+offsets = PoolRealArray( 0, 0.156, 0.505, 0.833, 1 )
+colors = PoolColorArray( 0.258824, 0.25098, 0.25098, 1, 0.721569, 0.117647, 0.117647, 1, 0.854902, 0.32549, 0.12549, 1, 1, 0.788235, 0.309804, 0.717647, 1, 1, 1, 0 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 6 )
+
+[sub_resource type="Curve" id=8]
+_data = [ Vector2( 0.00143472, 0.355332 ), 0.0, 1.84685, 0, 0, Vector2( 0.781923, 1 ), 0.0, 0.0, 0, 0, Vector2( 0.997131, 0.345528 ), -1.40171, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=9]
+curve = SubResource( 8 )
+
+[sub_resource type="ParticlesMaterial" id=10]
+trail_divisor = 30
+emission_shape = 1
+emission_sphere_radius = 15.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 850.0
+initial_velocity_random = 0.4
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+tangential_accel = 1000.0
+tangential_accel_random = 0.5
+damping = 1000.0
+damping_random = 1.0
+angle_random = 1.0
+scale = 0.2
+scale_random = 0.2
+scale_curve = SubResource( 9 )
+color_ramp = SubResource( 7 )
+
+[sub_resource type="Gradient" id=11]
+offsets = PoolRealArray( 0, 0.131, 0.345, 0.607, 1 )
+colors = PoolColorArray( 1, 1, 1, 1, 1, 0.647059, 0.164706, 1, 1, 0.47451, 0.137255, 1, 0.890196, 0.176471, 0.176471, 1, 0.203922, 0.203922, 0.203922, 1 )
+
+[sub_resource type="GradientTexture" id=12]
+gradient = SubResource( 11 )
+
+[sub_resource type="Curve" id=13]
+_data = [ Vector2( 0, 0.0529413 ), 0.0, 0.0, 0, 0, Vector2( 0.476327, 1 ), 0.0, 0.0, 0, 0, Vector2( 1, 0.0137256 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=14]
+curve = SubResource( 13 )
+
+[sub_resource type="ParticlesMaterial" id=15]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 50.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+radial_accel = 200.0
+tangential_accel = 100.0
+scale = 0.1
+scale_random = 0.47
+scale_curve = SubResource( 14 )
+color_ramp = SubResource( 12 )
+
+[sub_resource type="Gradient" id=16]
+offsets = PoolRealArray( 0, 0.095, 0.182, 0.389, 0.571, 0.865 )
+colors = PoolColorArray( 0.976471, 0.878431, 0.705882, 0, 0.976471, 0.85098, 0.603922, 1, 0.972549, 0.752941, 0.262745, 1, 1, 0.45098, 0.156863, 1, 0.831373, 0.219608, 0.219608, 1, 0.258824, 0.25098, 0.25098, 1 )
+
+[sub_resource type="GradientTexture" id=17]
+gradient = SubResource( 16 )
+
+[sub_resource type="Curve" id=18]
+_data = [ Vector2( 0.00138696, 0.0490196 ), 0.0, 7.3405, 0, 0, Vector2( 0.246879, 1 ), 0.201961, 0.201961, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="CurveTexture" id=19]
+curve = SubResource( 18 )
+
+[sub_resource type="ParticlesMaterial" id=20]
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 350.0
+initial_velocity_random = 0.5
+angular_velocity = 80.0
+angular_velocity_random = 0.8
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+damping = 1000.0
+damping_random = 0.85
+angle = 220.0
+angle_random = 1.0
+scale = 2.0
+scale_random = 0.02
+scale_curve = SubResource( 19 )
+color_ramp = SubResource( 17 )
+
+[sub_resource type="Animation" id=21]
+resource_name = "Explode"
+length = 3.0
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath("SmokeParticles:emitting")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 0.55 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("FireBallParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("SparkleParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("Scraps/ScrapsParticles2D:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0.15, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("Scraps/ScrapsParticles2D2:emitting")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 0.25, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Scraps/ScrapsParticles2D3:emitting")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0.2, 0.45 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("Scraps/ScrapsParticles2D4:emitting")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0.15, 0.4 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("Scraps/ScrapsParticles2D5:emitting")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0.05, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/8/type = "method"
+tracks/8/path = NodePath(".")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "queue_free"
+} ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("ExplosionHitBox/CollisionShape2D:disabled")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath(".:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 2, 2 ), Vector2( 4, 4 ) ]
+}
+tracks/11/type = "value"
+tracks/11/path = NodePath("ExplosionHitBox/CollisionShape2D:shape:radius")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 100.0, 150.0 ]
+}
+
+[sub_resource type="CircleShape2D" id=22]
+radius = 100.0
+
+[node name="Explosion" type="Node2D"]
+scale = Vector2( 2, 2 )
+
+[node name="SmokeParticles" type="Particles2D" parent="."]
+amount = 64
+lifetime = 3.0
+preprocess = 0.6
+explosiveness = 0.6
+local_coords = false
+process_material = SubResource( 5 )
+texture = ExtResource( 2 )
+
+[node name="Scraps" type="Node2D" parent="."]
+
+[node name="ScrapsParticles2D" type="Particles2D" parent="Scraps"]
+modulate = Color( 1.3, 1.3, 1.3, 1 )
+amount = 32
+lifetime = 0.4
+explosiveness = 0.66
+randomness = 0.5
+local_coords = false
+draw_order = 1
+process_material = SubResource( 10 )
+texture = ExtResource( 2 )
+
+[node name="ScrapsParticles2D2" type="Particles2D" parent="Scraps"]
+modulate = Color( 1.3, 1.3, 1.3, 1 )
+amount = 32
+lifetime = 0.4
+preprocess = 0.05
+explosiveness = 0.66
+randomness = 0.5
+local_coords = false
+draw_order = 1
+process_material = SubResource( 10 )
+texture = ExtResource( 2 )
+
+[node name="ScrapsParticles2D3" type="Particles2D" parent="Scraps"]
+modulate = Color( 1.3, 1.3, 1.3, 1 )
+amount = 32
+lifetime = 0.4
+preprocess = 0.05
+explosiveness = 0.66
+randomness = 0.5
+local_coords = false
+draw_order = 1
+process_material = SubResource( 10 )
+texture = ExtResource( 2 )
+
+[node name="ScrapsParticles2D4" type="Particles2D" parent="Scraps"]
+modulate = Color( 1.3, 1.3, 1.3, 1 )
+amount = 32
+lifetime = 0.4
+preprocess = 0.05
+explosiveness = 0.66
+randomness = 0.5
+local_coords = false
+draw_order = 1
+process_material = SubResource( 10 )
+texture = ExtResource( 2 )
+
+[node name="ScrapsParticles2D5" type="Particles2D" parent="Scraps"]
+modulate = Color( 1.3, 1.3, 1.3, 1 )
+amount = 32
+lifetime = 0.4
+preprocess = 0.05
+explosiveness = 0.66
+randomness = 0.5
+local_coords = false
+draw_order = 1
+process_material = SubResource( 10 )
+texture = ExtResource( 2 )
+
+[node name="SparkleParticles2D" type="Particles2D" parent="."]
+modulate = Color( 1.5, 1.5, 1.5, 1 )
+amount = 64
+explosiveness = 0.2
+randomness = 1.0
+process_material = SubResource( 15 )
+texture = ExtResource( 3 )
+
+[node name="FireBallParticles2D" type="Particles2D" parent="."]
+modulate = Color( 1.1, 1.1, 1.1, 1 )
+amount = 128
+lifetime = 0.5
+randomness = 1.0
+local_coords = false
+draw_order = 1
+process_material = SubResource( 20 )
+texture = ExtResource( 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/Explode = SubResource( 21 )
+
+[node name="ExplosionHitBox" type="StaticBody2D" parent="."]
+collision_layer = 0
+collision_mask = 8194
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ExplosionHitBox"]
+shape = SubResource( 22 )
