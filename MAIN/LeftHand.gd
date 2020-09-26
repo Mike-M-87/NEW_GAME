@@ -101,6 +101,7 @@ func on_pickGun_pressed():
 	
 func _on_GunDetector_area_entered(area):
 	if world.player_form == world.PLAYER and area.is_in_group("pickableGun") and area.get_parent().get_parent().name == "Guns":
+		pick_gun.texture_normal = area.get_parent().get_node("Sprite").texture
 		if area.get_parent().gun_name == equipped_guns[0].gun_name:
 			Events.ammo_reload(equipped_guns[0],area.get_parent())
 		elif area.get_parent().gun_name == equipped_guns[1].gun_name:

@@ -34,7 +34,6 @@ func _ready():
 
 	
 func _process(delta):
-	#print(DATA.ready_data.player_pos)
 	$CanvasLayer/FpsLabel.text = str("FPS: ",Engine.get_frames_per_second())
 	
 	map.offset.x = -($Camera2D.global_position.x/40)
@@ -47,7 +46,9 @@ func _process(delta):
 
 		HELICOPTER:
 			DATA.ready_data.player_pos = vehicle.global_position
-
+	$"CanvasLayer/PickGun/circular-arrows".rotate(0.1)
+	print($"CanvasLayer/PickGun/circular-arrows".rotation)
+	
 func _on_MENU_pressed():
 	get_tree().change_scene("res://MAIN/Menu.tscn")
 
@@ -61,7 +62,7 @@ func set_cam_zoom():
 		zoomvalue = 2
 	camera.zoom = Vector2(zoomvalue,zoomvalue)
 	#set_aimline()
-
+	$CanvasLayer/zoombutton/Label.text = str(zoomvalue)
 	
 func set_aimline():
 	if player_form == PLAYER:

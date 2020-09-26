@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://MAIN/sprites/tank/tank1.png" type="Texture" id=2]
@@ -23,6 +23,7 @@
 [ext_resource path="res://MAIN/Gun1.tscn" type="PackedScene" id=21]
 [ext_resource path="res://MAIN/Gun2.tscn" type="PackedScene" id=22]
 [ext_resource path="res://MAIN/Gun0.tscn" type="PackedScene" id=23]
+[ext_resource path="res://MAIN/sprites/guns/guncool2.png" type="Texture" id=24]
 
 [sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 64, 0, 64, 64, 0, 64 )
@@ -150,7 +151,6 @@ pitch_scale = 0.49
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Panel" type="Panel" parent="CanvasLayer"]
-self_modulate = Color( 0.0313726, 0, 1, 1 )
 margin_left = 135.357
 margin_top = 135.152
 margin_right = 318.357
@@ -163,10 +163,10 @@ __meta__ = {
 
 [node name="zoombutton" type="TextureButton" parent="CanvasLayer"]
 self_modulate = Color( 0, 0, 0, 1 )
-margin_left = 38.4955
-margin_top = 38.161
-margin_right = 106.496
-margin_bottom = 91.1609
+margin_left = 10.919
+margin_top = 5.39924
+margin_right = 136.919
+margin_bottom = 110.399
 texture_normal = ExtResource( 7 )
 expand = true
 __meta__ = {
@@ -175,18 +175,21 @@ __meta__ = {
 
 [node name="zoombutton" type="Sprite" parent="CanvasLayer/zoombutton"]
 self_modulate = Color( 0.34902, 0.34902, 0.34902, 1 )
-position = Vector2( 34.2042, 26.48 )
-scale = Vector2( 0.922365, 0.708563 )
+position = Vector2( 61.3632, 51.5701 )
+scale = Vector2( 0.660264, 0.502151 )
 texture = ExtResource( 7 )
 
 [node name="Label" type="Label" parent="CanvasLayer/zoombutton"]
-margin_left = 14.3163
-margin_top = 14.648
-margin_right = 54.3163
-margin_bottom = 37.648
+margin_left = 41.2167
+margin_top = 39.6607
+margin_right = 81.2167
+margin_bottom = 62.6607
 text = "2X"
 align = 1
 valign = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="MENU" type="Button" parent="CanvasLayer"]
 margin_left = 463.0
@@ -204,6 +207,7 @@ __meta__ = {
 }
 
 [node name="change_gun" type="TextureButton" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0.639216 )
 margin_left = 837.204
 margin_top = 601.819
 margin_right = 920.204
@@ -211,6 +215,7 @@ margin_bottom = 678.819
 texture_normal = ExtResource( 4 )
 expand = true
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -220,6 +225,7 @@ scale = Vector2( 0.241564, 0.2438 )
 texture = ExtResource( 6 )
 
 [node name="grenade" type="TextureButton" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0.639216 )
 margin_left = 342.748
 margin_top = 583.281
 margin_right = 438.748
@@ -235,6 +241,7 @@ scale = Vector2( 0.859128, 0.687798 )
 texture = ExtResource( 13 )
 
 [node name="change_vehicle" type="TextureButton" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0.639216 )
 margin_left = 28.962
 margin_top = 226.243
 margin_right = 120.962
@@ -242,6 +249,7 @@ margin_bottom = 313.243
 texture_normal = ExtResource( 4 )
 expand = true
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
 
@@ -268,6 +276,7 @@ __meta__ = {
 }
 
 [node name="DroneButton" type="TextureButton" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0.639216 )
 margin_left = 21.5892
 margin_top = 143.0
 margin_right = 120.589
@@ -284,16 +293,23 @@ position = Vector2( 52.7303, 41.8999 )
 scale = Vector2( 0.112571, 0.243005 )
 texture = ExtResource( 14 )
 
-[node name="PickGun" type="Button" parent="CanvasLayer"]
-margin_left = 611.0
-margin_top = 143.0
-margin_right = 657.0
-margin_bottom = 166.0
+[node name="PickGun" type="TextureButton" parent="CanvasLayer"]
+margin_left = 47.3479
+margin_top = 351.487
+margin_right = 79.3479
+margin_bottom = 380.487
 rect_scale = Vector2( 2, 2 )
-text = "PICK"
+texture_normal = ExtResource( 24 )
+expand = true
 __meta__ = {
+"_edit_group_": true,
 "_edit_use_anchors_": false
 }
+
+[node name="circular-arrows" type="Sprite" parent="CanvasLayer/PickGun"]
+position = Vector2( 16.3521, 15.1307 )
+scale = Vector2( 0.6, 0.6 )
+texture = ExtResource( 4 )
 
 [node name="Vehicles" type="Node2D" parent="."]
 __meta__ = {
