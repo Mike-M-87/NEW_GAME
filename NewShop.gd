@@ -1,10 +1,12 @@
 extends Node2D
 
 var panelnumber = 1
+export var darkred:Color
 
 func _ready():
-	display_panel()
+	#display_panel()
 	update_visuals()
+	pass
 	
 func _on_backButton_pressed():
 	if panelnumber > 1 and panelnumber <= $Panels.get_child_count():
@@ -21,8 +23,8 @@ func _on_nextButton_pressed():
 	display_panel()
 	
 func display_panel():
-	var col = [[0],[Color.red],[Color.blue],[Color.green]]
-
+	var col = [[0],[darkred],[Color.blue],[Color.green]]
+	
 	for n in range(1,$Panels.get_child_count()+1):
 		get_node("HBoxContainer/Button"+str(n)+"/ColorRect").hide()
 	for n in range(1,$Panels.get_child_count()+1):
@@ -53,20 +55,20 @@ func _on_Button3_pressed():
 	
 
 func _on_buy_pistol1_pressed():
-	if DATA.GunsData.Pistol1.purchase == false:
+	if DATA.GunsData.Gun1.purchase == false:
 		if DATA.GameData.money >= 200:
-			DATA.GunsData.Pistol1.purchase = true
+			DATA.GunsData.Gun1.purchase = true
 			DATA.GameData.money -= 200
-			DATA.GunsData.Pistol1.avail = true
-			DATA.GunsData.Pistol1.button_text = "EQUIPPED"
+			DATA.GunsData.Gun1.avail = true
+			DATA.GunsData.Gun1.button_text = "EQUIPPED"
 	
-	elif DATA.GunsData.Pistol1.avail == false:
-		DATA.GunsData.Pistol1.avail = true
-		DATA.GunsData.Pistol1.button_text = "EQUIPPED"
+	elif DATA.GunsData.Gun1.avail == false:
+		DATA.GunsData.Gun1.avail = true
+		DATA.GunsData.Gun1.button_text = "EQUIPPED"
 	
-	elif DATA.GunsData.Pistol1.avail == true:
-		DATA.GunsData.Pistol1.avail = false
-		DATA.GunsData.Pistol1.button_text = "EQUIP"
+	elif DATA.GunsData.Gun1.avail == true:
+		DATA.GunsData.Gun1.avail = false
+		DATA.GunsData.Gun1.button_text = "EQUIP"
 		
 	DATA.save_gun_data()
 	DATA.save_game_progress()
@@ -74,49 +76,49 @@ func _on_buy_pistol1_pressed():
 	
 	
 func update_visuals():
-	$Panels/Panel1/ScrollContainer/HBoxContainer/Pistol1/buy_pistol1.text = DATA.GunsData.Pistol1.button_text
-	$Panels/Panel1/ScrollContainer/HBoxContainer/Pistol2/buy_pistol2.text = DATA.GunsData.Pistol2.button_text
-	$Panels/Panel1/ScrollContainer/HBoxContainer/Pistol3/buy_pistol3.text = DATA.GunsData.Pistol3.button_text
+	$Panels/Panel1/HBoxContainer/Gun1/rect/buy_pistol1.text = DATA.GunsData.Gun1.button_text
+	$Panels/Panel1/HBoxContainer/Gun2/rect/buy_pistol2.text = DATA.GunsData.Gun2.button_text
+	$Panels/Panel1/HBoxContainer/Gun3/rect/buy_pistol3.text = DATA.GunsData.Gun3.button_text
 	$Panels/Panel3/ScrollContainer/HBoxContainer/RPG0/buy_rpg0.text = DATA.GunsData.RPG0.button_text
 	$Panels/Panel3/ScrollContainer/HBoxContainer/RPG1/buy_rpg1.text = DATA.GunsData.RPG1.button_text
 	$CashPanel/MoneyLabel.text = str(DATA.GameData.money)
 	$CashPanel/StarsLabel.text = str(DATA.GameData.star)
 
 func _on_buy_pistol2_pressed():
-	if DATA.GunsData.Pistol2.purchase == false:
+	if DATA.GunsData.Gun2.purchase == false:
 		if DATA.GameData.money >= 100:
-			DATA.GunsData.Pistol2.purchase = true
+			DATA.GunsData.Gun2.purchase = true
 			DATA.GameData.money -= 100
-			DATA.GunsData.Pistol2.avail = true
-			DATA.GunsData.Pistol2.button_text = "EQUIPPED"
+			DATA.GunsData.Gun2.avail = true
+			DATA.GunsData.Gun2.button_text = "EQUIPPED"
 
-	elif DATA.GunsData.Pistol2.avail == false:
-		DATA.GunsData.Pistol2.avail = true
-		DATA.GunsData.Pistol2.button_text = "EQUIPPED"
+	elif DATA.GunsData.Gun2.avail == false:
+		DATA.GunsData.Gun2.avail = true
+		DATA.GunsData.Gun2.button_text = "EQUIPPED"
 		
-	elif DATA.GunsData.Pistol2.avail == true:
-		DATA.GunsData.Pistol2.avail = false
-		DATA.GunsData.Pistol2.button_text = "EQUIP"
+	elif DATA.GunsData.Gun2.avail == true:
+		DATA.GunsData.Gun2.avail = false
+		DATA.GunsData.Gun2.button_text = "EQUIP"
 	DATA.save_gun_data()
 	DATA.save_game_progress()
 	update_visuals()
 
 
 func _on_buy_pistol3_pressed():
-	if DATA.GunsData.Pistol3.purchase == false:
+	if DATA.GunsData.Gun3.purchase == false:
 		if DATA.GameData.money >= 100:
-			DATA.GunsData.Pistol3.purchase = true
+			DATA.GunsData.Gun3.purchase = true
 			DATA.GameData.money -= 100
-			DATA.GunsData.Pistol3.avail = true
-			DATA.GunsData.Pistol3.button_text = "EQUIPPED"
+			DATA.GunsData.Gun3.avail = true
+			DATA.GunsData.Gun3.button_text = "EQUIPPED"
 
-	elif DATA.GunsData.Pistol3.avail == false:
-		DATA.GunsData.Pistol3.avail = true
-		DATA.GunsData.Pistol3.button_text = "EQUIPPED"
+	elif DATA.GunsData.Gun3.avail == false:
+		DATA.GunsData.Gun3.avail = true
+		DATA.GunsData.Gun3.button_text = "EQUIPPED"
 		
-	elif DATA.GunsData.Pistol3.avail == true:
-		DATA.GunsData.Pistol3.avail = false
-		DATA.GunsData.Pistol3.button_text = "EQUIP"
+	elif DATA.GunsData.Gun3.avail == true:
+		DATA.GunsData.Gun3.avail = false
+		DATA.GunsData.Gun3.button_text = "EQUIP"
 	DATA.save_gun_data()
 	DATA.save_game_progress()
 	update_visuals()

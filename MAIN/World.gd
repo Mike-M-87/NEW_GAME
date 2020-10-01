@@ -13,8 +13,8 @@ var vehicle
 var vehicle_detected
 
 var zoomvalue = 2
-var gun_detected
-var dropping_gun
+var camera_offset = Vector2()
+var drag_camera = true
 
 onready var map = $CanvasLayer2
 onready var aimline
@@ -46,8 +46,18 @@ func _process(delta):
 
 		HELICOPTER:
 			DATA.ready_data.player_pos = vehicle.global_position
+	
 	$"CanvasLayer/PickGun/circular-arrows".rotate(0.1)
-	print($"CanvasLayer/PickGun/circular-arrows".rotation)
+	if drag_camera == true:
+		camera_offset  = camera_offset.move_toward(Vector2($CanvasLayer/aim_joystick.get_value().x * zoomvalue,$CanvasLayer/aim_joystick.get_value().y * zoomvalue),delta*4)
+		$Camera2D.offset_h = camera_offset.x
+		$Camera2D.offset_v = camera_offset.y*2
+	else:
+		$Camera2D.offset_h = 0
+		$Camera2D.offset_v = 0
+
+	
+		
 	
 func _on_MENU_pressed():
 	get_tree().change_scene("res://MAIN/Menu.tscn")
@@ -56,19 +66,19 @@ func _on_zoombutton_pressed():
 	set_cam_zoom()
 	
 func set_cam_zoom():
-	if zoomvalue < 3 and zoomvalue > 0:
+	if zoomvalue < 8 and zoomvalue > 0:
 		zoomvalue += 1
 	else:
 		zoomvalue = 2
 	camera.zoom = Vector2(zoomvalue,zoomvalue)
-	#set_aimline()
-	$CanvasLayer/zoombutton/Label.text = str(zoomvalue)
+	set_aimline()
+	$CanvasLayer/zoombutton/Label.text = str(zoomvalue,"X")
 	
 func set_aimline():
 	if player_form == PLAYER:
-		aimline = $Player/BodyRig/LeftHand.Gun.get_node("AimLine/lines")
-		aimline.position.x = camera.zoom.x*350
-		print(aimline.position.x)
+		aimline = $Player/BodyRig/LeftHand.get_child(1).get_node("AimLine/lines")
+		aimline.position.x = camera.zoom.x*160
+	print("hi")
 
 
 	
@@ -80,7 +90,8 @@ func add_player():
 	player_object.set_cam_on()
 	add_child(player_object)
 	player_form = PLAYER
-#	set_aimline()
+	
+
 
 func _on_change_vehicle_pressed():
 	match player_form:
@@ -93,9 +104,9 @@ func _on_change_vehicle_pressed():
 				player_form = TANK
 			elif vehicle.is_in_group("helicopter"):
 				player_form = HELICOPTER
-			
+			drag_camera = false
+			$CanvasLayer/PickGun.hide()
 			$CanvasLayer/change_gun.hide()
-		#	player_object.get_node("BodyRig/LeftHand").get_child(1).hide()
 			$Vehicles.move_child(vehicle, $Vehicles.get_child_count())
 			get_node("Player/BodyRig/LeftHand").get_child(1).get_node("ReloadButton/Node2D").hide()
 		TANK:
@@ -105,6 +116,7 @@ func _on_change_vehicle_pressed():
 			player_object.position = DATA.ready_data.player_pos 
 			player_object.show()
 			player_form = PLAYER
+			drag_camera = true
 			$CanvasLayer/change_gun.show()
 			get_node("Player/BodyRig/LeftHand").get_child(1).get_node("ReloadButton/Node2D").show()
 
@@ -115,6 +127,7 @@ func _on_change_vehicle_pressed():
 			player_object.position = DATA.ready_data.player_pos 
 			player_object.show()
 			player_form = PLAYER
+			drag_camera = true
 			$CanvasLayer/change_gun.show()
 			$Vehicles.move_child(vehicle, $Vehicles.get_child_count())
 			get_node("Player/BodyRig/LeftHand").get_child(1).get_node("ReloadButton/Node2D").show()
@@ -143,7 +156,7 @@ func _on_DroneButton_pressed():
 		$CanvasLayer/DroneButton.hide()
 		
 func drone_mode():
-	if vehicle == player_object:
+	if player_form == PLAYER:
 		vehicle.in_vehicle()
 	else:
 		vehicle.parking_mode()
@@ -156,10 +169,10 @@ func drone_mode():
 	$CanvasLayer/grenade.hide()
 
 func not_drone_mode():
-	if vehicle == player_object:
+	if player_form == PLAYER:
 		vehicle.off_vehicle()
 	else:
-		vehicle.parking_mode()
+		vehicle.entered_mode()
 	$CanvasLayer/change_vehicle.disabled = false
 	$CanvasLayer/grenade.show()
 	$CanvasLayer/change_gun.show()

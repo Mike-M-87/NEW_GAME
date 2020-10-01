@@ -33,7 +33,7 @@ volume_db = -20.0
 [node name="ReloadButton" parent="." instance=ExtResource( 3 )]
 
 [node name="AimLine" parent="." instance=ExtResource( 1 )]
-position = Vector2( 74.4914, -17.3592 )
+position = Vector2( 0, -17 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

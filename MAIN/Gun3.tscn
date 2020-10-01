@@ -37,7 +37,7 @@ scale = Vector2( 0.163528, 0.12283 )
 texture = ExtResource( 1 )
 
 [node name="AimLine" parent="." instance=ExtResource( 2 )]
-position = Vector2( 119.582, -13.7794 )
+position = Vector2( 0, -13 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )

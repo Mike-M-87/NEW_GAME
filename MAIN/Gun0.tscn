@@ -37,7 +37,10 @@ scale = Vector2( 0.415508, 0.269167 )
 texture = ExtResource( 4 )
 
 [node name="AimLine" parent="." instance=ExtResource( 1 )]
-position = Vector2( 74.4914, -17.3592 )
+position = Vector2( 0, -17.3592 )
+
+[node name="lines" parent="AimLine" index="0"]
+position = Vector2( 320, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource( 1 )
@@ -51,3 +54,5 @@ shape = SubResource( 2 )
 [connection signal="pressed" from="ReloadButton/Node2D/reload" to="." method="_on_reload_pressed"]
 
 [editable path="ReloadButton"]
+
+[editable path="AimLine"]

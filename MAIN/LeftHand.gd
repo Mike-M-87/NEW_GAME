@@ -51,12 +51,14 @@ func _process(delta):
 	bullet_motion = Vector2(current_gun.bullet_speed*aim_joystick.get_dir(),0)
 
 func on_changegun_pressed():
+	Player.get_node("AnimationPlayer").play("changegun")
 	for i in equipped_guns:
 		if i.get_parent().name == "LeftHand":
 			store_Gun(i)
 			
 		elif i.get_parent().name == "GunStorage":
 			add_gun_to_self(i,gun_store)
+			
 
 func hold_gun():
 	equipped_guns[0] = preload("res://MAIN/Gun0.tscn").instance()
@@ -71,9 +73,11 @@ func hold_gun():
 func on_pickGun_pressed():
 	current_gun = get_child(1)
 	pick_gun.disabled = true
+	
 	$buttons_timer.start(0.5)
 	yield($buttons_timer,"timeout")
 	$buttons_timer.stop()
+	
 	if gun_detected.is_in_group("primary"):
 		if current_gun.is_in_group("primary"):
 			drop_Gun(equipped_guns[0],equipped_guns[0].get_parent(),gun_detected.global_position)
@@ -85,6 +89,7 @@ func on_pickGun_pressed():
 			drop_Gun(equipped_guns[0],equipped_guns[0].get_parent(),gun_detected.global_position)
 			add_gun_to_self(gun_detected,world_guns_node)
 			equipped_guns[0] = gun_detected
+			
 	elif gun_detected.is_in_group("secondary"):
 		if current_gun.is_in_group("secondary"):
 			drop_Gun(equipped_guns[1],equipped_guns[1].get_parent(),gun_detected.global_position)
@@ -96,16 +101,19 @@ func on_pickGun_pressed():
 			drop_Gun(equipped_guns[1],equipped_guns[1].get_parent(),gun_detected.global_position)
 			add_gun_to_self(gun_detected,world_guns_node)
 			equipped_guns[1] = gun_detected
+			
 	pick_gun.disabled = false
 	current_gun = get_child(1)
-	
+
 func _on_GunDetector_area_entered(area):
 	if world.player_form == world.PLAYER and area.is_in_group("pickableGun") and area.get_parent().get_parent().name == "Guns":
 		pick_gun.texture_normal = area.get_parent().get_node("Sprite").texture
 		if area.get_parent().gun_name == equipped_guns[0].gun_name:
 			Events.ammo_reload(equipped_guns[0],area.get_parent())
+			
 		elif area.get_parent().gun_name == equipped_guns[1].gun_name:
 			Events.ammo_reload(equipped_guns[1],area.get_parent())
+			
 		else:
 			gun_detected = area.get_parent()
 			pick_gun.show()
@@ -130,7 +138,7 @@ func store_Gun(gun_node):
 	gun_store.add_child(gun_node)
 	gun_node.position = Vector2(0,0)
 	Events.ready_weapon(gun_node)
-	
+
 func add_gun_to_self(gun_node,parent):
 	if parent == gun_store:
 		gun_store.remove_child(gun_node)

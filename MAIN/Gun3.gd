@@ -48,7 +48,6 @@ func check_remaining_bullets():
 		pass
 
 func _on_reload_pressed():
-	yield(get_tree(),"idle_frame")
 	Events.reload_pressed(self)
 	
 func reload_gun():

@@ -66,7 +66,7 @@ func move(delta):
 	
 func set_movement():
 	velocity = move_and_slide(velocity,UP)
-	
+	$AnimationPlayer.playback_speed
 
 
 

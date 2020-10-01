@@ -64,7 +64,7 @@ script = ExtResource( 3 )
 "vehicle",
 ]]
 collision_layer = 4
-mass = 8.0
+mass = 20.0
 gravity_scale = 10.0
 
 [node name="Sprite" type="Sprite" parent="body"]
@@ -158,7 +158,7 @@ region_enabled = true
 region_rect = Rect2( 456.838, 291.074, 188.003, 139.938 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="body"]
-polygon = PoolVector2Array( -121.687, -89.656, 63.5698, -95.6404, 342.867, 79.8669, 343.758, 100.358, -346.244, 98.1304, -346.244, 50.9127, -131.403, -10.5525 )
+polygon = PoolVector2Array( -121.687, -89.656, 63.5698, -95.6404, 373.974, 96.498, 370.824, 134.926, 360.115, 100.908, -344.799, 98.2094, -355.935, 130.282, -355.935, 53.2191, -131.403, -10.5525 )
 
 [node name="Path2D" type="Path2D" parent="body"]
 position = Vector2( 1.58937, -8.39514 )
@@ -728,6 +728,7 @@ softness = 0.5
 [node name="PlayerDetector" type="Area2D" parent="body"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="body/PlayerDetector"]
+visible = false
 position = Vector2( 1.50125, 83.4275 )
 shape = SubResource( 2 )
 

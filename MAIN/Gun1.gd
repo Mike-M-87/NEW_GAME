@@ -9,7 +9,7 @@ extends Node2D
 var bullets = [200,70,70,200]
 var gun_name = 1
 var weapon_pos = Vector2(50,2)
-var fire_rate = 0.1
+var fire_rate = 0.08
 var bullet_speed = 5000
 
 var bullet = preload("res://MAIN/PlasmaBullet.tscn")
@@ -33,6 +33,7 @@ func _process(delta):
 			bullets[2] -= 1
 			update_bullet_labels()
 			check_remaining_bullets()
+			get_node("../../../AnimationPlayer")
 			can_fire = false
 			$AudioStreamPlayer.playing = true
 			yield(get_tree().create_timer(fire_rate),"timeout")
@@ -48,7 +49,6 @@ func check_remaining_bullets():
 		pass
 
 func _on_reload_pressed():
-	yield(get_tree(),"idle_frame")
 	Events.reload_pressed(self)
 	
 func reload_gun():

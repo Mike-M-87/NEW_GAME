@@ -1,6 +1,5 @@
 extends Node
 
-
 var explosion = preload("res://Explosion.tscn")
 
 func bullet_explosion_screenshake(bullet_node,world, amp):
@@ -27,21 +26,28 @@ func ready_weapon(gun_node):
 		gun_node.get_node("ReloadButton/Node2D").show()
 		gun_node.mode = RigidBody2D.MODE_STATIC
 		gun_node.detectable(false)
-
+		gun_node.get_node("AimLine").show()
+		gun_node.get_parent().world.set_aimline()
+		#get_node("/root/World").set_aimline()
+		
+		
 	elif gun_node.get_parent().name == "Guns":
 		#gun_node.set_physics_process(false)
 		gun_node.set_process(false)
 		gun_node.get_node("ReloadButton/Node2D").hide()
 		gun_node.mode = RigidBody2D.MODE_RIGID
 		gun_node.detectable(true)
+		gun_node.get_node("AimLine").hide()
 
+		
 	elif gun_node.get_parent().name == "GunStorage":
 		#gun_node.set_physics_process(false)
 		gun_node.set_process(false)
 		gun_node.get_node("ReloadButton/Node2D").hide()
 		gun_node.mode = RigidBody2D.MODE_STATIC
 		gun_node.detectable(false)
-	
+		gun_node.get_node("AimLine").hide()
+
 func reload_gun(gun_node):
 	gun_node.get_node("ReloadButton/AnimationPlayer").play("reloading")
 	yield(gun_node.get_node("ReloadButton/AnimationPlayer"),"animation_finished")
