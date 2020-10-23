@@ -16,7 +16,6 @@ var rotation_value = 0
 var bullet_motion = Vector2()
 
 var joystick_value
-
 var shoot_value
 
 var equipped_guns = [null,null]
@@ -51,7 +50,8 @@ func _process(delta):
 	bullet_motion = Vector2(current_gun.bullet_speed*aim_joystick.get_dir(),0)
 
 func on_changegun_pressed():
-	Player.get_node("AnimationPlayer").play("changegun")
+	
+	
 	for i in equipped_guns:
 		if i.get_parent().name == "LeftHand":
 			store_Gun(i)
@@ -73,8 +73,8 @@ func hold_gun():
 func on_pickGun_pressed():
 	current_gun = get_child(1)
 	pick_gun.disabled = true
-	
-	$buttons_timer.start(0.5)
+	get_node("../pickgun").play()
+	$buttons_timer.start(0.2)
 	yield($buttons_timer,"timeout")
 	$buttons_timer.stop()
 	
@@ -104,6 +104,8 @@ func on_pickGun_pressed():
 			
 	pick_gun.disabled = false
 	current_gun = get_child(1)
+	
+	
 
 func _on_GunDetector_area_entered(area):
 	if world.player_form == world.PLAYER and area.is_in_group("pickableGun") and area.get_parent().get_parent().name == "Guns":
@@ -129,7 +131,7 @@ func drop_Gun(gun_node,parent,pos):
 		print("press")
 	elif parent == self:
 		self.remove_child(gun_node)
-	gun_node.global_position = pos
+	gun_node.global_position = self.global_position
 	world_guns_node.add_child(gun_node)
 	Events.ready_weapon(gun_node)
 

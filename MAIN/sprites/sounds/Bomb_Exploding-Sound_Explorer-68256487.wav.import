@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Bomb_Exploding-Sound_Explorer-68256487.wav-14562000e6fba07d326bd783eac71d88.sample"
+
+[deps]
+
+source_file="res://MAIN/sprites/sounds/Bomb_Exploding-Sound_Explorer-68256487.wav"
+dest_files=[ "res://.import/Bomb_Exploding-Sound_Explorer-68256487.wav-14562000e6fba07d326bd783eac71d88.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

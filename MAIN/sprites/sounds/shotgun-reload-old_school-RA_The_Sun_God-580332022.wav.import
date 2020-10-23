@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/shotgun-reload-old_school-RA_The_Sun_God-580332022.wav-d335205cbfbf551b3c6119e9a23b7068.sample"
+
+[deps]
+
+source_file="res://MAIN/sprites/sounds/shotgun-reload-old_school-RA_The_Sun_God-580332022.wav"
+dest_files=[ "res://.import/shotgun-reload-old_school-RA_The_Sun_God-580332022.wav-d335205cbfbf551b3c6119e9a23b7068.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

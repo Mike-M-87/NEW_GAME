@@ -6,7 +6,8 @@ onready var offset_wheel = $front2
 onready var sprite = $body/Sprite
 onready var world = get_parent().get_parent()
 
-onready var bulletpoint = $body/Sprite/BulletPoint
+onready var bulletpoint = $body/Sprite/barrel/BulletPoint
+onready var barrel = $body/Sprite/barrel
 
 var direction = 1
 var bullet = preload("res://MAIN/TankBullet.tscn")
@@ -17,6 +18,7 @@ var shoot_value = 0
 func _ready():
 	parking_mode()
 	hide_wheels()
+	$body/Sprite/shot_explosion.hide()
 	
 func hide_wheels():
 	$front.hide()
@@ -28,20 +30,23 @@ func hide_wheels():
 func _process(delta):
 	if world.vehicle == self:
 		shoot_value = aim_joystick.get_shoot_value()/10
-		
+		$body/Sprite/barrel.rotation_degrees = min(0,aim_joystick.get_value().y*25)
 		if shoot_value > 9 or shoot_value < -9:
 			if can_fire:
 				var bullet_instance = bullet.instance()
 				bullet_instance.position = bulletpoint.global_position
-				bullet_instance.rotation_degrees = bulletpoint.rotation_degrees
-				bullet_instance.apply_impulse(Vector2(0,0),Vector2(bullet_speed*direction,0).rotated(bulletpoint.rotation))
+				bullet_instance.rotation_degrees = barrel.rotation_degrees*direction
+				bullet_instance.apply_impulse(Vector2(0,0),Vector2(bullet_speed*direction,0).rotated(barrel.rotation*direction))
 				world.add_child(bullet_instance)
-				can_fire = false
 				$Reload/AnimationPlayer.play("reload")
-				$AudioStreamPlayer.playing = true
+				$gunshot.play(0.3)
+				$body/Sprite/shot_explosion.global_position = bullet_instance.global_position
+				shot_explosion()
+				can_fire = false
 				yield(get_tree().create_timer(5),"timeout")
 				can_fire = true
 	
+		
 	if $mid.angular_velocity < -0.1 or $mid.angular_velocity > 0.1:
 		rotate_wheels_and_chains()
 	
@@ -137,3 +142,11 @@ func  set_cam_on():
 	$body/RemoteTransform2D.remote_path = "../../../../Camera2D"
 func set_cam_off():
 	$body/RemoteTransform2D.remote_path = ""
+
+func shot_explosion():
+	$body/Sprite/shot_explosion.show()
+	$body/Sprite/shot_explosion.play("gunshot")
+
+func _on_shot_explosion_animation_finished():
+	$body/Sprite/shot_explosion.playing = false
+	$body/Sprite/shot_explosion.hide()

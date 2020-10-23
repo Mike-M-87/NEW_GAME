@@ -28,9 +28,9 @@ region_rect = Rect2( 689.331, 966.134, 37.0534, 97.8301 )
 modulate = Color( 1, 1, 1, 0.686275 )
 show_behind_parent = true
 material = ExtResource( 4 )
-position = Vector2( -0.00421143, 40.4568 )
+position = Vector2( -0.881308, 40.4568 )
 rotation = 3.14159
-scale = Vector2( 0.0710407, 0.144743 )
+scale = Vector2( 0.129038, 0.144743 )
 texture = ExtResource( 3 )
 offset = Vector2( 0, -230 )
 

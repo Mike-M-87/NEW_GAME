@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Winchester12-RA_The_Sun_God-1722751268.wav-953814653239e32110f928090f5a7c37.sample"
+
+[deps]
+
+source_file="res://MAIN/sprites/sounds/Winchester12-RA_The_Sun_God-1722751268.wav"
+dest_files=[ "res://.import/Winchester12-RA_The_Sun_God-1722751268.wav-953814653239e32110f928090f5a7c37.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

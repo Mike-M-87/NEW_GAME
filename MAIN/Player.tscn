@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://MAIN/sprites/other/TestPlayer.png" type="Texture" id=1]
+[ext_resource path="res://MAIN/sprites/sounds/shotgun-reload-old_school-RA_The_Sun_God-580332022.wav" type="AudioStream" id=2]
 [ext_resource path="res://MAIN/LeftHand.gd" type="Script" id=3]
 [ext_resource path="res://MAIN/Player.gd" type="Script" id=5]
 
@@ -115,6 +116,11 @@ shape = SubResource( 2 )
 
 [node name="BodyRig" type="Node2D" parent="."]
 position = Vector2( -26.5368, 24.3919 )
+
+[node name="pickgun" type="AudioStreamPlayer2D" parent="BodyRig"]
+stream = ExtResource( 2 )
+volume_db = -0.692
+pitch_scale = 1.57
 
 [node name="LeftHand" type="Sprite" parent="BodyRig"]
 position = Vector2( 30, 34 )

@@ -43,6 +43,7 @@ func _process(delta):
 			$AudioStreamPlayer.playing = true
 			yield(get_tree().create_timer(fire_rate),"timeout")
 			can_fire = true
+			
 			bullet_sprite.show()
 			
 

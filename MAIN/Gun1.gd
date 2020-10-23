@@ -7,13 +7,14 @@ extends Node2D
 
 
 var bullets = [200,70,70,200]
-var gun_name = 1
+var gun_name = "pis1"
 var weapon_pos = Vector2(50,2)
-var fire_rate = 0.08
+var fire_rate = 0.5
 var bullet_speed = 5000
 
 var bullet = preload("res://MAIN/PlasmaBullet.tscn")
 var can_fire = true
+
 
 
 func _ready():
@@ -30,12 +31,12 @@ func _process(delta):
 			bullet_instance.rotation_degrees = get_parent().rotation_deg_value
 			bullet_instance.apply_impulse(Vector2(0,0),get_parent().bullet_motion.rotated(get_parent().rotation_value))
 			$"../../../../".add_child(bullet_instance)
+			Events.eject_bullet_catridge(self)
 			bullets[2] -= 1
 			update_bullet_labels()
 			check_remaining_bullets()
-			get_node("../../../AnimationPlayer")
 			can_fire = false
-			$AudioStreamPlayer.playing = true
+			$gunshot.play(0.2)
 			yield(get_tree().create_timer(fire_rate),"timeout")
 			can_fire = true
 
@@ -45,11 +46,13 @@ func detectable(n:bool):
 func check_remaining_bullets():
 	if bullets[2] == 0 and bullets[0] > 0:
 		reload_gun()
-	else:
-		pass
+	elif bullets[2] < bullets[1]:
+		$ReloadButton/Node2D/reload.show()
 
 func _on_reload_pressed():
 	Events.reload_pressed(self)
+	$ReloadButton/Node2D/reload.hide()
+	$reload_sound.play()
 	
 func reload_gun():
 	Events.reload_gun(self)

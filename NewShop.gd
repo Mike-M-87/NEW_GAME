@@ -4,7 +4,7 @@ var panelnumber = 1
 export var darkred:Color
 
 func _ready():
-	#display_panel()
+	display_panel()
 	update_visuals()
 	pass
 	

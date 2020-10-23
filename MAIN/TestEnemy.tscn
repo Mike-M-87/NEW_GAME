@@ -15,7 +15,6 @@ radius = 667.917
 position = Vector2( 471.205, 152.792 )
 collision_layer = 8192
 mass = 10.0
-gravity_scale = 0.0
 script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -31,5 +30,12 @@ shape = SubResource( 1 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
 visible = false
 shape = SubResource( 2 )
+
+[node name="hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="hurtbox"]
+shape = SubResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_Enemy_body_entered"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
 [connection signal="body_exited" from="PlayerDetector" to="." method="_on_PlayerDetector_body_exited"]
+[connection signal="body_entered" from="hurtbox" to="." method="_on_hurtbox_body_entered"]

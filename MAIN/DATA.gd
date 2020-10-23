@@ -67,6 +67,8 @@ var GameData = {
 	"level":1,
 	"money":100000,
 	"star":0,
+	"bgm":true,
+	"sfx":true,
 }
 
 
@@ -135,6 +137,7 @@ func load_characters_data():
 
 func check_data_file():
 	var file = File.new()
+	
 	if !file.file_exists("user://GameData"):
 		save_game_progress()
 		save_characters_data()

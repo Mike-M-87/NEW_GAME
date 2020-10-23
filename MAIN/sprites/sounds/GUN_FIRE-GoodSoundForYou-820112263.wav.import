@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/GUN_FIRE-GoodSoundForYou-820112263.wav-37fdf080a611d94f09f26a46647c7daf.sample"
+
+[deps]
+
+source_file="res://MAIN/sprites/sounds/GUN_FIRE-GoodSoundForYou-820112263.wav"
+dest_files=[ "res://.import/GUN_FIRE-GoodSoundForYou-820112263.wav-37fdf080a611d94f09f26a46647c7daf.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

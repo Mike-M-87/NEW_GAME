@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/40_smith_wesson_single-mike-koenig.wav-9b7a32d0f279c456b513989c892cfc31.sample"
+
+[deps]
+
+source_file="res://MAIN/sprites/sounds/40_smith_wesson_single-mike-koenig.wav"
+dest_files=[ "res://.import/40_smith_wesson_single-mike-koenig.wav-9b7a32d0f279c456b513989c892cfc31.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

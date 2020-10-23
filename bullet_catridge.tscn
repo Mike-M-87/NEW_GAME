@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://MAIN/sprites/guns/Ammo.png" type="Texture" id=1]
+[ext_resource path="res://bullet_catridge.gd" type="Script" id=2]
+
+[node name="bullet_catridge" type="RigidBody2D"]
+linear_velocity = Vector2( 0, -100 )
+script = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+modulate = Color( 1, 1, 1, 0.584314 )
+scale = Vector2( 0.5, 0.5 )
+texture = ExtResource( 1 )
+region_enabled = true
+region_rect = Rect2( 618.22, 1013.04, 22.0574, 38.9792 )

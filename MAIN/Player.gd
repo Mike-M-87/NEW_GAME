@@ -12,10 +12,13 @@ var velocity = Vector2.ZERO
 var friction = 1000
 onready var joystick = get_parent().get_node("CanvasLayer/move_joystick")
 onready var body = $BodyRig
-
-
+var anim
+enum{
+	gunshot
+}
 
 func _process(delta):
+	
 	move(delta)
 	
 func _on_VehicleDetector_area_entered(area):
@@ -89,4 +92,3 @@ func  set_cam_on():
 	$RemoteTransform2D.remote_path = "../../Camera2D"
 func set_cam_off():
 	$RemoteTransform2D.remote_path = ""
-

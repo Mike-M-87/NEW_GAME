@@ -15,6 +15,7 @@ var Enemy
 var pos_diff
 var auto_enabled = true
 
+
 enum {
 	Auto,
 	remove,
@@ -55,7 +56,8 @@ func _physics_process(delta):
 		linear_velocity = linear_velocity.move_toward(Vector2(0,0),10)
 	rotation_degrees = move_joystick.get_value().x * 10
 	
-	if state == Auto:
+	if state == 0.5:
+		#good luck entering this condition statement block u bitch ass process function,Fuck you.
 		if can_fire and Enemy != null:
 			var bullet_instance = bullet.instance()
 			bullet_instance.position = $Sprite/BulletPoint.global_position
@@ -84,8 +86,6 @@ func _process(delta):
 			auto_state()
 		remove:
 			remove_state()
-		
-
 
 func _on_Auto_pressed():
 	set_cam_off()
@@ -140,19 +140,22 @@ func follow_state():
 
 
 func auto_state():
-	if Enemy != null and pos_diff.length() < 500:
-		linear_velocity = (Enemy.global_position - global_position)- Vector2(200,20)
-		if (Enemy.global_position - global_position).x < 0:
-			$Sprite.scale.x = 0.5
-		else:
-			$Sprite.scale.x = -0.5
-	else:
-		linear_velocity = pos_diff/2.5
-		if pos_diff.x < 0:
-			$Sprite.scale.x = 0.5
-		else:
-			$Sprite.scale.x = -0.5
-
+	#if Enemy != null and pos_diff.length() < 500:
+	#	linear_velocity = (Enemy.global_position - global_position) - Vector2(200,20)
+	#	if (Enemy.global_position - global_position).x < 0:
+	#		$Sprite.scale.x = 0.5
+	#	else:
+	#		$Sprite.scale.x = -0.5
+	#else:
+	#	linear_velocity = pos_diff/2.5
+	#	if pos_diff.x < 0:
+	#		$Sprite.scale.x = 0.5
+	#	else:
+	#		$Sprite.scale.x = -0.5
+	
+	#FUCK THIS DRONE. MOVE ALONG, NOTHING TO READ HERE, TERRIBLE MATH :(
+	
+	pass
 
 func remove_state():
 	if pos_diff.x < 0:
@@ -173,8 +176,6 @@ func button_displays():
 			$CanvasLayer/Panel.get_child(n-1).self_modulate = not_selected
 		else:
 			$CanvasLayer/Panel.get_child(n-1).self_modulate = selected
-
-
 
 func _on_EnemyDetector_body_entered(body):
 	Enemy = body

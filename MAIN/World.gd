@@ -48,6 +48,9 @@ func _process(delta):
 			DATA.ready_data.player_pos = vehicle.global_position
 	
 	$"CanvasLayer/PickGun/circular-arrows".rotate(0.1)
+	
+
+func _physics_process(delta):
 	if drag_camera == true:
 		camera_offset  = camera_offset.move_toward(Vector2($CanvasLayer/aim_joystick.get_value().x * zoomvalue,$CanvasLayer/aim_joystick.get_value().y * zoomvalue),delta*4)
 		$Camera2D.offset_h = camera_offset.x
@@ -55,8 +58,6 @@ func _process(delta):
 	else:
 		$Camera2D.offset_h = 0
 		$Camera2D.offset_v = 0
-
-	
 		
 	
 func _on_MENU_pressed():
@@ -143,7 +144,7 @@ func _on_vehicle_detected():
 
 func _on_vehicle_undetected():
 	if player_form == PLAYER:
-		$CanvasLayer/change_vehicle.show()
+		$CanvasLayer/change_vehicle.hide()
 
 func _on_DroneButton_pressed():
 	if !self.has_node("Drone"):

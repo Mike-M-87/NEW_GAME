@@ -3,19 +3,18 @@
 [ext_resource path="res://MAIN/AimLine.tscn" type="PackedScene" id=1]
 [ext_resource path="res://MAIN/sprites/guns/guncool2.png" type="Texture" id=2]
 [ext_resource path="res://MAIN/ReloadButton.tscn" type="PackedScene" id=3]
-[ext_resource path="res://MAIN/GunShot.wav" type="AudioStream" id=4]
+[ext_resource path="res://MAIN/sprites/sounds/shotgun-reload-old_school-RA_The_Sun_God-580332022.wav" type="AudioStream" id=4]
 [ext_resource path="res://MAIN/Gun2.gd" type="Script" id=5]
+[ext_resource path="res://MAIN/sprites/sounds/GUN_FIRE-GoodSoundForYou-820112263.wav" type="AudioStream" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 57.5599, 32.7893 )
-
-[sub_resource type="CircleShape2D" id=2]
+[sub_resource type="CircleShape2D" id=1]
 radius = 33.0289
 
 [node name="Gun2" type="RigidBody2D" groups=[
 "secondary",
 ]]
 collision_layer = 131072
+can_sleep = false
 script = ExtResource( 5 )
 
 [node name="Sprite" type="Sprite" parent="."]
@@ -26,8 +25,14 @@ texture = ExtResource( 2 )
 [node name="BulletPoint" type="Node2D" parent="."]
 position = Vector2( 85.6219, -17.3592 )
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="catridge_point" type="Node2D" parent="."]
+position = Vector2( 0, -22.013 )
+
+[node name="reload_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+
+[node name="gunshot" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
 volume_db = -20.0
 
 [node name="ReloadButton" parent="." instance=ExtResource( 3 )]
@@ -35,15 +40,15 @@ volume_db = -20.0
 [node name="AimLine" parent="." instance=ExtResource( 1 )]
 position = Vector2( 0, -17 )
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -57.8437, -27.5667, 63.9161, -28.9825, 47.3983, 9.71635, -5.93056, 1.2215, -32.831, 29.5377, -63.035, 29.0658 )
 
 [node name="Detector" type="Area2D" parent="." groups=[
 "pickableGun",
 ]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Detector"]
-shape = SubResource( 2 )
+shape = SubResource( 1 )
 [connection signal="pressed" from="ReloadButton/Node2D/reload" to="." method="_on_reload_pressed"]
 
 [editable path="ReloadButton"]

@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/10 Guage Shotgun-SoundBible.com-74120584.wav-d850402d21c828f748297f9a5c280036.sample"
+
+[deps]
+
+source_file="res://MAIN/sprites/sounds/10 Guage Shotgun-SoundBible.com-74120584.wav"
+dest_files=[ "res://.import/10 Guage Shotgun-SoundBible.com-74120584.wav-d850402d21c828f748297f9a5c280036.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

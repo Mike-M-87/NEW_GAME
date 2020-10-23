@@ -1,0 +1,67 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://MAIN/sprites/other/glassPanel_projection.png" type="Texture" id=1]
+[ext_resource path="res://Montserrat-Regular.ttf" type="DynamicFontData" id=2]
+[ext_resource path="res://Settings.gd" type="Script" id=3]
+
+[sub_resource type="StyleBoxTexture" id=1]
+texture = ExtResource( 1 )
+region_rect = Rect2( 0, 0, 100, 100 )
+margin_left = 5.0
+margin_right = 5.0
+margin_top = 5.0
+margin_bottom = 5.0
+modulate_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 30
+font_data = ExtResource( 2 )
+
+[node name="Settings" type="Node2D"]
+position = Vector2( 605.455, 347.536 )
+script = ExtResource( 3 )
+
+[node name="Panel" type="Panel" parent="."]
+margin_left = -266.0
+margin_top = -314.0
+margin_right = 280.0
+margin_bottom = 330.0
+custom_styles/panel = SubResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="sfx" type="CheckButton" parent="Panel"]
+margin_left = 19.0
+margin_top = 66.0
+margin_right = 161.0
+margin_bottom = 130.0
+custom_fonts/font = SubResource( 2 )
+text = "SFX"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bgm" type="CheckButton" parent="Panel"]
+margin_left = 18.0
+margin_top = 130.0
+margin_right = 175.0
+margin_bottom = 194.0
+custom_fonts/font = SubResource( 2 )
+text = "BGM"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="close" type="Button" parent="Panel"]
+margin_left = 485.0
+margin_top = 25.0
+margin_right = 531.0
+margin_bottom = 66.0
+text = "close"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+[connection signal="toggled" from="Panel/sfx" to="." method="_on_sfx_toggled"]
+[connection signal="toggled" from="Panel/bgm" to="." method="_on_bgm_toggled"]
+[connection signal="pressed" from="Panel/close" to="." method="_on_close_pressed"]
